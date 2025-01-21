@@ -81,7 +81,8 @@ double black_scholes_monte_carlo(ui64 S0, ui64 K, double T, double r, double sig
         double payoff = std::max(ST - K, 0.0);
         sum_payoffs += payoff;
     }
-    return exp(-r * T) * (sum_payoffs / num_simulations);
+    static double exprt = exp(-r * T)/num_simulations; 
+    return  exprt *sum_payoffs;
 }
 
 int main(int argc, char* argv[]) {
@@ -109,7 +110,11 @@ int main(int argc, char* argv[]) {
 
     double sum=0.0;
     double t1=dml_micros();
-    for (ui64 run = 0; run < num_runs; ++run) {
+    ui64 run=0;
+    
+    #pragma omp parallel for simd reduction(+:sum)
+
+    for (run = 0; run < num_runs; ++run) {
         std::cout << "Run " << run+1 << std::endl;
         sum+= black_scholes_monte_carlo(S0, K, T, r, sigma, q, num_simulations);
         std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
