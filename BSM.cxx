@@ -57,35 +57,34 @@ dml_micros()
 std::normal_distribution<double> distribution(0.0, 1.0);
 
 // Function to generate Gaussian noise using Box-Muller transform
-// double gaussian_box_muller() {
-//     static std::mt19937 generator(std::random_device{}());
-//     return distribution(generator);
-// }
 double gaussian_box_muller() {
-    static std::mt19937 gen;
-    static int cpt = 624;
-    if(cpt == 624){
-        cpt = 0;
-         std::random_device rd{};
-         gen = std::mt19937{rd()};
-    }
-    gen.discard(cpt);
-    //std::cout << "value generator : " << gen << std::endl; 
-    cpt++;
-    auto val = distribution(gen);
-   // std::cout << "value generate: " << val << std::endl; 
-    return val;
+    static std::mt19937 generator(std::random_device{}());
+    return distribution(generator);
 }
+// double gaussian_box_muller() {
+//     static std::mt19937 gen;
+//     static int cpt = 624;
+//     if(cpt == 624){
+//         cpt = 0;
+//          std::random_device rd{};
+//          gen = std::mt19937{rd()};
+//     }
+//     gen.discard(cpt);
+//     cpt++;
+//     return  distribution(gen);;
+// }
 
 // Function to calculate the Black-Scholes call option price using Monte Carlo method
 double black_scholes_monte_carlo(ui64 S0, ui64 K, double T, double r, double sigma, double q, ui64 num_simulations) {
     double sum_payoffs = 0.0;
     double lambda= sigma * sqrt(T);
     double exp_lambda0 = exp((r - q - 0.5 * sigma * sigma) * T);
+
     #pragma omp parallel for simd reduction(+:sum_payoffs)
+    
     for (ui64 i = 0; i < num_simulations; ++i) {
         double Z = gaussian_box_muller();
-        double ST = S0 * exp_lambda0 * exp( lambda* Z);
+        double ST = S0 * exp_lambda0 * exp(lambda* Z);
         double payoff = std::max(ST - K, 0.0);
         sum_payoffs += payoff;
     }
@@ -122,10 +121,9 @@ int main(int argc, char* argv[]) {
         std::cout << "Run " << run+1 << std::endl;
         sum+= black_scholes_monte_carlo(S0, K, T, r, sigma, q, num_simulations);
         std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
-
     }
     double t2=dml_micros();
-    std::cout << std::fixed << std::setprecision(6) << " value= " << sum/num_runs << " in " << (t2-t1)/1000000.0 << " seconds" << std::endl;
+    std::cout << std::fixed << std::setprecision(6) << " Result= " << sum/num_runs << " in " << (t2-t1)/1000000.0 << " seconds" << std::endl;
 
     return 0;
 }
