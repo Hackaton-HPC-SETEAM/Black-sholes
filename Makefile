@@ -6,7 +6,7 @@ SOURCES=BSM.cxx
 SOURCES_ORIGIN=BSM_original.cxx
 OBJECTS=$(SOURCES:.c=.o)
 TARGET=BSM
-TARGET_ORIGIN=BSM_origin
+TARGET_ORIGIN=BSM_original
 
 .PHONY: compileOpt $(TARGET)
 
