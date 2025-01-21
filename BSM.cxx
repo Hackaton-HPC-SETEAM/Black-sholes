@@ -55,9 +55,15 @@ dml_micros()
 }
 
 // Function to generate Gaussian noise using Box-Muller transform
+// double gaussian_box_muller() {
+
+//     static std::mt19937 generator(std::random_device{}());
+//     static std::normal_distribution<double> distribution(0.0, 1.0);
+//     return distribution(generator);
+// }
 double gaussian_box_muller() {
-    static std::mt19937 generator(std::random_device{}());
-    static std::normal_distribution<double> distribution(0.0, 1.0);
+    thread_local static std::mt19937 generator(std::random_device{}());
+    thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
     return distribution(generator);
 }
 
