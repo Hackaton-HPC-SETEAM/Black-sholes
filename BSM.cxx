@@ -56,9 +56,24 @@ dml_micros()
 std::normal_distribution<double> distribution(0.0, 1.0);
 
 // Function to generate Gaussian noise using Box-Muller transform
+// double gaussian_box_muller() {
+//     static std::mt19937 generator(std::random_device{}());
+//     return distribution(generator);
+// }
 double gaussian_box_muller() {
-    static std::mt19937 generator(std::random_device{}());
-    return distribution(generator);
+    static std::mt19937 gen;
+    static int cpt = 0;
+    if(cpt == 311){
+        cpt = 0;
+         std::random_device rd{};
+         gen = std::mt19937{rd()};
+    }
+    gen.discard(cpt);
+    //std::cout << "value generator : " << gen << std::endl; 
+    cpt++;
+    auto val = distribution(gen);
+   // std::cout << "value generate: " << val << std::endl; 
+    return val;
 }
 
 // Function to calculate the Black-Scholes call option price using Monte Carlo method
