@@ -11,7 +11,7 @@
 Global initial seed: 21852687      argv[1]= 100     argv[2]= 1000000
  value= 5.136359 in 10.191287 seconds
 
-./BSM 100 1000000
+./BSM 100 1000000Probablement dans un mail du type confirmation d'inscription
 Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
  value= 5.138515 in 10.223189 seconds
  
@@ -53,44 +53,30 @@ dml_micros()
         gettimeofday(&tv,&tz);
         return((tv.tv_sec*1000000.0)+tv.tv_usec);
 }
-// Global variable pas besoin de la recalculer à chaque fois
-std::normal_distribution<double> distribution(0.0, 1.0);
 
 // Function to generate Gaussian noise using Box-Muller transform
 double gaussian_box_muller() {
     static std::mt19937 generator(std::random_device{}());
+    static std::normal_distribution<double> distribution(0.0, 1.0);
     return distribution(generator);
 }
-// double gaussian_box_muller() {
-//     static std::mt19937 gen;
-//     static int cpt = 624;
-//     if(cpt == 624){
-//         cpt = 0;
-//          std::random_device rd{};
-//          gen = std::mt19937{rd()};
-//     }
-//     gen.discard(cpt);
-//     cpt++;
-//     return  distribution(gen);;
-// }
 
 // Function to calculate the Black-Scholes call option price using Monte Carlo method
 double black_scholes_monte_carlo(ui64 S0, ui64 K, double T, double r, double sigma, double q, ui64 num_simulations) {
     double sum_payoffs = 0.0;
-    double lambda= sigma * sqrt(T);
-    double exp_lambda0 = exp((r - q - 0.5 * sigma * sigma) * T);
+    static double lambda= sigma * sqrt(T);
+    static double exp_lambda0 = S0* exp((r - q - 0.5 * sigma * sigma) * T);
 
     #pragma omp parallel for simd reduction(+:sum_payoffs)
     
     for (ui64 i = 0; i < num_simulations; ++i) {
         double Z = gaussian_box_muller();
-        double ST = S0 * exp_lambda0 * exp(lambda* Z);
+        double ST = exp_lambda0 * exp(lambda* Z);
         double payoff = std::max(ST - K, 0.0);
         sum_payoffs += payoff;
     }
     return exp(-r * T) * (sum_payoffs / num_simulations);
 }
-
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
