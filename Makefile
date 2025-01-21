@@ -15,7 +15,7 @@ compileOpt: $(TARGET)
 compileV0: $(TARGET_ORIGIN)
 
 $(TARGET): $(OBJECTS) $(CXXOBJECTS)
-	$(CC) $(LDFLAGS) $(OPTILVL) $^ -o $@
+	$(CC) $(CCFLAGS) $(OPTILVL) $^ -o $@
 
 $(TARGET_ORIGIN): $(OBJECTS) $(CXXOBJECTS)
 	$(CC) $(OPTILVL) $^ -o $@
