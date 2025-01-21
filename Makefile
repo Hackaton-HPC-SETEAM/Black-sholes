@@ -1,7 +1,6 @@
 CC=g++
-CCFLAGS=-Wall -std=c99 -fopenmp
+CCFLAGS=-Wall -std=c++14 -fopenmp -ftree-vectorize -march=native -fopt-info-vec
 OPTILVL=-O2
-LDFLAGS=-fopenmp
 SOURCES=BSM.cxx
 SOURCES_ORIGIN=BSM_original.cxx
 OBJECTS=$(SOURCES:.c=.o)

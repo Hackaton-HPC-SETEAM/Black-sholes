@@ -1,0 +1,227 @@
+
+* Info: "ref-cycles" not supported on jf: fallback to "cpu-clock"Global initial seed: 3243169301      argv[1]= 10000     argv[2]= 100
+Run 1
+ value= 4.982026
+Run 2
+ value= 5.091957
+Run 3
+ value= 5.106397
+Run 4
+ value= 5.078924
+Run 5
+ value= 5.080976
+Run 6
+ value= 5.130968
+Run 7
+ value= 5.082464
+Run 8
+ value= 5.094437
+Run 9
+ value= 5.102531
+Run 10
+ value= 5.108054
+Run 11
+ value= 5.122360
+Run 12
+ value= 5.120656
+Run 13
+ value= 5.120699
+Run 14
+ value= 5.127430
+Run 15
+ value= 5.121202
+Run 16
+ value= 5.129383
+Run 17
+ value= 5.129512
+Run 18
+ value= 5.127262
+Run 19
+ value= 5.133833
+Run 20
+ value= 5.139551
+Run 21
+ value= 5.143359
+Run 22
+ value= 5.147088
+Run 23
+ value= 5.145032
+Run 24
+ value= 5.150305
+Run 25
+ value= 5.159050
+Run 26
+ value= 5.160362
+Run 27
+ value= 5.166177
+Run 28
+ value= 5.173213
+Run 29
+ value= 5.172805
+Run 30
+ value= 5.169610
+Run 31
+ value= 5.174809
+Run 32
+ value= 5.171580
+Run 33
+ value= 5.171617
+Run 34
+ value= 5.167316
+Run 35
+ value= 5.165832
+Run 36
+ value= 5.161770
+Run 37
+ value= 5.162306
+Run 38
+ value= 5.158675
+Run 39
+ value= 5.158345
+Run 40
+ value= 5.159118
+Run 41
+ value= 5.156350
+Run 42
+ value= 5.154609
+Run 43
+ value= 5.153614
+Run 44
+ value= 5.147181
+Run 45
+ value= 5.143854
+Run 46
+ value= 5.139909
+Run 47
+ value= 5.137942
+Run 48
+ value= 5.139060
+Run 49
+ value= 5.137143
+Run 50
+ value= 5.138131
+Run 51
+ value= 5.135284
+Run 52
+ value= 5.134221
+Run 53
+ value= 5.133893
+Run 54
+ value= 5.133491
+Run 55
+ value= 5.136758
+Run 56
+ value= 5.140369
+Run 57
+ value= 5.140643
+Run 58
+ value= 5.143694
+Run 59
+ value= 5.142146
+Run 60
+ value= 5.141027
+Run 61
+ value= 5.138946
+Run 62
+ value= 5.138870
+Run 63
+ value= 5.140982
+Run 64
+ value= 5.138396
+Run 65
+ value= 5.138781
+Run 66
+ value= 5.135964
+Run 67
+ value= 5.138661
+Run 68
+ value= 5.139805
+Run 69
+ value= 5.140793
+Run 70
+ value= 5.136831
+Run 71
+ value= 5.137382
+Run 72
+ value= 5.137950
+Run 73
+ value= 5.137350
+Run 74
+ value= 5.137491
+Run 75
+ value= 5.135199
+Run 76
+ value= 5.135213
+Run 77
+ value= 5.136577
+Run 78
+ value= 5.136834
+Run 79
+ value= 5.134146
+Run 80
+ value= 5.136497
+Run 81
+ value= 5.136133
+Run 82
+ value= 5.136024
+Run 83
+ value= 5.135379
+Run 84
+ value= 5.135192
+Run 85
+ value= 5.133846
+Run 86
+ value= 5.134966
+Run 87
+ value= 5.133589
+Run 88
+ value= 5.132128
+Run 89
+ value= 5.134867
+Run 90
+ value= 5.133570
+Run 91
+ value= 5.134243
+Run 92
+ value= 5.134147
+Run 93
+ value= 5.132204
+Run 94
+ value= 5.131707
+Run 95
+ value= 5.133391
+Run 96
+ value= 5.132730
+Run 97
+ value= 5.130686
+Run 98
+ value= 5.131534
+Run 99
+ value= 5.131982
+Run 100
+ value= 5.129283
+ value= 5.129283 in 21.163217 seconds
+
+* Info: Callchains info will be incomplete
+* Info: Try to recompile your application with -fno-omit-frame-pointer or to rerun with btm=stack
+* Info: Dumping samples (host jf, process 186301)
+* Info: Dumping source info for callchain nodes (host jf, process 186301)
+* Info: Building/writing metadata (host jf)
+* Info: Finished collect step (host jf, process 186301)
+
+Your experiment path is /home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0
+
+To display your profiling results:
+#######################################################################################################################################################################
+#    LEVEL    |     REPORT     |                                                               COMMAND                                                                #
+#######################################################################################################################################################################
+#  Functions  |  Cluster-wide  |  maqao lprof -df xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0      #
+#  Functions  |  Per-node      |  maqao lprof -df -dn xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0  #
+#  Functions  |  Per-process   |  maqao lprof -df -dp xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0  #
+#  Functions  |  Per-thread    |  maqao lprof -df -dt xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0  #
+#  Loops      |  Cluster-wide  |  maqao lprof -dl xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0      #
+#  Loops      |  Per-node      |  maqao lprof -dl -dn xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0  #
+#  Loops      |  Per-process   |  maqao lprof -dl -dp xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0  #
+#  Loops      |  Per-thread    |  maqao lprof -dl -dt xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0  #
+#######################################################################################################################################################################
+

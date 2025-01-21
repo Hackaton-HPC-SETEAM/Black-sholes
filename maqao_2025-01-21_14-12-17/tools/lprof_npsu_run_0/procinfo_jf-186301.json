@@ -1,0 +1,20 @@
+{
+  "content": {
+    "proc_name"          : "AMD_fam19h_mod44h",
+    "hostname"           : "jf",
+    "architecture_code"  : "2",
+    "uarchitecture_code" : "37",
+    "architecture"       : "x86_64",
+    "uarchitecture"      : "ZEN_V3",
+    "cpui_model_name"    : "AMD Ryzen 7 6800H with Radeon Graphics",
+    "cpui_cache_size"    : "512 KB",
+    "cpui_cpu_cores"     : "8",
+    "max_frequency"          : "4785000",
+    "cur_frequency"      : "2945922",
+    "driver_frequency"   : "amd-pstate-epp",
+    "scaling_governor"   : "performance",
+    "huge_pages"         : "madvise",
+    "os_version"         : "Linux 6.8.0-51-generic #52-Ubuntu SMP PREEMPT_DYNAMIC Thu Dec  5 13:09:44 UTC 2024",
+    "is_lstopo"          : true,
+  }
+}

@@ -1,0 +1,16 @@
+********************************************************************************
+MAQAO 2.21.1 - a9bb74606c7e260f7f87782e64f16b00a6f20c1b::20250121-112452 || 2025/01/21
+maqao oneview -R1 --executable=./BSM "--run-command=<executable> 10000 100" --nprocs=16 
+CPY:  [true] ./BSM --> /home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/binaries/BSM
+CMD:   /home/jf/Téléchargements/maqao.x86_64.2.21.1/bin/maqao lprof _caller=oneview  --xp="/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/tools/lprof_npsu_run_0" --mpi-command="" --collect-CPU-time-intervals --collect-topology   -- /home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/binaries/BSM 10000 100
+In run run_0, 2 loops were discarded from static analysis because their coverage
+are lower than object_coverage_threshold value (0.01%).
+That represents 0.0095282157417387% of the execution time. To include them, change the value
+in the experiment directory configuration file, then rerun the command with the additionnal parameter
+--force-static-analysis
+1 functions were discarded from static analysis because their coverage
+are lower than object_coverage_threshold value (0.01%).
+That represents 0.0063521438278258% of the execution time. To include them, change the value
+in the experiment directory configuration file, then rerun the command with the additionnal parameter
+--force-static-analysis
+CMD:  /home/jf/Téléchargements/maqao.x86_64.2.21.1/bin/maqao otter  -input=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/OTTER/input_manifest.csv -output=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-21_14-12-17/OTTER/output_manifest.csv

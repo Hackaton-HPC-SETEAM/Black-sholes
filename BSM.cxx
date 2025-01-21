@@ -37,6 +37,7 @@ Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
 #include <limits>
 #include <algorithm>
 #include <iomanip>   // For setting precision
+#include <cmath> // Pour std::erf et std::sqrt
 
 #define ui64 u_int64_t
 
@@ -62,8 +63,8 @@ std::normal_distribution<double> distribution(0.0, 1.0);
 // }
 double gaussian_box_muller() {
     static std::mt19937 gen;
-    static int cpt = 0;
-    if(cpt == 311){
+    static int cpt = 624;
+    if(cpt == 624){
         cpt = 0;
          std::random_device rd{};
          gen = std::mt19937{rd()};
@@ -79,19 +80,18 @@ double gaussian_box_muller() {
 // Function to calculate the Black-Scholes call option price using Monte Carlo method
 double black_scholes_monte_carlo(ui64 S0, ui64 K, double T, double r, double sigma, double q, ui64 num_simulations) {
     double sum_payoffs = 0.0;
-    #pragma omp parallel for reduction(+:sum_payoffs)
-    #pragma simd
-    #pragma omp unroll(16)
+    double lambda= sigma * sqrt(T);
+    double exp_lambda0 = exp((r - q - 0.5 * sigma * sigma) * T);
+    #pragma omp parallel for simd reduction(+:sum_payoffs)
     for (ui64 i = 0; i < num_simulations; ++i) {
         double Z = gaussian_box_muller();
-        double ST = S0 * exp((r - q - 0.5 * sigma * sigma) * T + sigma * sqrt(T) * Z);
+        double ST = S0 * exp_lambda0 * exp( lambda* Z);
         double payoff = std::max(ST - K, 0.0);
         sum_payoffs += payoff;
     }
     return exp(-r * T) * (sum_payoffs / num_simulations);
 }
 
-#include <cmath> // Pour std::erf et std::sqrt
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
