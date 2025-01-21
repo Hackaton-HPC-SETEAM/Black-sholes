@@ -52,11 +52,13 @@ dml_micros()
         gettimeofday(&tv,&tz);
         return((tv.tv_sec*1000000.0)+tv.tv_usec);
 }
+// Global variable pas besoin de la recalculer à chaque fois
+std::normal_distribution<double> distribution(0.0, 1.0);
 
 // Function to generate Gaussian noise using Box-Muller transform
 double gaussian_box_muller() {
     static std::mt19937 generator(std::random_device{}());
-    static std::normal_distribution<double> distribution(0.0, 1.0);
+    // static std::normal_distribution<double> distribution(0.0, 1.0);
     return distribution(generator);
 }
 
