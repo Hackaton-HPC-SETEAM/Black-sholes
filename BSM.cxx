@@ -67,25 +67,6 @@ double gaussian_box_muller() {
     return distribution(generator);
 }
 
-// Function to calculate the Black-Scholes call option price using Monte Carlo method
-double black_scholes_monte_carlo(ui64 S0, ui64 K, double T, double r, double sigma, double q, ui64 num_simulations) {
-    double sum_payoffs = 0.0;
-    static const double lambda= sigma * sqrt(T);
-    static const double exp_lambda0 = S0* exp((r - q - 0.5 * sigma * sigma) * T);
-    static const double lnZcompare = log(K/exp_lambda0)/lambda;
-
-    #pragma omp parallel for simd reduction(+:sum_payoffs)
-    
-    for (ui64 i = 0; i < num_simulations; ++i) {
-        double Z = gaussian_box_muller();
-        if (Z > lnZcompare) {
-            sum_payoffs += exp_lambda0 * exp(lambda* Z)-K; 
-        }
-    }
-    static const double exprt = exp(-r * T)/num_simulations; 
-    return  exprt *sum_payoffs;
-}
-
 int main(int argc, char* argv[]) {
     if (argc != 3) {
         std::cerr << "Usage: " << argv[0] << " <num_simulations> <num_runs>" << std::endl;
@@ -103,6 +84,14 @@ int main(int argc, char* argv[]) {
     double sigma = 0.2;                   // Volatility
     double q     = 0.03;                  // Dividend yield
 
+    const double lambda= sigma * sqrt(T);
+    const double exp_lambda0 = S0* exp((r - q - 0.5 * sigma * sigma) * T);
+    const double lnZcompare = log(K/exp_lambda0)/lambda;
+    const double exprt = exp(-r * T)/num_simulations;
+
+    const double a=exprt*exp_lambda0;
+    const double b=-exprt*K; 
+
     // Generate a random seed at the start of the program using random_device
     std::random_device rd;
     unsigned long long global_seed = rd();  // This will be the global seed
@@ -113,11 +102,17 @@ int main(int argc, char* argv[]) {
     double t1=dml_micros();
     ui64 run=0;
     
-    #pragma omp parallel for simd reduction(+:sum)
+    #pragma omp parallel for collapse(1) reduction(+:sum)
 
     for (run = 0; run < num_runs; ++run) {
         std::cout << "Run " << run+1 << std::endl;
-        sum+= black_scholes_monte_carlo(S0, K, T, r, sigma, q, num_simulations);
+        
+        for (ui64 i = 0; i < num_simulations; ++i) {
+            double Z = gaussian_box_muller();
+            if (Z > lnZcompare) {
+                sum+= a*exp(lambda* Z)+b; 
+            }
+        }
         std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
     }
     double t2=dml_micros();
