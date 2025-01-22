@@ -7,4 +7,4 @@
 
 
 # Exécutez votre programme BSM compilé avec les paramètres
-srun ./BSM 10000000 1000
+srun ./BSM 100000 1000
