@@ -54,19 +54,6 @@ dml_micros()
         return((tv.tv_sec*1000000.0)+tv.tv_usec);
 }
 
-// Function to generate Gaussian noise using Box-Muller transform
-// double gaussian_box_muller() {
-
-//     static std::mt19937 generator(std::random_device{}());
-//     static std::normal_distribution<double> distribution(0.0, 1.0);
-//     return distribution(generator);
-// }
-double gaussian_box_muller() {
-    thread_local static std::mt19937 generator(std::random_device{}());
-    thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
-    return distribution(generator);
-}
-
 int main(int argc, char* argv[]) {
     if (argc != 3) {
         std::cerr << "Usage: " << argv[0] << " <num_simulations> <num_runs>" << std::endl;
@@ -108,7 +95,9 @@ int main(int argc, char* argv[]) {
         std::cout << "Run " << run+1 << std::endl;
         
         for (ui64 i = 0; i < num_simulations; ++i) {
-            double Z = gaussian_box_muller();
+            thread_local static std::mt19937 generator(std::random_device{}());
+            thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
+            double Z =  distribution(generator);
             if (Z > lnZcompare) {
                 sum+= a*exp(lambda* Z)+b; 
             }
