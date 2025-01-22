@@ -31,7 +31,7 @@ Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
 */
 
 #include <iostream>
-#include <cmath>
+//#include <cmath>
 #include <random>
 #include <vector>
 #include <limits>
@@ -43,6 +43,9 @@ Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
 
 // include added for the optimization
 #include <omp.h>
+#include <armpl.h>
+#include <amath.h>
+
 
 #include <sys/time.h>
 double

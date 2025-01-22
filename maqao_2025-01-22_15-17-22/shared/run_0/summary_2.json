@@ -1,0 +1,192 @@
+{
+  "report": [
+    {
+      "id_str": "Loop 8 - BSM",
+      "module": "BSM",
+      "id": 8,
+      "analysis": "Execution Time: 47 % - Vectorization Ratio: 4.44 % - Vector Length Use: 49.31 %",
+      "coverage": 47.812511444092,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 10,
+          "issues": [
+            {
+              "code": "L2_LC_2",
+              "analysis": "[SA] Presence of expensive FP instructions - Perform hoisting, change algorithm, use SVML or proper numerical library or perform value profiling (count the number of distinct input values). There are 2 issues (= instructions) costing 4 points each.",
+              "score": 8,
+            },
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 3,
+          "issues": [
+            {
+              "code": "L2_CF_1",
+              "analysis": "[SA] Presence of calls - Inline either by compiler or by hand and use SVML for libm calls. There are 1 issues (= calls) costing 1 point each.",
+              "score": 1,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 1003,
+          "issues": [
+            {
+              "code": "L2_CF_1",
+              "analysis": "[SA] Presence of calls - Inline either by compiler or by hand and use SVML for libm calls. There are 1 issues (= calls) costing 1 point each.",
+              "score": 1,
+            },
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (at least 1000 paths) - Simplify control structure. There are at least 1000 issues ( = paths) costing 1 point.",
+              "score": 1000,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 6 - BSM",
+      "module": "BSM",
+      "id": 6,
+      "analysis": "Execution Time: 6 % - Vectorization Ratio: 0.00 % - Vector Length Use: 50.00 %",
+      "coverage": 6.3307962417603,
+      "issues": [
+        {
+          "id_str": "Control Flow Issues",
+          "score": 1,
+          "issues": [
+            {
+              "code": "L2_CF_1",
+              "analysis": "[SA] Presence of calls - Inline either by compiler or by hand and use SVML for libm calls. There are 1 issues (= calls) costing 1 point each.",
+              "score": 1,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 1,
+          "issues": [
+            {
+              "code": "L2_CF_1",
+              "analysis": "[SA] Presence of calls - Inline either by compiler or by hand and use SVML for libm calls. There are 1 issues (= calls) costing 1 point each.",
+              "score": 1,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 12 - BSM",
+      "module": "BSM",
+      "id": 12,
+      "analysis": "Execution Time: 4 % - Vectorization Ratio: 0.00 % - Vector Length Use: 46.67 %",
+      "coverage": 4.9620251655579,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_2",
+              "analysis": "[SA] Presence of indirect accesses - Use array restructuring or gather instructions to lower the cost. There are 1 issues ( = indirect data accesses) costing 4 point each.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_2",
+              "analysis": "[SA] Presence of indirect accesses - Use array restructuring or gather instructions to lower the cost. There are 1 issues ( = indirect data accesses) costing 4 point each.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 11 - BSM",
+      "module": "BSM",
+      "id": 11,
+      "analysis": "Execution Time: 4 % - Vectorization Ratio: 0.00 % - Vector Length Use: 0.00 %",
+      "coverage": 4.4415588378906,
+      "issues": [
+      ]
+    },
+    {
+      "id_str": "Loop 10 - BSM",
+      "module": "BSM",
+      "id": 10,
+      "analysis": "Execution Time: 2 % - Vectorization Ratio: 0.00 % - Vector Length Use: 0.00 %",
+      "coverage": 2.1652133464813,
+      "issues": [
+      ]
+    },
+    {
+      "id_str": "Loop 13 - BSM",
+      "module": "BSM",
+      "id": 13,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 0.00 % - Vector Length Use: 50.00 %",
+      "coverage": 0.016669735312462,
+      "issues": [
+        {
+          "id_str": "Control Flow Issues",
+          "score": 3,
+          "issues": [
+            {
+              "code": "L2_CF_1",
+              "analysis": "[SA] Presence of calls - Inline either by compiler or by hand and use SVML for libm calls. There are 1 issues (= calls) costing 1 point each.",
+              "score": 1,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (Outermost) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 1003,
+          "issues": [
+            {
+              "code": "L2_CF_1",
+              "analysis": "[SA] Presence of calls - Inline either by compiler or by hand and use SVML for libm calls. There are 1 issues (= calls) costing 1 point each.",
+              "score": 1,
+            },
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (at least 1000 paths) - Simplify control structure. There are at least 1000 issues ( = paths) costing 1 point.",
+              "score": 1000,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (Outermost) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+
+* Info: "ref-cycles" not supported on ip-10-0-9-63: fallback to "cpu-clock"Global initial seed: 1662442117      argv[1]= 10000     argv[2]= 100
+ Result= 5.127833 in 0.002461 seconds
+
+* Info: Dumping samples (host ip-10-0-9-63, process 14019)
+* Info: Dumping source info for callchain nodes (host ip-10-0-9-63, process 14019)
+* Info: Building/writing metadata (host ip-10-0-9-63)
+* Info: Finished collect step (host ip-10-0-9-63, process 14019)
+
+Your experiment path is /fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0
+
+To display your profiling results:
+###########################################################################################################################################
+#    LEVEL    |     REPORT     |                                                 COMMAND                                                  #
+###########################################################################################################################################
+#  Functions  |  Cluster-wide  |  maqao lprof -df xp=/fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0      #
+#  Functions  |  Per-node      |  maqao lprof -df -dn xp=/fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0  #
+#  Functions  |  Per-process   |  maqao lprof -df -dp xp=/fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0  #
+#  Functions  |  Per-thread    |  maqao lprof -df -dt xp=/fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0  #
+#  Loops      |  Cluster-wide  |  maqao lprof -dl xp=/fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0      #
+#  Loops      |  Per-node      |  maqao lprof -dl -dn xp=/fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0  #
+#  Loops      |  Per-process   |  maqao lprof -dl -dp xp=/fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0  #
+#  Loops      |  Per-thread    |  maqao lprof -dl -dt xp=/fsx/home/etud9-1/Black-sholes/maqao_2025-01-22_15-17-07/tools/lprof_npsu_run_0  #
+###########################################################################################################################################
+
