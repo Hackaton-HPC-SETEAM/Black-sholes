@@ -82,7 +82,7 @@ double black_scholes_monte_carlo(ui64 S0, ui64 K, double T, double r, double sig
             sum_payoffs += exp_lambda0 * exp(lambda* Z)-K; 
         }
     }
-    static double exprt = exp(-r * T)/num_simulations; 
+    static const double exprt = exp(-r * T)/num_simulations; 
     return  exprt *sum_payoffs;
 }
 
