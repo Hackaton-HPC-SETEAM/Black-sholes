@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=BSM_job
+#SBATCH --job-name=BSM_opti
 #SBATCH --output=BSM_output_%j.log
 #SBATCH --error=BSM_error_%j.log
-#SBATCH --ntasks=1
-#SBATCH --mem=2G
-#SBATCH --time=01:00:00
+#SBATCH --time=01:00:0
+#SBATCH --nodes=2
+
 
 # Exécutez votre programme BSM compilé avec les paramètres
 ./BSM 10000000 100000
