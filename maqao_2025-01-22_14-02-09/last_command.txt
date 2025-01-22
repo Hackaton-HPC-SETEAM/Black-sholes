@@ -1,0 +1,1 @@
+maqao oneview -R1 --executable=./BSM "--run-command=<executable> 1000000 1000" --nprocs=16* 

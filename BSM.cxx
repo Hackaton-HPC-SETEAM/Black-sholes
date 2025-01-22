@@ -92,8 +92,8 @@ int main(int argc, char* argv[]) {
     #pragma omp parallel for reduction(+:sum)
 
     for (run = 0; run < num_runs; ++run) {
-        std::cout << "Run " << run+1 << std::endl;
-	#pragma omp simd
+        // std::cout << "Run " << run+1 << std::endl;
+	    #pragma omp simd
         for (ui64 i = 0; i < num_simulations; ++i) {
             thread_local static std::mt19937 generator(std::random_device{}());
             thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
@@ -102,7 +102,7 @@ int main(int argc, char* argv[]) {
                 sum+= a*exp(lambda* Z)+b; 
             }
         }
-        std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
+        // std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
 
     }
     double t2=dml_micros();

@@ -1,0 +1,63 @@
+address;source_location;insn;indent
+0x2d20;:0;CMPB	$0,%FS:-0x1390;
+0x2d29;:0;JE	2f8d <main._omp_fn.0+0x3ad>;
+0x2d2f;:0;CMPB	$0,0x3582(%RIP);
+0x2d36;:0;MOV	0x3563(%RIP),%R15;
+0x2d3d;:0;MOV	0x3564(%RIP),%R14;
+0x2d44;:0;JNE	2f50 <main._omp_fn.0+0x370>;
+0x2e1b;:0;VMOVQ	%R14,%XMM4;
+0x2e20;:0;VMOVQ	%R15,%XMM5;
+0x2e25;:0;VFMADD132SD	%XMM1,%XMM5,%XMM4;
+0x2e2a;:0;VCOMISD	0x8(%RSP),%XMM4;
+0x2e30;:0;JA	2f64 <main._omp_fn.0+0x384>;
+0x2e36;:0;INC	%RBX;
+0x2e39;:0;CMP	%RBX,%R12;
+0x2e3c;:0;JNE	2d20 <main._omp_fn.0+0x140>;
+0x2f50;:0;VMOVSD	0x3358(%RIP),%XMM1;
+0x2f58;:0;MOVB	$0,0x3359(%RIP);
+0x2f5f;:0;JMP	2e1b <main._omp_fn.0+0x23b>;
+0x2f64;:0;VMULSD	0x38(%RSP),%XMM4,%XMM0;
+0x2f6a;:0;CALL	2420 <.plt.sec@start+0x1d0>;
+0x2f6f;:0;VMOVSD	0x28(%RSP),%XMM5;
+0x2f75;:0;VFMADD132SD	0x30(%RSP),%XMM5,%XMM0;
+0x2f7c;:0;VADDSD	0x20(%RSP),%XMM0,%XMM7;
+0x2f82;:0;VMOVSD	%XMM7,0x20(%RSP);
+0x2f88;:0;JMP	2e36 <main._omp_fn.0+0x256>;
+0x2f8d;:0;LEA	0x50(%RSP),%R14;
+0x2f92;:0;LEA	0x10a8(%RIP),%RDX;
+0x2f99;:0;LEA	0x60(%RSP),%R15;
+0x2f9e;:0;LEA	0x70(%RSP),%RBP;
+0x2fa3;:0;LEA	-0x7(%RDX),%RSI;
+0x2fa7;:0;MOV	%R14,%RDI;
+0x2faa;:0;MOV	%R15,0x50(%RSP);
+0x2faf;:0;CALL	2990 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPKcEEvT_S8_St20forward_iterator_tag.isra.0>;
+0x2fb4;:0;MOV	%R14,%RSI;
+0x2fb7;:0;MOV	%RBP,%RDI;
+0x2fba;:0;CALL	2400 <.plt.sec@start+0x1b0>;
+0x2fbf;:0;MOV	0x50(%RSP),%RDI;
+0x2fc4;:0;CMP	%R15,%RDI;
+0x2fc7;:0;JE	2fd7 <main._omp_fn.0+0x3f7>;
+0x2fc9;:0;MOV	0x60(%RSP),%RAX;
+0x2fce;:0;LEA	0x1(%RAX),%RSI;
+0x2fd2;:0;CALL	2340 <.plt.sec@start+0xf0>;
+0x2fd7;:0;MOV	%RBP,%RDI;
+0x2fda;:0;CALL	23a0 <.plt.sec@start+0x150>;
+0x2fdf;:0;MOV	%FS:,%RSI;
+0x2fe8;:0;MOV	$0x1,%EDX;
+0x2fed;:0;MOV	%EAX,%ECX;
+0x2fef;:0;MOV	%RCX,%FS:-0x1388;
+0x2ff8;:0;NOPL	(%RAX,%RAX,1);
+0x3000;:0;MOV	%RCX,%RAX;  (3) 
+0x3003;:0;SHR	$0x1e,%RAX;  (3) 
+0x3007;:0;XOR	%RCX,%RAX;  (3) 
+0x300a;:0;IMUL	$0x6c078965,%RAX,%RAX;  (3) 
+0x3011;:0;LEA	(%RDX,%RAX,1),%ECX;  (3) 
+0x3014;:0;MOV	%RCX,-0x1388(%RSI,%RDX,8);  (3) 
+0x301c;:0;INC	%RDX;  (3) 
+0x301f;:0;CMP	$0x270,%RDX;  (3) 
+0x3026;:0;JNE	3000 <main._omp_fn.0+0x420>;  (3) 
+0x3028;:0;MOV	%RBP,%RDI;
+0x302b;:0;MOVQ	$0x270,%FS:-0x8;
+0x3038;:0;MOVB	$0x1,%FS:-0x1390;
+0x3041;:0;CALL	2320 <.plt.sec@start+0xd0>;
+0x3046;:0;JMP	2d2f <main._omp_fn.0+0x14f>;

@@ -1,0 +1,283 @@
+address;source_location;insn;indent
+0x2be0;:0;ENDBR64;
+0x2be4;:0;PUSH	%R15;
+0x2be6;:0;PUSH	%R14;
+0x2be8;:0;PUSH	%R13;
+0x2bea;:0;PUSH	%R12;
+0x2bec;:0;PUSH	%RBP;
+0x2bed;:0;PUSH	%RBX;
+0x2bee;:0;LEA	-0x27000(%RSP),%R11;
+0x2bf6;:0;SUB	$0x1000,%RSP;(1) 
+0x2bfd;:0;ORQ	$0,(%RSP);(1) 
+0x2c02;:0;CMP	%R11,%RSP;(1) 
+0x2c05;:0;JNE	2bf6 <main._omp_fn.0+0x16>;(1) 
+0x2c07;:0;SUB	$0x188,%RSP;
+0x2c0e;:0;VMOVSD	0x28(%RDI),%XMM7;
+0x2c13;:0;MOV	0x8(%RDI),%RBX;
+0x2c17;:0;MOV	(%RDI),%R12;
+0x2c1a;:0;MOV	%RDI,0x48(%RSP);
+0x2c1f;:0;MOV	%FS:0x28,%RAX;
+0x2c28;:0;MOV	%RAX,0x27178(%RSP);
+0x2c30;:0;XOR	%EAX,%EAX;
+0x2c32;:0;VMOVSD	%XMM7,0x28(%RSP);
+0x2c38;:0;VMOVSD	0x20(%RDI),%XMM7;
+0x2c3d;:0;VMOVSD	%XMM7,0x30(%RSP);
+0x2c43;:0;VMOVSD	0x18(%RDI),%XMM7;
+0x2c48;:0;VMOVSD	%XMM7,0x8(%RSP);
+0x2c4e;:0;VMOVSD	0x10(%RDI),%XMM7;
+0x2c53;:0;VMOVSD	%XMM7,0x38(%RSP);
+0x2c59;:0;TEST	%RBX,%RBX;
+0x2c5c;:0;JE	2ef3 <main._omp_fn.0+0x313>;
+0x2c62;:0;CALL	2450 <.plt.sec@start+0x200>;
+0x2c67;:0;MOV	%EAX,%EBP;
+0x2c69;:0;CALL	23d0 <.plt.sec@start+0x180>;
+0x2c6e;:0;XOR	%EDX,%EDX;
+0x2c70;:0;MOVSXD	%EAX,%RCX;
+0x2c73;:0;MOVSXD	%EBP,%RSI;
+0x2c76;:0;MOV	%RBX,%RAX;
+0x2c79;:0;DIV	%RSI;
+0x2c7c;:0;CMP	%RDX,%RCX;
+0x2c7f;:0;JB	30d0 <main._omp_fn.0+0x4f0>;
+0x2c85;:0;IMUL	%RAX,%RCX;
+0x2c89;:0;LEA	(%RCX,%RDX,1),%R13;
+0x2c8d;:0;ADD	%R13,%RAX;
+0x2c90;:0;MOV	%RAX,0x40(%RSP);
+0x2c95;:0;CMP	%RAX,%R13;
+0x2c98;:0;JAE	2ef3 <main._omp_fn.0+0x313>;
+0x2c9e;:0;MOVQ	$0,0x20(%RSP);
+0x2ca7;:0;MOV	$0x4,%EDX;(9) 
+0x2cac;:0;LEA	0x1409(%RIP),%RSI;(9) 
+0x2cb3;:0;LEA	0x3386(%RIP),%RDI;(9) 
+0x2cba;:0;INC	%R13;(9) 
+0x2cbd;:0;CALL	2360 <.plt.sec@start+0x110>;(9) 
+0x2cc2;:0;MOV	%R13,%RSI;(9) 
+0x2cc5;:0;LEA	0x3374(%RIP),%RDI;(9) 
+0x2ccc;:0;CALL	22c0 <.plt.sec@start+0x70>;(9) 
+0x2cd1;:0;MOV	%RAX,%RBX;(9) 
+0x2cd4;:0;MOV	(%RAX),%RAX;(9) 
+0x2cd7;:0;MOV	-0x18(%RAX),%RAX;(9) 
+0x2cdb;:0;MOV	0xf0(%RBX,%RAX,1),%RBP;(9) 
+0x2ce3;:0;TEST	%RBP,%RBP;(9) 
+0x2ce6;:0;JE	30da <main._omp_fn.0+0x4fa>;(9) 
+0x2cec;:0;CMPB	$0,0x38(%RBP);(9) 
+0x2cf0;:0;JE	307d <main._omp_fn.0+0x49d>;(9) 
+0x2cf6;:0;MOVSX	0x43(%RBP),%ESI;(9) 
+0x2cfa;:0;MOV	%RBX,%RDI;(9) 
+0x2cfd;:0;XOR	%EBX,%EBX;(9) 
+0x2cff;:0;CALL	2250 <.plt.sec@start>;(9) 
+0x2d04;:0;MOV	%RAX,%RDI;(9) 
+0x2d07;:0;CALL	22d0 <.plt.sec@start+0x80>;(9) 
+0x2d0c;:0;TEST	%R12,%R12;(9) 
+0x2d0f;:0;JE	2e42 <main._omp_fn.0+0x262>;(9) 
+0x2d15;:0;NOPW	%CS:(%RAX,%RAX,1);(9) 
+0x2d20;:0;CMPB	$0,%FS:-0x1390;        (4) 
+0x2d29;:0;JE	2f8d <main._omp_fn.0+0x3ad>;        (4) 
+0x2d2f;:0;CMPB	$0,0x3582(%RIP);        (4) 
+0x2d36;:0;MOV	0x3563(%RIP),%R15;        (4) 
+0x2d3d;:0;MOV	0x3564(%RIP),%R14;        (4) 
+0x2d44;:0;JNE	2f50 <main._omp_fn.0+0x370>;        (4) 
+0x2d4a;:0;MOV	%FS:,%RSI;      (7) 
+0x2d53;:0;LEA	-0x1388(%RSI),%RBP;      (7) 
+0x2d5a;:0;NOPW	(%RAX,%RAX,1);      (7) 
+0x2d60;:0;MOV	%RBP,%RDI;        (5) 
+0x2d63;:0;CALL	34f0 <_ZSt18generate_canonicalIdLm53ESt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EEET_RT1_>;        (5) 
+0x2d68;:0;VMOVSD	0x13a0(%RIP),%XMM2;        (5) 
+0x2d70;:0;MOV	%RBP,%RDI;        (5) 
+0x2d73;:0;VFMADD213SD	0x139c(%RIP),%XMM0,%XMM2;        (5) 
+0x2d7c;:0;VMOVSD	%XMM2,(%RSP);        (5) 
+0x2d81;:0;CALL	34f0 <_ZSt18generate_canonicalIdLm53ESt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EEET_RT1_>;        (5) 
+0x2d86;:0;VMOVSD	0x1382(%RIP),%XMM1;        (5) 
+0x2d8e;:0;VFMADD213SD	0x1381(%RIP),%XMM0,%XMM1;        (5) 
+0x2d97;:0;VMOVSD	(%RSP),%XMM2;        (5) 
+0x2d9c;:0;VMULSD	%XMM1,%XMM1,%XMM3;        (5) 
+0x2da0;:0;VFMADD231SD	%XMM2,%XMM2,%XMM3;        (5) 
+0x2da5;:0;VCOMISD	0x138b(%RIP),%XMM3;        (5) 
+0x2dad;:0;JA	2d60 <main._omp_fn.0+0x180>;        (5) 
+0x2daf;:0;VXORPD	%XMM0,%XMM0,%XMM0;        (5) 
+0x2db3;:0;VUCOMISD	%XMM0,%XMM3;        (5) 
+0x2db7;:0;JP	2dbb <main._omp_fn.0+0x1db>;        (5) 
+0x2db9;:0;JE	2d60 <main._omp_fn.0+0x180>;        (5) 
+0x2dbb;:0;VMOVSD	%XMM3,%XMM3,%XMM0;      (7) 
+0x2dbf;:0;VMOVSD	%XMM1,0x18(%RSP);      (7) 
+0x2dc5;:0;VMOVSD	%XMM2,0x10(%RSP);      (7) 
+0x2dcb;:0;VMOVSD	%XMM3,(%RSP);      (7) 
+0x2dd0;:0;CALL	2300 <.plt.sec@start+0xb0>;      (7) 
+0x2dd5;:0;VMULSD	0x1343(%RIP),%XMM0,%XMM0;      (7) 
+0x2ddd;:0;VMOVSD	(%RSP),%XMM3;      (7) 
+0x2de2;:0;VMOVSD	0x10(%RSP),%XMM2;      (7) 
+0x2de8;:0;VMOVSD	0x18(%RSP),%XMM1;      (7) 
+0x2dee;:0;VDIVSD	%XMM3,%XMM0,%XMM0;      (7) 
+0x2df2;:0;VXORPD	%XMM3,%XMM3,%XMM3;      (7) 
+0x2df6;:0;VUCOMISD	%XMM0,%XMM3;      (7) 
+0x2dfa;:0;JA	30f2 <main._omp_fn.0+0x512>;      (7) 
+0x2e00;:0;VSQRTSD	%XMM0,%XMM0,%XMM0;      (7) 
+0x2e04;:0;VMULSD	%XMM0,%XMM2,%XMM2;      (7) 
+0x2e08;:0;VMULSD	%XMM0,%XMM1,%XMM1;      (7) 
+0x2e0c;:0;MOVB	$0x1,0x34a5(%RIP);      (7) 
+0x2e13;:0;VMOVSD	%XMM2,0x3495(%RIP);      (7) 
+0x2e1b;:0;VMOVQ	%R14,%XMM4;        (4) 
+0x2e20;:0;VMOVQ	%R15,%XMM5;        (4) 
+0x2e25;:0;VFMADD132SD	%XMM1,%XMM5,%XMM4;        (4) 
+0x2e2a;:0;VCOMISD	0x8(%RSP),%XMM4;        (4) 
+0x2e30;:0;JA	2f64 <main._omp_fn.0+0x384>;        (4) 
+0x2e36;:0;INC	%RBX;        (4) 
+0x2e39;:0;CMP	%RBX,%R12;        (4) 
+0x2e3c;:0;JNE	2d20 <main._omp_fn.0+0x140>;        (4) 
+0x2e42;:0;LEA	0x31f7(%RIP),%RAX;  (8) 
+0x2e49;:0;LEA	0x31f0(%RIP),%RDX;  (8) 
+0x2e50;:0;LEA	0x126a(%RIP),%RSI;  (8) 
+0x2e57;:0;LEA	0x31e2(%RIP),%RDI;  (8) 
+0x2e5e;:0;MOV	(%RAX),%RAX;  (8) 
+0x2e61;:0;ADD	-0x18(%RAX),%RDX;  (8) 
+0x2e65;:0;MOV	0x18(%RDX),%EAX;  (8) 
+0x2e68;:0;MOVQ	$0x6,0x8(%RDX);  (8) 
+0x2e70;:0;AND	$-0x105,%EAX;  (8) 
+0x2e75;:0;OR	$0x4,%EAX;  (8) 
+0x2e78;:0;MOV	%EAX,0x18(%RDX);  (8) 
+0x2e7b;:0;MOV	$0x8,%EDX;  (8) 
+0x2e80;:0;CALL	2360 <.plt.sec@start+0x110>;  (8) 
+0x2e85;:0;TEST	%R13,%R13;  (8) 
+0x2e88;:0;JS	30af <main._omp_fn.0+0x4cf>;  (8) 
+0x2e8e;:0;VXORPD	%XMM7,%XMM7,%XMM7;  (8) 
+0x2e92;:0;VCVTSI2SD	%R13,%XMM7,%XMM0;  (8) 
+0x2e97;:0;VMOVSD	0x20(%RSP),%XMM7;  (8) 
+0x2e9d;:0;LEA	0x319c(%RIP),%RDI;  (8) 
+0x2ea4;:0;VDIVSD	%XMM0,%XMM7,%XMM0;  (8) 
+0x2ea8;:0;CALL	23e0 <.plt.sec@start+0x190>;  (8) 
+0x2ead;:0;MOV	%RAX,%RBX;  (8) 
+0x2eb0;:0;MOV	(%RAX),%RAX;  (8) 
+0x2eb3;:0;MOV	-0x18(%RAX),%RAX;  (8) 
+0x2eb7;:0;MOV	0xf0(%RBX,%RAX,1),%RBP;  (8) 
+0x2ebf;:0;TEST	%RBP,%RBP;  (8) 
+0x2ec2;:0;JE	30da <main._omp_fn.0+0x4fa>;  (8) 
+0x2ec8;:0;CMPB	$0,0x38(%RBP);(9) 
+0x2ecc;:0;JE	304b <main._omp_fn.0+0x46b>;(9) 
+0x2ed2;:0;MOVSX	0x43(%RBP),%ESI;(9) 
+0x2ed6;:0;MOV	%RBX,%RDI;(9) 
+0x2ed9;:0;CALL	2250 <.plt.sec@start>;(9) 
+0x2ede;:0;MOV	%RAX,%RDI;(9) 
+0x2ee1;:0;CALL	22d0 <.plt.sec@start+0x80>;(9) 
+0x2ee6;:0;CMP	%R13,0x40(%RSP);(9) 
+0x2eeb;:0;JNE	2ca7 <main._omp_fn.0+0xc7>;(9) 
+0x2ef1;:0;JMP	2efc <main._omp_fn.0+0x31c>;
+0x2ef3;:0;MOVQ	$0,0x20(%RSP);
+0x2efc;:0;MOV	0x48(%RSP),%RAX;
+0x2f01;:0;MOV	0x30(%RAX),%RDX;
+0x2f05;:0;LEA	0x30(%RAX),%RCX;
+0x2f09;:0;VMOVQ	%RDX,%XMM6;(2) 
+0x2f0e;:0;VADDSD	0x20(%RSP),%XMM6,%XMM5;(2) 
+0x2f14;:0;MOV	%RDX,%RAX;(2) 
+0x2f17;:0;VMOVQ	%XMM5,%RSI;(2) 
+0x2f1c;:0;LOCK CMPXCHG	%RSI,(%RCX);(2) 
+0x2f21;:0;JNE	3117 <main._omp_fn.0+0x537>;(2) 
+0x2f27;:0;MOV	0x27178(%RSP),%RAX;(2) 
+0x2f2f;:0;SUB	%FS:0x28,%RAX;(2) 
+0x2f38;:0;JNE	3112 <main._omp_fn.0+0x532>;(2) 
+0x2f3e;:0;ADD	$0x27188,%RSP;
+0x2f45;:0;POP	%RBX;
+0x2f46;:0;POP	%RBP;
+0x2f47;:0;POP	%R12;
+0x2f49;:0;POP	%R13;
+0x2f4b;:0;POP	%R14;
+0x2f4d;:0;POP	%R15;
+0x2f4f;:0;RET;
+0x2f50;:0;VMOVSD	0x3358(%RIP),%XMM1;        (4) 
+0x2f58;:0;MOVB	$0,0x3359(%RIP);        (4) 
+0x2f5f;:0;JMP	2e1b <main._omp_fn.0+0x23b>;        (4) 
+0x2f64;:0;VMULSD	0x38(%RSP),%XMM4,%XMM0;        (4) 
+0x2f6a;:0;CALL	2420 <.plt.sec@start+0x1d0>;        (4) 
+0x2f6f;:0;VMOVSD	0x28(%RSP),%XMM5;        (4) 
+0x2f75;:0;VFMADD132SD	0x30(%RSP),%XMM5,%XMM0;        (4) 
+0x2f7c;:0;VADDSD	0x20(%RSP),%XMM0,%XMM7;        (4) 
+0x2f82;:0;VMOVSD	%XMM7,0x20(%RSP);        (4) 
+0x2f88;:0;JMP	2e36 <main._omp_fn.0+0x256>;        (4) 
+0x2f8d;:0;LEA	0x50(%RSP),%R14;        (4) 
+0x2f92;:0;LEA	0x10a8(%RIP),%RDX;        (4) 
+0x2f99;:0;LEA	0x60(%RSP),%R15;        (4) 
+0x2f9e;:0;LEA	0x70(%RSP),%RBP;        (4) 
+0x2fa3;:0;LEA	-0x7(%RDX),%RSI;        (4) 
+0x2fa7;:0;MOV	%R14,%RDI;        (4) 
+0x2faa;:0;MOV	%R15,0x50(%RSP);        (4) 
+0x2faf;:0;CALL	2990 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPKcEEvT_S8_St20forward_iterator_tag.isra.0>;        (4) 
+0x2fb4;:0;MOV	%R14,%RSI;        (4) 
+0x2fb7;:0;MOV	%RBP,%RDI;        (4) 
+0x2fba;:0;CALL	2400 <.plt.sec@start+0x1b0>;        (4) 
+0x2fbf;:0;MOV	0x50(%RSP),%RDI;        (4) 
+0x2fc4;:0;CMP	%R15,%RDI;        (4) 
+0x2fc7;:0;JE	2fd7 <main._omp_fn.0+0x3f7>;        (4) 
+0x2fc9;:0;MOV	0x60(%RSP),%RAX;        (4) 
+0x2fce;:0;LEA	0x1(%RAX),%RSI;        (4) 
+0x2fd2;:0;CALL	2340 <.plt.sec@start+0xf0>;        (4) 
+0x2fd7;:0;MOV	%RBP,%RDI;        (4) 
+0x2fda;:0;CALL	23a0 <.plt.sec@start+0x150>;        (4) 
+0x2fdf;:0;MOV	%FS:,%RSI;        (4) 
+0x2fe8;:0;MOV	$0x1,%EDX;        (4) 
+0x2fed;:0;MOV	%EAX,%ECX;        (4) 
+0x2fef;:0;MOV	%RCX,%FS:-0x1388;        (4) 
+0x2ff8;:0;NOPL	(%RAX,%RAX,1);        (4) 
+0x3000;:0;MOV	%RCX,%RAX;          (3) 
+0x3003;:0;SHR	$0x1e,%RAX;          (3) 
+0x3007;:0;XOR	%RCX,%RAX;          (3) 
+0x300a;:0;IMUL	$0x6c078965,%RAX,%RAX;          (3) 
+0x3011;:0;LEA	(%RDX,%RAX,1),%ECX;          (3) 
+0x3014;:0;MOV	%RCX,-0x1388(%RSI,%RDX,8);          (3) 
+0x301c;:0;INC	%RDX;          (3) 
+0x301f;:0;CMP	$0x270,%RDX;          (3) 
+0x3026;:0;JNE	3000 <main._omp_fn.0+0x420>;          (3) 
+0x3028;:0;MOV	%RBP,%RDI;        (4) 
+0x302b;:0;MOVQ	$0x270,%FS:-0x8;        (4) 
+0x3038;:0;MOVB	$0x1,%FS:-0x1390;        (4) 
+0x3041;:0;CALL	2320 <.plt.sec@start+0xd0>;        (4) 
+0x3046;:0;JMP	2d2f <main._omp_fn.0+0x14f>;        (4) 
+0x304b;:0;MOV	%RBP,%RDI;(9) 
+0x304e;:0;CALL	2370 <.plt.sec@start+0x120>;(9) 
+0x3053;:0;MOV	(%RBP),%RAX;(9) 
+0x3057;:0;LEA	0xd2(%RIP),%RDX;(9) 
+0x305e;:0;MOV	$0xa,%ESI;(9) 
+0x3063;:0;MOV	0x30(%RAX),%RAX;(9) 
+0x3067;:0;CMP	%RDX,%RAX;(9) 
+0x306a;:0;JE	2ed6 <main._omp_fn.0+0x2f6>;(9) 
+0x3070;:0;MOV	%RBP,%RDI;(9) 
+0x3073;:0;CALL	%RAX;(9) 
+0x3075;:0;MOVSX	%AL,%ESI;(9) 
+0x3078;:0;JMP	2ed6 <main._omp_fn.0+0x2f6>;(9) 
+0x307d;:0;MOV	%RBP,%RDI;(9) 
+0x3080;:0;CALL	2370 <.plt.sec@start+0x120>;(9) 
+0x3085;:0;MOV	(%RBP),%RAX;(9) 
+0x3089;:0;LEA	0xa0(%RIP),%RDX;(9) 
+0x3090;:0;MOV	$0xa,%ESI;(9) 
+0x3095;:0;MOV	0x30(%RAX),%RAX;(9) 
+0x3099;:0;CMP	%RDX,%RAX;(9) 
+0x309c;:0;JE	2cfa <main._omp_fn.0+0x11a>;(9) 
+0x30a2;:0;MOV	%RBP,%RDI;(9) 
+0x30a5;:0;CALL	%RAX;(9) 
+0x30a7;:0;MOVSX	%AL,%ESI;(9) 
+0x30aa;:0;JMP	2cfa <main._omp_fn.0+0x11a>;(9) 
+0x30af;:0;MOV	%R13,%RAX;  (8) 
+0x30b2;:0;MOV	%R13,%RDX;  (8) 
+0x30b5;:0;VXORPD	%XMM5,%XMM5,%XMM5;  (8) 
+0x30b9;:0;SHR	$0x1,%RAX;  (8) 
+0x30bc;:0;AND	$0x1,%EDX;  (8) 
+0x30bf;:0;OR	%RDX,%RAX;  (8) 
+0x30c2;:0;VCVTSI2SD	%RAX,%XMM5,%XMM0;  (8) 
+0x30c7;:0;VADDSD	%XMM0,%XMM0,%XMM0;  (8) 
+0x30cb;:0;JMP	2e97 <main._omp_fn.0+0x2b7>;  (8) 
+0x30d0;:0;INC	%RAX;
+0x30d3;:0;XOR	%EDX,%EDX;
+0x30d5;:0;JMP	2c85 <main._omp_fn.0+0xa5>;
+0x30da;:0;MOV	0x27178(%RSP),%RAX;  (8) 
+0x30e2;:0;SUB	%FS:0x28,%RAX;  (8) 
+0x30eb;:0;JNE	3112 <main._omp_fn.0+0x532>;  (8) 
+0x30ed;:0;CALL	2390 <.plt.sec@start+0x140>;  (8) 
+0x30f2;:0;VMOVSD	%XMM1,0x10(%RSP);    (6) 
+0x30f8;:0;VMOVSD	%XMM2,(%RSP);    (6) 
+0x30fd;:0;CALL	22f0 <.plt.sec@start+0xa0>;    (6) 
+0x3102;:0;VMOVSD	0x10(%RSP),%XMM1;    (6) 
+0x3108;:0;VMOVSD	(%RSP),%XMM2;    (6) 
+0x310d;:0;JMP	2e04 <main._omp_fn.0+0x224>;    (6) 
+0x3112;:0;CALL	2350 <.plt.sec@start+0x100>;(2) 
+0x3117;:0;MOV	%RAX,%RDX;(2) 
+0x311a;:0;JMP	2f09 <main._omp_fn.0+0x329>;(2) 
+0x311f;:0;ENDBR64;
+0x3123;:0;JMP	24e1 <main._omp_fn.0.cold>;
+0x3128;:0;NOPL	(%RAX,%RAX,1);

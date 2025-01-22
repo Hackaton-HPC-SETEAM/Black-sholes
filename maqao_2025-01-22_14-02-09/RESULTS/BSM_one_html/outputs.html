@@ -1,0 +1,2547 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - BSM - Outputs</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/jquery.jqplot.min.js"></script>
+<script class="include" src="js/jqplot.pieRenderer.min.js"></script>
+<script class="include" src="js/jqplot.barRenderer.min.js"></script>
+<script class="include" src="js/jqplot.categoryAxisRenderer.min.js"></script>
+<script class="include" src="js/jqplot.pointLabels.min.js"></script>
+<script class="include" src="js/jqplot.cursor.min.js"></script>
+<script class="include" src="js/jqplot.canvasTextRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script class="include" src="js/jqplot.enhancedLegendRenderer.min.js"></script>
+<script class="include" src="js/jqplot.highlighter.min.js"></script>
+<script class="include" src="js/jqplot.logAxisRenderer.min.js"></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+$( function() {
+  $( document ).tooltip({
+    content: function() {
+      if (this.classList.contains ("tooltip-maqao")
+      ||  this.classList.contains ("tooltip-maqao-button")) {
+        return tooltips_texts[$(this).attr('tooltip_id')];
+      }
+    },
+    position: {
+      my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow-tt" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+  });
+} );
+
+// Code from https://www.htmlgoodies.com/beyond/javascript/article.php/3724571/Using-Multiple-JavaScript-Onload-Functions.htm
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+function loadCSS(filename){ 
+  var file = document.createElement("link");
+  file.setAttribute("rel", "stylesheet");
+  file.setAttribute("type", "text/css");
+  file.setAttribute("href", filename);
+  document.head.appendChild(file);
+}
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li><li ><a  href="env.html">Environment Variables</a></li><li ><a class="_current_page" href="outputs.html">Outputs</a></li><li ><a  href="log.html">Logs</a></li></ul></li><li ><a class="_current_page _first_menu_level" href="outputs.html">Outputs</a></li><li ><a  href="summary.html">Summary</a></li><li ><a  href="application.html">Application</a></li><li ><a  href="fcts_and_loops.html">Functions</a></li><li ><a  href="loops_index.html">Loops</a></li><li ><a  href="topology.html">Topology</a><ul><li ><a  href="lstopo.html">lstopo</a></li><li ><a  href="lstopo_PU.html">lstopo_PU</a></li><li ><a  href="lstopo_threads.html">lstopo_threads</a></li></ul></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<div class="_fixed_box" ><h3 class="_header">Executable Output<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0" ></span></h3>
+<div class="_content"><span style="text-align:center; width:100%; display:inline-block;"><select id="select_run" style="cursor:pointer;" size="1" onchange="__select_run (this);" autocomplete="off">
+<option value="1">run_0</option>
+</select></span>
+<pre id="output_run_1">
+
+* Info: "ref-cycles" not supported on jf: fallback to "cpu-clock"Global initial seed: 4168671813      argv[1]= 1000000     argv[2]= 1000
+Run 939
+Run Run 442
+877Run Run 505Run Run Run 64316Run 
+Run 127
+Run 
+Run 379
+
+Run 253Run 753567
+
+629
+190
+Run 815
+1
+
+Run 691
+
+ value= 0.040349
+Run 128
+ value= 0.010167
+Run 506
+ value= 0.006306
+Run 816
+ value= 0.009078
+Run 568
+ value= 0.008180
+Run 630
+ value= 0.005477
+Run 940
+ value= 0.007426
+Run 692
+ value= 0.020311
+Run 254
+ value= 5.128352
+Run 2
+ value= 0.016313
+Run 317
+ value= 0.006829
+Run 754
+ value= 0.005844
+Run 878
+ value= 0.080502
+Run 65
+ value= 0.013563
+Run 380
+ value= 0.011610
+Run 443
+ value= 0.026995
+Run 191
+ value= 0.020259
+Run 507
+ value= 0.012565
+Run 817
+ value= 0.010933
+Run 941
+ value= 0.018114
+Run 569
+ value= 0.080041
+Run 129
+ value= 0.016336
+Run 631
+ value= 5.129697
+Run 3
+ value= 0.013624
+Run 755
+ value= 0.014857
+Run 693
+ value= 0.011678
+Run 879
+ value= 0.032418
+Run 318
+ value= 0.158379
+Run 66
+ value= 0.040429
+Run 255
+ value= 0.027037
+Run 381
+ value= 0.023180
+Run 444
+ value= 0.053693
+Run 192
+ value= 0.030328
+Run 508
+ value= 0.018845
+Run 818
+ value= 0.016380
+Run 942
+ value= 0.027120
+Run 570
+ value= 0.119220
+Run 130
+ value= 5.134152
+Run 4
+ value= 0.024434
+Run 632
+ value= 0.020411
+Run 756
+ value= 0.022252
+Run 694
+ value= 0.017493
+Run 880
+ value= 0.233670
+Run 67
+ value= 0.060392
+Run 256
+ value= 0.048460
+Run 319
+ value= 0.040444
+Run 382
+ value= 0.034699
+Run 445
+ value= 0.080065
+Run 193
+ value= 0.040375
+Run 509
+ value= 0.025106
+Run 819
+ value= 0.021821
+Run 943
+ value= 0.036091
+Run 571
+ value= 0.157621
+Run 131
+ value= 5.137533
+Run 5
+ value= 0.027165
+Run 757
+ value= 0.032516
+Run 633
+ value= 0.029627
+Run 695
+ value= 0.080181
+Run 257
+ value= 0.307107
+Run 68
+ value= 0.023315
+Run 881
+ value= 0.053810
+Run 383
+ value= 0.064400
+Run 320
+ value= 0.050334
+Run 510
+ value= 0.031337
+Run 820
+ value= 0.044989
+Run 572
+ value= 0.027264
+Run 944
+ value= 0.046137
+Run 446
+ value= 0.195845
+Run 132
+ value= 0.106221
+Run 194
+ value= 5.138380
+Run 6
+ value= 0.033912
+Run 758
+ value= 0.040597
+Run 634
+ value= 0.099862
+Run 258
+ value= 0.029116
+Run 882
+ value= 0.036980
+Run 696
+ value= 0.378408
+Run 69
+ value= 0.067084
+Run 384
+ value= 0.080226
+Run 321
+ value= 0.060279
+Run 511
+ value= 0.037551
+Run 821
+ value= 0.053891
+Run 573
+ value= 0.032678
+Run 945
+ value= 0.233271
+Run 133
+ value= 5.141164
+Run 7
+ value= 0.057516
+Run 447
+ value= 0.040634
+Run 759
+ value= 0.048623
+Run 635
+ value= 0.119355
+Run 259
+ value= 0.132188
+Run 195
+ value= 0.080303
+Run 385
+ value= 0.034904
+Run 883
+ value= 0.044318
+Run 697
+ value= 0.447272
+Run 70
+ value= 0.095998
+Run 322
+ value= 0.070195
+Run 512
+ value= 0.043768
+Run 822
+ value= 0.062761
+Run 574
+ value= 0.038071
+Run 946
+ value= 5.142240
+Run 8
+ value= 0.270182
+Run 134
+ value= 0.047335
+Run 760
+ value= 0.056645
+Run 636
+ value= 0.068942
+Run 448
+ value= 0.138732
+Run 260
+ value= 0.093421
+Run 386
+ value= 0.051626
+Run 698
+ value= 0.514266
+Run 71
+ value= 0.157830
+Run 196
+ value= 0.111662
+Run 323
+ value= 0.040662
+Run 884
+ value= 0.080069
+Run 513
+ value= 0.049936
+Run 823
+ value= 0.071611
+Run 575
+ value= 0.306521
+Run 135
+ value= 5.140918
+Run 9
+ value= 0.043475
+Run 947
+ value= 0.054025
+Run 761
+ value= 0.157996
+Run 261
+ value= 0.064641
+Run 637
+ value= 0.080268
+Run 449
+ value= 0.058900
+Run 699
+ value= 0.579363
+Run 72
+ value= 0.106475
+Run 387
+ value= 0.127265
+Run 324
+ value= 0.183166
+Run 197
+ value= 0.089929
+Run 514
+ value= 0.056111
+Run 824
+ value= 0.046407
+Run 885
+ value= 0.080349
+Run 576
+ value= 0.342316
+Run 136
+ value= 0.048849
+Run 948
+ value= 0.060700
+Run 762
+ value= 5.139934
+Run 10
+ value= 0.072551
+Run 638
+ value= 0.066154
+Run 700
+ value= 0.119480
+Run 388
+ value= 0.177091
+Run 262
+ value= 0.099742
+Run 515
+ value= 0.142705
+Run 325
+ value= 0.062256
+Run 825
+ value= 0.091534
+Run 450
+ value= 0.052161
+Run 886
+ value= 0.642897
+Run 73
+ value= 0.089097
+Run 577
+ value= 0.208389
+Run 198
+ value= 0.054224
+Run 949
+ value= 0.377577
+Run 137
+ value= 0.067351
+Run 763
+ value= 0.080484
+Run 639
+ value= 5.138509
+Run 11
+ value= 0.132353
+Run 389
+ value= 0.109523
+Run 516
+ value= 0.073406
+Run 701
+ value= 0.068390
+Run 826
+ value= 0.102732
+Run 451
+ value= 0.158042
+Run 326
+ value= 0.057893
+Run 887
+ value= 0.097835
+Run 578
+ value= 0.196010
+Run 263
+ value= 0.233329
+Run 199
+ value= 0.412257
+Run 138
+ value= 0.073987
+Run 764
+ value= 0.059574
+Run 950
+ value= 0.119307
+Run 517
+ value= 0.145194
+Run 390
+ value= 0.173328
+Run 327
+ value= 0.704535
+Run 74
+ value= 0.088431
+Run 640
+ value= 0.074501
+Run 827
+ value= 0.106549
+Run 579
+ value= 0.113933
+Run 452
+ value= 0.080655
+Run 702
+ value= 0.214761
+Run 264
+ value= 5.138621
+Run 12
+ value= 0.257957
+Run 200
+ value= 0.063590
+Run 888
+ value= 0.446463
+Run 139
+ value= 0.080615
+Run 765
+ value= 0.064924
+Run 951
+ value= 0.128982
+Run 518
+ value= 0.188563
+Run 328
+ value= 0.157990
+Run 391
+ value= 0.115226
+Run 580
+ value= 0.764356
+Run 75
+ value= 0.080613
+Run 828
+ value= 0.096333
+Run 641
+ value= 0.233448
+Run 265
+ value= 0.125036
+Run 453
+ value= 5.139060
+Run 13
+ value= 0.282324
+Run 201
+ value= 0.087862
+Run 703
+ value= 0.480152
+Run 140
+ value= 0.069278
+Run 889
+ value= 0.087192
+Run 766
+ value= 0.138646
+Run 519
+ value= 0.070243
+Run 952
+ value= 0.203628
+Run 329
+ value= 0.123871
+Run 581
+ value= 0.170717
+Run 392
+ value= 0.086710
+Run 829
+ value= 0.822539
+Run 76
+ value= 0.251884
+Run 266
+ value= 0.104197
+Run 642
+ value= 0.136096
+Run 454
+ value= 5.139725
+Run 14
+ value= 0.513357
+Run 141
+ value= 0.306469
+Run 202
+ value= 0.095049
+Run 704
+ value= 0.074988
+Run 890
+ value= 0.075560
+Run 953
+ value= 0.148241
+Run 520
+ value= 0.218620
+Run 330
+ value= 0.093806
+Run 767
+ value= 0.132472
+Run 582
+ value= 0.879415
+Run 77
+ value= 0.183382
+Run 393
+ value= 0.092811
+Run 830
+ value= 0.270183
+Run 267
+ value= 0.112034
+Run 643
+ value= 5.139810
+Run 15
+ value= 0.147086
+Run 455
+ value= 0.546181
+Run 142
+ value= 0.102206
+Run 705
+ value= 0.157829
+Run 521
+ value= 0.330343
+Run 203
+ value= 0.080860
+Run 954
+ value= 0.080703
+Run 891
+ value= 0.233541
+Run 331
+ value= 0.141079
+Run 583
+ value= 0.100365
+Run 768
+ value= 0.098891
+Run 831
+ value= 0.934872
+Run 78
+ value= 0.195902
+Run 394
+ value= 0.288440
+Run 268
+ value= 0.119815
+Run 644
+ value= 5.138117
+Run 16
+ value= 0.158044
+Run 456
+ value= 0.578389
+Run 143
+ value= 0.109338
+Run 706
+ value= 0.167360
+Run 522
+ value= 0.086157
+Run 955
+ value= 0.248384
+Run 332
+ value= 0.149646
+Run 584
+ value= 0.354025
+Run 204
+ value= 0.086380
+Run 892
+ value= 0.988495
+Run 79
+ value= 0.104931
+Run 832
+ value= 0.208394
+Run 395
+ value= 0.106902
+Run 769
+ value= 0.306493
+Run 269
+ value= 5.137966
+Run 17
+ value= 0.127607
+Run 645
+ value= 0.168932
+Run 457
+ value= 0.610305
+Run 144
+ value= 0.176841
+Run 523
+ value= 0.116450
+Run 707
+ value= 0.263114
+Run 333
+ value= 0.158164
+Run 585
+ value= 0.091468
+Run 956
+ value= 0.377495
+Run 205
+ value= 1.040913
+Run 80
+ value= 0.220867
+Run 396
+ value= 0.110972
+Run 833
+ value= 0.324484
+Run 270
+ value= 0.113439
+Run 770
+ value= 0.092045
+Run 893
+ value= 5.137723
+Run 18
+ value= 0.135354
+Run 646
+ value= 0.641797
+Run 145
+ value= 0.179806
+Run 458
+ value= 0.186315
+Run 524
+ value= 0.123534
+Run 708
+ value= 0.277780
+Run 334
+ value= 0.166659
+Run 586
+ value= 1.092044
+Run 81
+ value= 0.400753
+Run 206
+ value= 0.233277
+Run 397
+ value= 0.117006
+Run 834
+ value= 0.342310
+Run 271
+ value= 0.119937
+Run 771
+ value= 0.096732
+Run 957
+ value= 5.138188
+Run 19
+ value= 0.143094
+Run 647
+ value= 0.097687
+Run 894
+ value= 0.672807
+Run 146
+ value= 0.195777
+Run 525
+ value= 0.190622
+Run 459
+ value= 0.130594
+Run 709
+ value= 0.175133
+Run 587
+ value= 0.292299
+Run 335
+ value= 0.245642
+Run 398
+ value= 1.141946
+Run 82
+ value= 0.423688
+Run 207
+ value= 0.123014
+Run 835
+ value= 0.360074
+Run 272
+ value= 0.126445
+Run 772
+ value= 5.137789
+Run 20
+ value= 0.703408
+Run 147
+ value= 0.101997
+Run 958
+ value= 0.205202
+Run 526
+ value= 0.150795
+Run 648
+ value= 0.103332
+Run 895
+ value= 0.201413
+Run 460
+ value= 0.137657
+Run 710
+ value= 0.183543
+Run 588
+ value= 0.257933
+Run 399
+ value= 0.306745
+Run 336
+ value= 1.190625
+Run 83
+ value= 0.446405
+Run 208
+ value= 0.129017
+Run 836
+ value= 0.377661
+Run 273
+ value= 0.132930
+Run 773
+ value= 5.138479
+Run 21
+ value= 0.214569
+Run 527
+ value= 0.733623
+Run 148
+ value= 0.158493
+Run 649
+ value= 0.107251
+Run 959
+ value= 0.212160
+Run 461
+ value= 0.191940
+Run 589
+ value= 0.108981
+Run 896
+ value= 0.270133
+Run 400
+ value= 1.237996
+Run 84
+ value= 0.144679
+Run 711
+ value= 0.321148
+Run 337
+ value= 0.468921
+Run 209
+ value= 0.135005
+Run 837
+ value= 0.395118
+Run 274
+ value= 5.138927
+Run 22
+ value= 0.139410
+Run 774
+ value= 0.223913
+Run 528
+ value= 0.763291
+Run 149
+ value= 0.166147
+Run 650
+ value= 0.222884
+Run 462
+ value= 0.200319
+Run 590
+ value= 0.282275
+Run 401
+ value= 1.284362
+Run 85
+ value= 0.112495
+Run 960
+ value= 0.491287
+Run 210
+ value= 0.335467
+Run 338
+ value= 0.151688
+Run 712
+ value= 0.114576
+Run 897
+ value= 0.140997
+Run 838
+ value= 0.412402
+Run 275
+ value= 0.233225
+Run 529
+ value= 5.138204
+Run 23
+ value= 0.792609
+Run 150
+ value= 0.145869
+Run 775
+ value= 0.173801
+Run 651
+ value= 0.233511
+Run 463
+ value= 0.208674
+Run 591
+ value= 0.294388
+Run 402
+ value= 1.329631
+Run 86
+ value= 0.349703
+Run 339
+ value= 0.513351
+Run 211
+ value= 0.146938
+Run 839
+ value= 0.158670
+Run 713
+ value= 0.120175
+Run 898
+ value= 0.117742
+Run 961
+ value= 0.429587
+Run 276
+ value= 0.242490
+Run 530
+ value= 5.138033
+Run 24
+ value= 0.821616
+Run 151
+ value= 0.152289
+Run 776
+ value= 0.181412
+Run 652
+ value= 0.244084
+Run 464
+ value= 0.306425
+Run 403
+ value= 0.216988
+Run 592
+ value= 1.373815
+Run 87
+ value= 0.363818
+Run 340
+ value= 0.535235
+Run 212
+ value= 0.152884
+Run 840
+ value= 0.446626
+Run 277
+ value= 0.165641
+Run 714
+ value= 0.125749
+Run 899
+ value= 0.122944
+Run 962
+ value= 0.251719
+Run 531
+ value= 5.137983
+Run 25
+ value= 0.850129
+Run 152
+ value= 0.189011
+Run 653
+ value= 0.158700
+Run 777
+ value= 0.254618
+Run 465
+ value= 0.318446
+Run 404
+ value= 0.225261
+Run 593
+ value= 1.417164
+Run 88
+ value= 0.377851
+Run 341
+ value= 0.556925
+Run 213
+ value= 0.158821
+Run 841
+ value= 0.463477
+Run 278
+ value= 0.172618
+Run 715
+ value= 0.260925
+Run 532
+ value= 0.131322
+Run 900
+ value= 0.878345
+Run 153
+ value= 0.128137
+Run 963
+ value= 5.137881
+Run 26
+ value= 0.196586
+Run 654
+ value= 0.265104
+Run 466
+ value= 0.330383
+Run 405
+ value= 0.233548
+Run 594
+ value= 0.165081
+Run 778
+ value= 1.459429
+Run 89
+ value= 0.391773
+Run 342
+ value= 0.578396
+Run 214
+ value= 0.480248
+Run 279
+ value= 0.164747
+Run 842
+ value= 0.270078
+Run 533
+ value= 0.179543
+Run 716
+ value= 0.906095
+Run 154
+ value= 0.136871
+Run 901
+ value= 5.137338
+Run 27
+ value= 0.204177
+Run 655
+ value= 0.133326
+Run 964
+ value= 0.275543
+Run 467
+ value= 0.342222
+Run 406
+ value= 0.241777
+Run 595
+ value= 1.500572
+Run 90
+ value= 0.171475
+Run 779
+ value= 0.405628
+Run 343
+ value= 0.599688
+Run 215
+ value= 0.496932
+Run 280
+ value= 0.170653
+Run 843
+ value= 0.279213
+Run 534
+ value= 0.933684
+Run 155
+ value= 0.186475
+Run 717
+ value= 5.137592
+Run 28
+ value= 0.142414
+Run 902
+ value= 0.211709
+Run 656
+ value= 0.285949
+Run 468
+ value= 0.354020
+Run 407
+ value= 0.250000
+Run 596
+ value= 1.540768
+Run 91
+ value= 0.138497
+Run 965
+ value= 0.419393
+Run 344
+ value= 0.620772
+Run 216
+ value= 0.177845
+Run 780
+ value= 0.513575
+Run 281
+ value= 0.176539
+Run 844
+ value= 0.288327
+Run 535
+ value= 0.960828
+Run 156
+ value= 5.137527
+Run 29
+ value= 0.193394
+Run 718
+ value= 0.219200
+Run 657
+ value= 0.147953
+Run 903
+ value= 0.296324
+Run 469
+ value= 0.365756
+Run 408
+ value= 1.580180
+Run 92
+ value= 0.258209
+Run 597
+ value= 0.433100
+Run 345
+ value= 0.143685
+Run 966
+ value= 0.641791
+Run 217
+ value= 0.530059
+Run 282
+ value= 0.297427
+Run 536
+ value= 0.182410
+Run 845
+ value= 0.184202
+Run 781
+ value= 0.987593
+Run 157
+ value= 5.137603
+Run 30
+ value= 0.200257
+Run 719
+ value= 0.226687
+Run 658
+ value= 1.618895
+Run 93
+ value= 0.153500
+Run 904
+ value= 0.266364
+Run 598
+ value= 0.377440
+Run 409
+ value= 0.306629
+Run 470
+ value= 0.446742
+Run 346
+ value= 0.662415
+Run 218
+ value= 0.546451
+Run 283
+ value= 0.148877
+Run 967
+ value= 0.306443
+Run 537
+ value= 0.188277
+Run 846
+ value= 1.014066
+Run 158
+ value= 0.190539
+Run 782
+ value= 5.137347
+Run 31
+ value= 1.656720
+Run 94
+ value= 0.274509
+Run 599
+ value= 0.207104
+Run 720
+ value= 0.234135
+Run 659
+ value= 0.389079
+Run 410
+ value= 0.460280
+Run 347
+ value= 0.159000
+Run 905
+ value= 0.316898
+Run 471
+ value= 0.682931
+Run 219
+ value= 0.562656
+Run 284
+ value= 0.315406
+Run 538
+ value= 0.154021
+Run 968
+ value= 0.194129
+Run 847
+ value= 1.040172
+Run 159
+ value= 5.137153
+Run 32
+ value= 0.196859
+Run 783
+ value= 1.693670
+Run 95
+ value= 0.282659
+Run 600
+ value= 0.473733
+Run 348
+ value= 0.213950
+Run 721
+ value= 0.241596
+Run 660
+ value= 0.400666
+Run 411
+ value= 0.324371
+Run 539
+ value= 0.703233
+Run 220
+ value= 0.578806
+Run 285
+ value= 0.327100
+Run 472
+ value= 0.164504
+Run 906
+ value= 0.199939
+Run 848
+ value= 0.159169
+Run 969
+ value= 1.065982
+Run 160
+ value= 5.137622
+Run 33
+ value= 0.203186
+Run 784
+ value= 1.729956
+Run 96
+ value= 0.290720
+Run 601
+ value= 0.487148
+Run 349
+ value= 0.412187
+Run 412
+ value= 0.249016
+Run 661
+ value= 0.220789
+Run 722
+ value= 0.333277
+Run 540
+ value= 0.594799
+Run 286
+ value= 0.723318
+Run 221
+ value= 0.337217
+Run 473
+ value= 0.205769
+Run 849
+ value= 0.170001
+Run 907
+ value= 1.091456
+Run 161
+ value= 0.164298
+Run 970
+ value= 5.137624
+Run 34
+ value= 1.765481
+Run 97
+ value= 0.298778
+Run 602
+ value= 0.500485
+Run 350
+ value= 0.209488
+Run 785
+ value= 0.342156
+Run 541
+ value= 0.423651
+Run 413
+ value= 0.610629
+Run 287
+ value= 0.256418
+Run 662
+ value= 0.227598
+Run 723
+ value= 0.743352
+Run 222
+ value= 1.116590
+Run 162
+ value= 0.211596
+Run 850
+ value= 0.347363
+Run 474
+ value= 0.169416
+Run 971
+ value= 5.137554
+Run 35
+ value= 0.175479
+Run 908
+ value= 0.306827
+Run 603
+ value= 0.215763
+Run 786
+ value= 0.351021
+Run 542
+ value= 0.263782
+Run 663
+ value= 0.435062
+Run 414
+ value= 0.626450
+Run 288
+ value= 0.234379
+Run 724
+ value= 0.763103
+Run 223
+ value= 1.141323
+Run 163
+ value= 0.217405
+Run 851
+ value= 0.513793
+Run 351
+ value= 1.800246
+Run 98
+ value= 0.174543
+Run 972
+ value= 5.137426
+Run 36
+ value= 0.357473
+Run 475
+ value= 0.314849
+Run 604
+ value= 0.359818
+Run 543
+ value= 0.180957
+Run 909
+ value= 0.222019
+Run 787
+ value= 0.271147
+Run 664
+ value= 0.642125
+Run 289
+ value= 0.446393
+Run 415
+ value= 1.165761
+Run 164
+ value= 0.782796
+Run 224
+ value= 0.241152
+Run 725
+ value= 0.223186
+Run 852
+ value= 1.834190
+Run 99
+ value= 0.526959
+Run 352
+ value= 5.138224
+Run 37
+ value= 0.179642
+Run 973
+ value= 0.322830
+Run 605
+ value= 0.367529
+Run 476
+ value= 0.368598
+Run 544
+ value= 0.278497
+Run 665
+ value= 0.228274
+Run 788
+ value= 0.657696
+Run 290
+ value= 0.186414
+Run 910
+ value= 0.457663
+Run 416
+ value= 1.189835
+Run 165
+ value= 0.802216
+Run 225
+ value= 0.228961
+Run 853
+ value= 0.247888
+Run 726
+ value= 1.867571
+Run 100
+ value= 5.138807
+Run 38
+ value= 0.330809
+Run 606
+ value= 0.377549
+Run 477
+ value= 0.184728
+Run 974
+ value= 0.540064
+Run 353
+ value= 0.377362
+Run 545
+ value= 0.673159
+Run 291
+ value= 0.468902
+Run 417
+ value= 0.191857
+Run 911
+ value= 0.234507
+Run 789
+ value= 1.213699
+Run 166
+ value= 0.821410
+Run 226
+ value= 0.285814
+Run 666
+ value= 0.234742
+Run 854
+ value= 0.254639
+Run 727
+ value= 5.138725
+Run 39
+ value= 0.387512
+Run 478
+ value= 0.386058
+Run 546
+ value= 0.338734
+Run 607
+ value= 0.189792
+Run 975
+ value= 0.688498
+Run 292
+ value= 0.480043
+Run 418
+ value= 1.237168
+Run 167
+ value= 0.197287
+Run 912
+ value= 0.553122
+Run 354
+ value= 0.240720
+Run 790
+ value= 0.293077
+Run 667
+ value= 1.900391
+Run 101
+ value= 0.840525
+Run 227
+ value= 0.240485
+Run 855
+ value= 5.138859
+Run 40
+ value= 0.397441
+Run 479
+ value= 0.261368
+Run 728
+ value= 0.394763
+Run 547
+ value= 0.346633
+Run 608
+ value= 0.194874
+Run 976
+ value= 0.703744
+Run 293
+ value= 0.491171
+Run 419
+ value= 0.566107
+Run 355
+ value= 1.260463
+Run 168
+ value= 0.202702
+Run 913
+ value= 0.300318
+Run 668
+ value= 1.932361
+Run 102
+ value= 0.859401
+Run 228
+ value= 0.246898
+Run 791
+ value= 0.246209
+Run 856
+ value= 5.138550
+Run 41
+ value= 0.407314
+Run 480
+ value= 0.403410
+Run 548
+ value= 0.268057
+Run 729
+ value= 0.354504
+Run 609
+ value= 0.502244
+Run 420
+ value= 0.199930
+Run 977
+ value= 0.718913
+Run 294
+ value= 1.283609
+Run 169
+ value= 1.963689
+Run 103
+ value= 0.208099
+Run 914
+ value= 0.878136
+Run 229
+ value= 0.578937
+Run 356
+ value= 0.251941
+Run 857
+ value= 5.138490
+Run 42
+ value= 0.253092
+Run 792
+ value= 0.307542
+Run 669
+ value= 0.417172
+Run 481
+ value= 0.412057
+Run 549
+ value= 0.362353
+Run 610
+ value= 0.513288
+Run 421
+ value= 0.274707
+Run 730
+ value= 0.204983
+Run 978
+ value= 0.733937
+Run 295
+ value= 1.306366
+Run 170
+ value= 1.994435
+Run 104
+ value= 0.213499
+Run 915
+ value= 0.257644
+Run 858
+ value= 0.591735
+Run 357
+ value= 0.420642
+Run 550
+ value= 5.138344
+Run 43
+ value= 0.259242
+Run 793
+ value= 0.426959
+Run 482
+ value= 0.524221
+Run 422
+ value= 0.896698
+Run 230
+ value= 0.314756
+Run 670
+ value= 0.370148
+Run 611
+ value= 2.024717
+Run 105
+ value= 1.328965
+Run 171
+ value= 0.748888
+Run 296
+ value= 0.281367
+Run 731
+ value= 0.210052
+Run 979
+ value= 0.263340
+Run 859
+ value= 0.429209
+Run 551
+ value= 0.218885
+Run 916
+ value= 0.604479
+Run 358
+ value= 0.436773
+Run 483
+ value= 0.535166
+Run 423
+ value= 0.265419
+Run 794
+ value= 5.138153
+Run 44
+ value= 0.321935
+Run 671
+ value= 0.377930
+Run 612
+ value= 0.915117
+Run 231
+ value= 1.351090
+Run 172
+ value= 2.054389
+Run 106
+ value= 0.763717
+Run 297
+ value= 0.287986
+Run 732
+ value= 0.437764
+Run 552
+ value= 0.269032
+Run 860
+ value= 0.215077
+Run 980
+ value= 0.224253
+Run 917
+ value= 0.617163
+Run 359
+ value= 0.446489
+Run 484
+ value= 0.546056
+Run 424
+ value= 5.138473
+Run 45
+ value= 0.271535
+Run 795
+ value= 0.329107
+Run 672
+ value= 0.933357
+Run 232
+ value= 0.385690
+Run 613
+ value= 2.083227
+Run 107
+ value= 1.373037
+Run 173
+ value= 0.778409
+Run 298
+ value= 0.446267
+Run 553
+ value= 0.294611
+Run 733
+ value= 0.274685
+Run 861
+ value= 0.629708
+Run 360
+ value= 0.556863
+Run 425
+ value= 0.456185
+Run 485
+ value= 0.220094
+Run 981
+ value= 0.229621
+Run 918
+ value= 5.138639
+Run 46
+ value= 0.336285
+Run 673
+ value= 0.951435
+Run 233
+ value= 0.277662
+Run 796
+ value= 0.393428
+Run 614
+ value= 2.111835
+Run 108
+ value= 1.394760
+Run 174
+ value= 0.454740
+Run 554
+ value= 0.793035
+Run 299
+ value= 0.280317
+Run 862
+ value= 0.301237
+Run 734
+ value= 0.567603
+Run 426
+ value= 0.642214
+Run 361
+ value= 0.465853
+Run 486
+ value= 0.234978
+Run 919
+ value= 0.225098
+Run 982
+ value= 0.343401
+Run 674
+ value= 0.969435
+Run 234
+ value= 0.401134
+Run 615
+ value= 2.139912
+Run 109
+ value= 1.416203
+Run 175
+ value= 0.283755
+Run 797
+ value= 0.463179
+Run 555
+ value= 0.285952
+Run 863
+ value= 0.807439
+Run 300
+ value= 5.138847
+Run 47
+ value= 0.578305
+Run 427
+ value= 0.307841
+Run 735
+ value= 0.654689
+Run 362
+ value= 0.475433
+Run 487
+ value= 0.350484
+Run 675
+ value= 0.240302
+Run 920
+ value= 2.167268
+Run 110
+ value= 1.437399
+Run 176
+ value= 0.230100
+Run 983
+ value= 0.408825
+Run 616
+ value= 0.987236
+Run 235
+ value= 0.289857
+Run 798
+ value= 0.471569
+Run 556
+ value= 0.291565
+Run 864
+ value= 0.821812
+Run 301
+ value= 0.588940
+Run 428
+ value= 5.139014
+Run 48
+ value= 0.667100
+Run 363
+ value= 0.314423
+Run 736
+ value= 0.357582
+Run 676
+ value= 0.484983
+Run 488
+ value= 2.194132
+Run 111
+ value= 1.458505
+Run 177
+ value= 0.245641
+Run 921
+ value= 0.416499
+Run 617
+ value= 1.004932
+Run 236
+ value= 0.235097
+Run 984
+ value= 0.295933
+Run 799
+ value= 0.479937
+Run 557
+ value= 0.836161
+Run 302
+ value= 0.297171
+Run 865
+ value= 0.599559
+Run 429
+ value= 0.679428
+Run 364
+ value= 5.139317
+Run 49
+ value= 0.364622
+Run 677
+ value= 0.320980
+Run 737
+ value= 2.220613
+Run 112
+ value= 1.479224
+Run 178
+ value= 0.494512
+Run 489
+ value= 0.424144
+Run 618
+ value= 0.250951
+Run 922
+ value= 0.488280
+Run 558
+ value= 0.240076
+Run 985
+ value= 1.022395
+Run 237
+ value= 0.301984
+Run 800
+ value= 0.850389
+Run 303
+ value= 0.302771
+Run 866
+ value= 0.610127
+Run 430
+ value= 0.691663
+Run 365
+ value= 5.139046
+Run 50
+ value= 0.371670
+Run 678
+ value= 2.246779
+Run 113
+ value= 1.499761
+Run 179
+ value= 0.327538
+Run 738
+ value= 0.503992
+Run 490
+ value= 0.496604
+Run 559
+ value= 0.431755
+Run 619
+ value= 0.256273
+Run 923
+ value= 1.039770
+Run 238
+ value= 0.245059
+Run 986
+ value= 0.864512
+Run 304
+ value= 0.308040
+Run 801
+ value= 0.308370
+Run 867
+ value= 0.620641
+Run 431
+ value= 0.703860
+Run 366
+ value= 5.138973
+Run 51
+ value= 0.378718
+Run 679
+ value= 2.272073
+Run 114
+ value= 1.520078
+Run 180
+ value= 0.334027
+Run 739
+ value= 0.513441
+Run 491
+ value= 0.504911
+Run 560
+ value= 0.439350
+Run 620
+ value= 0.878576
+Run 305
+ value= 1.056990
+Run 239
+ value= 0.261556
+Run 924
+ value= 0.313917
+Run 868
+ value= 0.631114
+Run 432
+ value= 0.250019
+Run 987
+ value= 0.314060
+Run 802
+ value= 0.715992
+Run 367
+ value= 0.385720
+Run 680
+ value= 2.297131
+Run 115
+ value= 5.139159
+Run 52
+ value= 1.540146
+Run 181
+ value= 0.522815
+Run 492
+ value= 0.340511
+Run 740
+ value= 0.513176
+Run 561
+ value= 0.446895
+Run 621
+ value= 0.892497
+Run 306
+ value= 0.319475
+Run 869
+ value= 0.641549
+Run 433
+ value= 0.266856
+Run 925
+ value= 1.074069
+Run 240
+ value= 0.728039
+Run 368
+ value= 0.320094
+Run 803
+ value= 0.254962
+Run 988
+ value= 2.321760
+Run 116
+ value= 0.392692
+Run 681
+ value= 5.139206
+Run 53
+ value= 1.559964
+Run 182
+ value= 0.532171
+Run 493
+ value= 0.521403
+Run 562
+ value= 0.346997
+Run 741
+ value= 0.454469
+Run 622
+ value= 0.906396
+Run 307
+ value= 0.651919
+Run 434
+ value= 0.325018
+Run 870
+ value= 0.740003
+Run 369
+ value= 1.091022
+Run 241
+ value= 0.272146
+Run 926
+ value= 0.326097
+Run 804
+ value= 2.345970
+Run 117
+ value= 0.399671
+Run 682
+ value= 0.259885
+Run 989
+ value= 1.579520
+Run 183
+ value= 5.138956
+Run 54
+ value= 0.529624
+Run 563
+ value= 0.541511
+Run 494
+ value= 0.353453
+Run 742
+ value= 0.461972
+Run 623
+ value= 0.662240
+Run 435
+ value= 0.920213
+Run 308
+ value= 0.330547
+Run 871
+ value= 0.751895
+Run 370
+ value= 2.369783
+Run 118
+ value= 1.107764
+Run 242
+ value= 0.406611
+Run 683
+ value= 0.277401
+Run 927
+ value= 1.598782
+Run 184
+ value= 0.332088
+Run 805
+ value= 5.139045
+Run 55
+ value= 0.264813
+Run 990
+ value= 0.537793
+Run 564
+ value= 0.550766
+Run 495
+ value= 0.359892
+Run 743
+ value= 0.469484
+Run 624
+ value= 0.672499
+Run 436
+ value= 0.933914
+Run 309
+ value= 0.763821
+Run 371
+ value= 0.336040
+Run 872
+ value= 2.393186
+Run 119
+ value= 0.413534
+Run 684
+ value= 1.124381
+Run 243
+ value= 1.617947
+Run 185
+ value= 0.282632
+Run 928
+ value= 5.138984
+Run 56
+ value= 0.338048
+Run 806
+ value= 0.269732
+Run 991
+ value= 0.545931
+Run 565
+ value= 0.560007
+Run 496
+ value= 0.682725
+Run 437
+ value= 0.476959
+Run 625
+ value= 0.775618
+Run 372
+ value= 0.947492
+Run 310
+ value= 0.366339
+Run 744
+ value= 0.341546
+Run 873
+ value= 2.416286
+Run 120
+ value= 0.420424
+Run 685
+ value= 1.636935
+Run 186
+ value= 1.140853
+Run 244
+ value= 5.139076
+Run 57
+ value= 0.287861
+Run 929
+ value= 0.554087
+Run 566
+ value= 0.344004
+Run 807
+ value= 0.569207
+Run 497
+ value= 0.274645
+Run 992
+ value= 0.692887
+Run 438
+ value= 0.787301
+Run 373
+ value= 0.960945
+Run 311
+ value= 0.484425
+Run 626
+ value= 2.438980
+Run 121
+ value= 0.347022
+Run 874
+ value= 0.372757
+Run 745
+ value= 0.427301
+Run 686
+ value= 1.655706
+Run 187
+ value= 1.157176
+Run 245
+ value= 5.138900
+Run 58
+ value= 0.562187
+ value= 0.578388
+Run 498
+ value= 0.293092
+Run 930
+ value= 0.349937
+Run 808
+ value= 0.279546
+Run 993
+ value= 0.703012
+Run 439
+ value= 0.798966
+Run 374
+ value= 0.974343
+Run 312
+ value= 0.491842
+Run 627
+ value= 2.461276
+Run 122
+ value= 0.352501
+Run 875
+ value= 0.434158
+Run 687
+ value= 0.379149
+Run 746
+ value= 1.674338
+Run 188
+ value= 1.173387
+Run 246
+ value= 0.587537
+Run 499
+ value= 5.138532
+Run 59
+ value= 0.298306
+Run 931
+ value= 0.355875
+Run 809
+ value= 0.284434
+Run 994
+ value= 0.713059
+Run 440
+ value= 0.810568
+Run 375
+ value= 0.385522
+Run 747
+ value= 0.987688
+Run 313
+ value= 0.499262
+Run 628
+ value= 2.483215
+Run 123
+ value= 0.440996
+Run 688
+ value= 0.357973
+Run 876
+ value= 1.692752
+Run 189
+ value= 1.189441
+Run 247
+ value= 0.596638
+Run 500
+ value= 5.138304
+Run 60
+ value= 0.289298
+Run 995
+ value= 0.303514
+Run 932
+ value= 0.361788
+Run 810
+ value= 1.710971
+ value= 0.822020
+Run 376
+ value= 0.723148
+Run 441
+ value= 0.506612
+ value= 1.000922
+Run 314
+ value= 0.391850
+Run 748
+ value= 2.504793
+Run 124
+ value= 0.447848
+Run 689
+ value= 0.363434
+ value= 0.605728
+Run 501
+ value= 5.138352
+Run 61
+ value= 1.205426
+Run 248
+ value= 0.398201
+Run 749
+ value= 2.526044
+Run 125
+ value= 0.733167
+ value= 0.294147
+Run 996
+ value= 0.833508
+Run 377
+ value= 0.308703
+Run 933
+ value= 0.367680
+Run 811
+ value= 1.014086
+Run 315
+ value= 0.454643
+Run 690
+ value= 5.138477
+Run 62
+ value= 0.614728
+Run 502
+ value= 1.221213
+Run 249
+ value= 0.404538
+Run 750
+ value= 2.547000
+Run 126
+ value= 0.313879
+Run 934
+ value= 0.373556
+Run 812
+ value= 0.298990
+Run 997
+ value= 5.138078
+Run 63
+ value= 0.844946
+Run 378
+ value= 1.027170
+ value= 0.461425
+ value= 2.567682
+ value= 0.410875
+Run 751
+ value= 1.236951
+Run 250
+ value= 0.623752
+Run 503
+ value= 0.319044
+Run 935
+ value= 0.379422
+Run 813
+ value= 5.138096
+ value= 0.303835
+Run 998
+ value= 0.856301
+ value= 0.417180
+Run 752
+ value= 0.632728
+Run 504
+ value= 1.252579
+Run 251
+ value= 0.324184
+Run 936
+ value= 0.385271
+Run 814
+ value= 0.308657
+Run 999
+ value= 0.423460
+ value= 0.641659
+ value= 1.268012
+Run 252
+ value= 0.391093
+ value= 0.329307
+Run 937
+ value= 0.313494
+Run 1000
+ value= 1.283354
+ value= 0.334424
+Run 938
+ value= 0.318303
+ value= 0.339564
+ Result= 5.134677 in 10.461862 seconds
+
+* Info: Callchains info will be incomplete
+* Info: Try to recompile your application with -fno-omit-frame-pointer or to rerun with btm=stack
+* Info: Dumping samples (host jf, process 440409)
+* Info: Dumping source info for callchain nodes (host jf, process 440409)
+* Info: Building/writing metadata (host jf)
+* Info: Finished collect step (host jf, process 440409)
+
+Your experiment path is /home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0
+
+To display your profiling results:
+#######################################################################################################################################################################
+#    LEVEL    |     REPORT     |                                                               COMMAND                                                                #
+#######################################################################################################################################################################
+#  Functions  |  Cluster-wide  |  maqao lprof -df xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0      #
+#  Functions  |  Per-node      |  maqao lprof -df -dn xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0  #
+#  Functions  |  Per-process   |  maqao lprof -df -dp xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0  #
+#  Functions  |  Per-thread    |  maqao lprof -df -dt xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0  #
+#  Loops      |  Cluster-wide  |  maqao lprof -dl xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0      #
+#  Loops      |  Per-node      |  maqao lprof -dl -dn xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0  #
+#  Loops      |  Per-process   |  maqao lprof -dl -dp xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0  #
+#  Loops      |  Per-thread    |  maqao lprof -dl -dt xp=/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/tools/lprof_npsu_run_0  #
+#######################################################################################################################################################################
+
+</pre>
+</div></div><script>
+function __clean_runs () {
+  for (let i = 0; i < 1; i++) {
+    var e = document.getElementById ("output_run_"+(i + 1));
+    if (e)
+      e.style.display = "none";
+  }
+}
+function __select_run (selector) {
+  __clean_runs ();
+  var selected_id = selector.value;
+  var e = document.getElementById ("output_run_"+selected_id);
+  if (e)
+    e.style.display = "";
+}
+addLoadEvent(function(){
+  __clean_runs ();
+  __select_run (select_run);
+});
+function _onresize () {
+  __maqao_legacy_onresize ();
+}
+var resizeId;
+window.addEventListener("resize", function() {
+  clearTimeout(resizeId);
+  resizeId = setTimeout(_onresize, 250);
+});
+</script>
+<style>
+body {
+  overflow : auto;
+}
+</style>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['Executable output catched by LPROF analysis.<br>Additionnal messages from LPROF are displayed.'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+function _check_all_checkbox_ (obj_id, opts_ids) {
+  var obj   = document.getElementById (obj_id);
+  var opts  = window[opts_ids];
+  var count = 0
+  for (i = 0; i < opts.length; i++) {
+    var obj_s = document.getElementById(opts[i]);
+    if (obj_s.checked) {
+      count ++;
+    }
+  }
+  if (count == 0) {
+    obj.value = "Select all";
+  }
+  else if (count == opts.length) {
+    obj.value = "Select none";
+  }
+}
+// Fonction for table selector
+function click_table_menu (c, obj_id, opt_ids) {
+  var is_checked = document.getElementById (c).checked;
+  localStorage.setItem(c, is_checked);
+  $("."+c).each(function(index, element) {
+    if (is_checked) {
+      element.classList.remove("_tcol_hidden");
+    }
+    else {
+      element.classList.add("_tcol_hidden");
+    }
+  });
+  if (obj_id != undefined) {
+    _check_all_checkbox_ (obj_id, opt_ids)
+  }
+}
+function set_all_table_menu (obj, var_opt_ids) {
+  var opt_ids = window[var_opt_ids];
+  var is_selected = true
+  if (obj.value == "Select all") {
+    is_selected = false;
+  }
+  for (i = 0; i < opt_ids.length; i++) {
+    var obj_s = document.getElementById(opt_ids[i]);
+    if (is_selected == obj_s.checked) {
+      obj_s.checked = !obj_s.checked;
+      click_table_menu (opt_ids[i]);
+    }
+  }
+  if (is_selected == false) {
+    obj.value = "Select none";
+  } else {
+    obj.value = "Select all";
+  }
+  localStorage.setItem(obj.id, obj.value);
+}
+// Script for accordion box
+function _click_accordion_header(obj) {
+  var content = obj.nextSibling;
+  content.classList.toggle('collapsed');
+  obj.classList.toggle('collapsed');
+  obj.parentNode.classList.toggle('collapsed');
+  // Check if the box must be openned ...
+  if (obj.classList.contains ('collapsed'))
+  {
+    obj.firstChild.textContent = "\u25B6";
+  }
+  // or closed.
+  else 
+  {
+    obj.firstChild.textContent = "\u25BC";
+  }
+  if (typeof _onresize === "function") {
+    _onresize ();
+  }
+}
+  // Script for paged table
+function _click_paged_prev(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page > 1) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + (cur_page - 2));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+  document.getElementById(pages_content_id).textContent = "Page " + (cur_page - 1) + "/" + max_pages;
+  }
+}
+function _click_paged_next(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page < max_pages) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + cur_page);
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    document.getElementById(pages_content_id).textContent = "Page " + (cur_page + 1) + "/" + max_pages;
+  }
+}
+// Function for tree table
+function _click_tree(obj) {
+  if (obj.innerHTML == "\u25BA") {
+    obj.textContent = "\u25BC";
+    // Open childs
+    var x = document.getElementsByClassName(obj.parentNode.parentNode.id);
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_tree_hidden');
+    }
+  }
+  else if (obj.innerHTML == "\u25BC") {
+    obj.textContent = "\u25BA";
+    // Close all childs
+    var trs = document.getElementsByTagName('tr');
+    var r   = obj.parentNode.parentNode.id+'_';
+    var re  = new RegExp (r, "g");
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+""
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+          o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    if (obj.parentNode.childNodes.length == 3) {
+      obj.parentNode.childNodes[2].textContent = '+';
+    }
+  }
+}
+function _click_expand (obj) {
+  var trs = document.getElementsByTagName('tr');
+  var r   = obj.parentNode.parentNode.id+'_';
+  var re  = new RegExp (r, "g");
+  // Symbole + => expand all
+  if (obj.textContent == "+") {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BA") {
+          o.firstChild.firstChild.textContent = "\u25BC";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '\u2010';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BA") {
+      o.firstChild.firstChild.textContent = "\u25BC";
+    }
+    obj.textContent = "\u2010";
+  }
+  // Symbole - => collapse all
+  else {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BC") {
+      o.firstChild.firstChild.textContent = "\u25BA";
+    }
+    obj.textContent = "+";
+  }
+}
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+// Change tab
+function change_tab (e, baseId) {
+  // Handle tabs
+  var i = 1;
+  while (true) {
+    var id = baseId + i;
+    var t = document.getElementById (id);
+    if (t == null) {
+      break;
+    }
+    if (id == e.dataset.tab) {
+      t.style.removeProperty("display");
+    }
+    else {
+      t.style.display = "none";
+    }
+    i = i + 1;
+  }
+  // Handle headers
+  $(e).siblings().each( function () {
+    this.classList.remove("selected_tab");
+  });
+  e.classList.add("selected_tab");
+}
+function __maqao_legacy_onresize () {
+  var obj = document.getElementById("spacer_page_title");
+  if (obj) {
+    obj.style.height = (document.getElementById("page_title").clientHeight + 20)+"px";
+  }
+  var obj = document.getElementById("page_title");
+  if (obj) {
+    var elems = document.getElementsByClassName ("_first_menu_level")
+    if (obj.clientHeight < 90) {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "";
+        elems.item(i).style.borderBottomRightRadius = "";
+      }
+    }
+    else {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "10px";
+        elems.item(i).style.borderBottomRightRadius = "10px";
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+name;time_p;time_s;cpi_ratio;
+/home/jf/Documents/M2R_SETI/Hackathon_Teratec/Black-sholes/maqao_2025-01-22_14-02-09/binaries/BSM;93.692588806152;9.3411464691162;;
+/usr/lib/x86_64-linux-gnu/libm.so.6;6.2687335014343;0.62499248981476;;
+/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0;0.038675997406244;0.0038559953682125;;
