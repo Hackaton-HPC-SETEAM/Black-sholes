@@ -1,0 +1,3 @@
+group_size;pattern;opcodes;offsets;addresses;stride_status;stride;memory_status;accessed_memory;accessed_memory_nooverlap;accessed_memory_overlap;span;head;unroll_factor;
+4;LLLL;VMOVSD,VFMADD231SD,VMOVSD,VFMADD231SD,;5000,4980,4969,4952,;0x2d88,0x2d93,0x2da7,0x2daf,;RIP based value;0;Success;32;32;0;56;0;1;
+3;SLL;VMOVSD,VMOVSD,VCOMISD,;8,8,16,;0x2d9c,0x2db8,0x2dc7,;Success;0;Success;24;16;8;16;0;1;

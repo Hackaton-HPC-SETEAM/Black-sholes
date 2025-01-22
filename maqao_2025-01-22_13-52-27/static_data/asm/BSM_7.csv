@@ -1,0 +1,67 @@
+address;source_location;insn;indent
+0x2c90;:0;VMOVSD	%FS:-0x13a8,%XMM5;
+0x2c9a;:0;MOV	%FS:-0x13b0,%R15;
+0x2ca3;:0;LEA	-0x13b0,%R14;
+0x2cab;:0;VMOVSD	%XMM5,0x18(%RSP);
+0x2cb1;:0;CMPB	$0,%FS:-0x1398;
+0x2cba;:0;JE	303b <main._omp_fn.0+0x4eb>;
+0x2cc0;:0;VMOVSD	%FS:-0x13a0,%XMM1;
+0x2cca;:0;MOVB	$0,%FS:-0x1398;
+0x2cd3;:0;VMOVQ	%R15,%XMM6;
+0x2cd8;:0;VFMADD132SD	0x18(%RSP),%XMM6,%XMM1;
+0x2cdf;:0;VCOMISD	0x20(%RSP),%XMM1;
+0x2ce5;:0;JA	2f5b <main._omp_fn.0+0x40b>;
+0x2ceb;:0;INC	%RBX;
+0x2cee;:0;CMP	%RBX,%R12;
+0x2cf1;:0;JE	2f8b <main._omp_fn.0+0x43b>;
+0x2cf7;:0;CMPB	$0,%FS:-0x1390;
+0x2d00;:0;JE	2e9d <main._omp_fn.0+0x34d>;
+0x2d06;:0;CMPB	$0,%FS:-0x13c0;
+0x2d0f;:0;JNE	2c90 <main._omp_fn.0+0x140>;
+0x2e9d;:0;LEA	0x60(%RSP),%R14;
+0x2ea2;:0;LEA	0x1198(%RIP),%RDX;
+0x2ea9;:0;LEA	0x70(%RSP),%R15;
+0x2eae;:0;LEA	0x80(%RSP),%RBP;
+0x2eb6;:0;LEA	-0x7(%RDX),%RSI;
+0x2eba;:0;MOV	%R14,%RDI;
+0x2ebd;:0;MOV	%R15,0x60(%RSP);
+0x2ec2;:0;CALL	2900 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPKcEEvT_S8_St20forward_iterator_tag.isra.0>;
+0x2ec7;:0;MOV	%R14,%RSI;
+0x2eca;:0;MOV	%RBP,%RDI;
+0x2ecd;:0;CALL	23d0 <.plt.sec@start+0x1a0>;
+0x2ed2;:0;MOV	0x60(%RSP),%RDI;
+0x2ed7;:0;CMP	%R15,%RDI;
+0x2eda;:0;JE	2eea <main._omp_fn.0+0x39a>;
+0x2edc;:0;MOV	0x70(%RSP),%RAX;
+0x2ee1;:0;LEA	0x1(%RAX),%RSI;
+0x2ee5;:0;CALL	2310 <.plt.sec@start+0xe0>;
+0x2eea;:0;MOV	%RBP,%RDI;
+0x2eed;:0;CALL	2370 <.plt.sec@start+0x140>;
+0x2ef2;:0;MOV	%FS:,%RSI;
+0x2efb;:0;MOV	$0x1,%EDX;
+0x2f00;:0;MOV	%EAX,%ECX;
+0x2f02;:0;MOV	%RCX,%FS:-0x1388;
+0x2f0b;:0;NOPL	(%RAX,%RAX,1);
+0x2f10;:0;MOV	%RCX,%RAX;  (3) 
+0x2f13;:0;SHR	$0x1e,%RAX;  (3) 
+0x2f17;:0;XOR	%RCX,%RAX;  (3) 
+0x2f1a;:0;IMUL	$0x6c078965,%RAX,%RAX;  (3) 
+0x2f21;:0;LEA	(%RDX,%RAX,1),%ECX;  (3) 
+0x2f24;:0;MOV	%RCX,-0x1388(%RSI,%RDX,8);  (3) 
+0x2f2c;:0;INC	%RDX;  (3) 
+0x2f2f;:0;CMP	$0x270,%RDX;  (3) 
+0x2f36;:0;JNE	2f10 <main._omp_fn.0+0x3c0>;  (3) 
+0x2f38;:0;MOV	%RBP,%RDI;
+0x2f3b;:0;MOVQ	$0x270,%FS:-0x8;
+0x2f48;:0;MOVB	$0x1,%FS:-0x1390;
+0x2f51;:0;CALL	22f0 <.plt.sec@start+0xc0>;
+0x2f56;:0;JMP	2d06 <main._omp_fn.0+0x1b6>;
+0x2f5b;:0;VMULSD	0x48(%RSP),%XMM1,%XMM0;
+0x2f61;:0;INC	%RBX;
+0x2f64;:0;CALL	23f0 <.plt.sec@start+0x1c0>;
+0x2f69;:0;VMOVSD	0x38(%RSP),%XMM5;
+0x2f6f;:0;VFMADD132SD	0x40(%RSP),%XMM5,%XMM0;
+0x2f76;:0;VADDSD	0x30(%RSP),%XMM0,%XMM6;
+0x2f7c;:0;VMOVSD	%XMM6,0x30(%RSP);
+0x2f82;:0;CMP	%RBX,%R12;
+0x2f85;:0;JNE	2cf7 <main._omp_fn.0+0x1a7>;
