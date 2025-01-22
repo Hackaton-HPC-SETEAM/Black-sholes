@@ -89,20 +89,21 @@ int main(int argc, char* argv[]) {
     double t1=dml_micros();
     ui64 run=0;
     
-    #pragma omp parallel for collapse(1) reduction(+:sum)
+    #pragma omp parallel for reduction(+:sum)
 
     for (run = 0; run < num_runs; ++run) {
         std::cout << "Run " << run+1 << std::endl;
-        
+	#pragma omp simd
         for (ui64 i = 0; i < num_simulations; ++i) {
             thread_local static std::mt19937 generator(std::random_device{}());
             thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
-            double Z =  distribution(generator);
+            alignas(32) double Z =  distribution(generator);
             if (Z > lnZcompare) {
                 sum+= a*exp(lambda* Z)+b; 
             }
         }
         std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
+
     }
     double t2=dml_micros();
     std::cout << std::fixed << std::setprecision(6) << " Result= " << sum/num_runs << " in " << (t2-t1)/1000000.0 << " seconds" << std::endl;

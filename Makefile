@@ -1,5 +1,5 @@
 CC=g++
-CCFLAGS=-Wall -std=c++14 -fopenmp -ftree-vectorize -mtune=neoverse-v2 -fopt-info-vec
+CCFLAGS=-Wall -std=c++14 -fopenmp -ftree-vectorize -fopt-info-vec -mtune=neoverse-v2 -march=armv8.5-a
 OPTILVL=-O2
 SOURCES=BSM.cxx
 SOURCES_ORIGIN=BSM_original.cxx
