@@ -40,16 +40,15 @@ Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
 #include <cmath> // Pour std::erf et std::sqrt
 
 #define ui64 u_int64_t
-
+#define f32 float
 // include added for the optimization
 #include <omp.h>
 #include <armpl.h>
 #include <amath.h>
-
+#include <arm_sve.h>
 
 #include <sys/time.h>
-double
-dml_micros()
+double dml_micros()
 {
         static struct timezone tz;
         static struct timeval  tv;
@@ -94,22 +93,63 @@ int main(int argc, char* argv[]) {
     
     #pragma omp parallel for reduction(+:sum)
 
+    // for (run = 0; run < num_runs; ++run) {
+    //     // std::cout << "Run " << run+1 << std::endl;
+	//     // #pragma omp simd
+    //     for (ui64 i = 0; i < num_simulations; ++i) {
+    //         thread_local static std::mt19937 generator(std::random_device{}());
+    //         thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
+    //         alignas(32) double Z =  distribution(generator);
+    //         if (Z > lnZcompare) {
+    //             sum+= a*exp(lambda* Z)+b; 
+    //         }
+    //     }
+    //     // std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
+
+    // }
+
+
     for (run = 0; run < num_runs; ++run) {
-        // std::cout << "Run " << run+1 << std::endl;
-	    #pragma omp simd
-        for (ui64 i = 0; i < num_simulations; ++i) {
-            thread_local static std::mt19937 generator(std::random_device{}());
-            thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
-            alignas(32) double Z =  distribution(generator);
-            if (Z > lnZcompare) {
-                sum+= a*exp(lambda* Z)+b; 
+        thread_local static std::mt19937 generator(std::random_device{}());
+        thread_local static std::normal_distribution<f32> distribution(0.0, 1.0);
+        
+        svbool_t pg = svptrue_b32();
+        svfloat32_t a_vec = svdup_f32(a);
+        svfloat32_t b_vec = svdup_f32(b);
+        svfloat32_t lambda_vec = svdup_f32(lambda);
+        svfloat32_t lnZcompare_vec = svdup_f32(lnZcompare);
+        svfloat32_t sum_vec = svdup_f32(0.0);
+        
+        for (ui64 i = 0; i < num_simulations; i += svcntd()) {
+            // Generate random numbers
+        svfloat32_t Z_vec = svdup_f32(0.0);
+        svbool_t mask = svwhilelt_b32(i, num_simulations);
+
+        // Generate random numbers for each active element
+        for (ui64 j = 0; j < svcntw(); ++j) {
+            if (svptest_first(svptrue_b32(), mask)) {
+                float random_value = distribution(generator);
+                Z_vec = svdup_n_f32_z(mask, random_value);
+                mask = svpnext_b32(pg,mask);
+            } else {
+                break;
             }
         }
-        // std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
-
+            // Perform computations
+            svbool_t cmp_mask = svcmpgt(pg, Z_vec, lnZcompare_vec);
+            svfloat32_t exp_result = _ZGVsMxv_expf(svmul_f32_x(pg, lambda_vec, Z_vec),pg);
+            svfloat32_t result = svadd_f32_x(pg, svmul_f32_x(pg, a_vec, exp_result), b_vec);
+            
+            sum_vec = svadd_f32_m(cmp_mask, sum_vec, result);
+        }
+        
+        // Reduce the sum vector to a scalar
+        sum += svaddv(svptrue_b64(), sum_vec);
     }
+
     double t2=dml_micros();
     std::cout << std::fixed << std::setprecision(6) << " Result= " << sum/num_runs << " in " << (t2-t1)/1000000.0 << " seconds" << std::endl;
 
     return 0;
 }
+
