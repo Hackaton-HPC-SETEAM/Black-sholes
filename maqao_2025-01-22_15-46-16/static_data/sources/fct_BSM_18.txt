@@ -1,0 +1,29 @@
+/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc: 458 - 3378
+--------------------------------------------------------------------------------
+
+458:       if (_M_p >= state_size)
+459: 	_M_gen_rand();
+460: 
+461:       // Calculate o(x(i)).
+462:       result_type __z = _M_x[_M_p++];
+463:       __z ^= (__z >> __u) & __d;
+464:       __z ^= (__z << __s) & __b;
+465:       __z ^= (__z << __t) & __c;
+466:       __z ^= (__z >> __l);
+[...]
+3346:     generate_canonical(_UniformRandomNumberGenerator& __urng)
+[...]
+3360:       _RealType __sum = _RealType(0);
+3361:       _RealType __tmp = _RealType(1);
+3362:       for (size_t __k = __m; __k != 0; --__k)
+3363: 	{
+3364: 	  __sum += _RealType(__urng() - __urng.min()) * __tmp;
+3365: 	  __tmp *= __r;
+3366: 	}
+3367:       __ret = __sum / __tmp;
+3368:       if (__builtin_expect(__ret >= _RealType(1), 0))
+3369: 	{
+3370: #if _GLIBCXX_USE_C99_MATH_TR1
+3371: 	  __ret = std::nextafter(_RealType(1), _RealType(0));
+[...]
+3378:     }

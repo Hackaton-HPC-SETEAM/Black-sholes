@@ -1,0 +1,199 @@
+address;source_location;insn;indent
+0x401a88;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;SUB	SP, SP, #2416;
+0x401a8c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;SUB	SP, SP, #19;
+0x401a90;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STP	X29, X30, [SP];
+0x401a94;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ADD	X29, SP, #0;
+0x401a98;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STP	D12, D13, [SP, #128];
+0x401a9c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDP	D0, D13, [X0, #16];
+0x401aa0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STP	X19, X20, [SP, #16];
+0x401aa4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STP	X21, X22, [SP, #32];
+0x401aa8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STR	D0, [SP, #200];
+0x401aac;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDR	D0, [X0, #32];
+0x401ab0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDP	X21, X20, [X0];
+0x401ab4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STP	X25, X26, [SP, #64];
+0x401ab8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ORR	X25, XZR, X0;
+0x401abc;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STR	D0, [SP, #192];
+0x401ac0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDR	D0, [X0, #40];
+0x401ac4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STR	D0, [SP, #184];
+0x401ac8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;CBZ	X20, 401c20 <main._omp_fn.0+0x198>;
+0x401acc;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STP	X23, X24, [SP, #48];
+0x401ad0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;BL	401300 <@plt_start@+0xc0>;
+0x401ad4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;SBFM	X19, X0, #0, #31;
+0x401ad8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;BL	401310 <@plt_start@+0xd0>;
+0x401adc;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;UDIV	X26, X20, X19;
+0x401ae0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;SBFM	X24, X0, #0, #31;
+0x401ae4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;MSUB	X0, X26, X19, X20;
+0x401ae8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;CMP	X24, X0;
+0x401aec;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;B.CC	401d7c <main._omp_fn.0+0x2f4>;
+0x401af0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;MADD	X24, X26, X24, X0;
+0x401af4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ADD	X26, X26, X24;
+0x401af8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;CMP	X24, X26;
+0x401afc;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;B.CS	401c1c <main._omp_fn.0+0x194>;
+0x401b00;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STR	XZR, [SP, #176];
+0x401b04;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;MRS	X19, #24194;
+0x401b08;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;CBZ	X21, 401c1c <main._omp_fn.0+0x194>;
+0x401b0c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:189;ADD	X22, SP, #224;
+0x401b10;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:189;STR	X27, [SP, #80];
+0x401b14;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:189;STP	D8, D9, [SP, #96];
+0x401b18;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:189;STP	D10, D11, [SP, #112];
+0x401b1c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:189;STP	D14, D15, [SP, #144];
+0x401b20;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;ADRP	X23, <402b20>;    (8) 
+0x401b24;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;MOVZ	X20, #0;    (8) 
+0x401b28;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;ADD	X23, X23, #752;    (8) 
+0x401b2c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;B	401b64 <main._omp_fn.0+0xdc>;    (8) 
+0x401b30;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;ADD	X1, X0, #16;    (8) 
+0x401b34;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;LDR	D12, [X0, #16];    (8) 
+0x401b38;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1817;LDRB	W0, [X1, #24];    (8) 
+0x401b3c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1817;LDR	D11, [X1, #8];    (8) 
+0x401b40;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1817;TBZ	W0, #0, 401ba4 <main._omp_fn.0+0x11c>;    (8) 
+0x401b44;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1819;STRB	WZR, [X1, #24];    (8) 
+0x401b48;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1820;LDR	D0, [X1, #16];    (8) 
+0x401b4c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1839;FMADD	D0, D0, D11, D12;    (8) 
+0x401b50;/fsx/home/etud9-1/Black-sholes/BSM.cxx:104;FCMPE	D13, D0;    (8) 
+0x401b54;/fsx/home/etud9-1/Black-sholes/BSM.cxx:104;B.MI	401c4c <main._omp_fn.0+0x1c4>;    (8) 
+0x401b58;/fsx/home/etud9-1/Black-sholes/BSM.cxx:104;ADD	X20, X20, #1;    (8) 
+0x401b5c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:104;CMP	X21, X20;    (8) 
+0x401b60;/fsx/home/etud9-1/Black-sholes/BSM.cxx:104;B.EQ	401c78 <main._omp_fn.0+0x1f0>;    (8) 
+0x401b64;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;ADD	X0, X19, #0;    (8) 
+0x401b68;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;ADD	X0, X0, #16;    (8) 
+0x401b6c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;LDR	X0, [X0];    (8) 
+0x401b70;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;TBZ	W0, #0, 401ce4 <main._omp_fn.0+0x25c>;    (8) 
+0x401b74;/fsx/home/etud9-1/Black-sholes/BSM.cxx:102;ADD	X0, X19, #0;    (8) 
+0x401b78;/fsx/home/etud9-1/Black-sholes/BSM.cxx:102;ADD	X0, X0, #16;    (8) 
+0x401b7c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:102;LDR	X1, [X0, #8];    (8) 
+0x401b80;/fsx/home/etud9-1/Black-sholes/BSM.cxx:102;TBNZ	W1, #0, 401b30 <main._omp_fn.0+0xa8>;    (8) 
+0x401b84;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:2034;FMOV	D0, #1.0000000;    (8) 
+0x401b88;/fsx/home/etud9-1/Black-sholes/BSM.cxx:102;MOVI	D12, #0;    (8) 
+0x401b8c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:102;MOVZ	X2, #1;    (8) 
+0x401b90;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:2073;STRB	WZR, [X0, #40];    (8) 
+0x401b94;/fsx/home/etud9-1/Black-sholes/BSM.cxx:102;STR	X2, [X0, #8];    (8) 
+0x401b98;/fsx/home/etud9-1/Black-sholes/BSM.cxx:102;FMOV	D11, D0;    (8) 
+0x401b9c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:2034;STP	D12, D0, [X0, #16];    (8) 
+0x401ba0;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:2073;STR	D12, [X0, #32];    (8) 
+0x401ba4;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1827;FMOV	D9, #2.0000000;    (8) 
+0x401ba8;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1827;FMOV	D8, #-1.0000000;    (8) 
+0x401bac;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:194;ADD	X27, X19, #0;    (8) 
+0x401bb0;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:194;ADD	X27, X27, #64;    (8) 
+0x401bb4;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1831;FMOV	D10, #1.0000000;    (8) 
+0x401bb8;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1831;HINT	#0;    (8) 
+0x401bbc;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1831;HINT	#0;    (8) 
+0x401bc0;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:194;ORR	X0, XZR, X27;      (6) 
+0x401bc4;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:194;BL	402040 <_ZSt18generate_canonicalIdLm53ESt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EEET_RT1_>;      (6) 
+0x401bc8;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1827;FMADD	D14, D0, D9, D8;      (6) 
+0x401bcc;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:194;ORR	X0, XZR, X27;      (6) 
+0x401bd0;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:194;BL	402040 <_ZSt18generate_canonicalIdLm53ESt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EEET_RT1_>;      (6) 
+0x401bd4;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1828;FMADD	D15, D0, D9, D8;      (6) 
+0x401bd8;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1829;FMUL	D3, D15, D15;      (6) 
+0x401bdc;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1829;FMADD	D3, D14, D14, D3;      (6) 
+0x401be0;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1831;FCMPE	D3, D10;      (6) 
+0x401be4;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1831;B.GT	401bc0 <main._omp_fn.0+0x138>;      (6) 
+0x401be8;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1831;FCMP	D3, #0;      (6) 
+0x401bec;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1831;B.EQ	401bc0 <main._omp_fn.0+0x138>;      (6) 
+0x401bf0;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;FMOV	D0, D3;    (8) 
+0x401bf4;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;STR	D3, [SP, #168];    (8) 
+0x401bf8;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;BL	401440 <@plt_start@+0x200>;    (8) 
+0x401bfc;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;FMOV	D4, #-2.0000000;    (8) 
+0x401c00;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;LDR	D3, [SP, #168];    (8) 
+0x401c04;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;FMUL	D0, D0, D4;    (8) 
+0x401c08;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;FDIV	D0, D0, D3;    (8) 
+0x401c0c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;FCMP	D0, #0;    (8) 
+0x401c10;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;B.PL	401c28 <main._omp_fn.0+0x1a0>;    (8) 
+0x401c14;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;BL	401400 <@plt_start@+0x1c0>;    (8) 
+0x401c18;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;B	401c2c <main._omp_fn.0+0x1a4>;    (8) 
+0x401c1c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;LDP	X23, X24, [SP, #48];
+0x401c20;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;STR	XZR, [SP, #176];
+0x401c24;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;B	401c98 <main._omp_fn.0+0x210>;
+0x401c28;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1833;FSQRT	D0, D0;    (8) 
+0x401c2c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1834;FMUL	D2, D14, D0;    (8) 
+0x401c30;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1834;ADD	X0, X19, #0;    (8) 
+0x401c34;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1834;ADD	X0, X0, #16;    (8) 
+0x401c38;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1835;MOVZ	W1, #1;    (8) 
+0x401c3c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1836;FMUL	D0, D15, D0;    (8) 
+0x401c40;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1835;STRB	W1, [X0, #40];    (8) 
+0x401c44;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1834;STR	D2, [X0, #32];    (8) 
+0x401c48;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:1834;B	401b4c <main._omp_fn.0+0xc4>;    (8) 
+0x401c4c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;LDR	D1, [SP, #200];    (8) 
+0x401c50;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;ADD	X20, X20, #1;    (8) 
+0x401c54;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;FMUL	D0, D1, D0;    (8) 
+0x401c58;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;BL	4013e0 <@plt_start@+0x1a0>;    (8) 
+0x401c5c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;LDP	D1, D2, [SP, #184];    (8) 
+0x401c60;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;FMADD	D0, D2, D0, D1;    (8) 
+0x401c64;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;LDR	D1, [SP, #176];    (8) 
+0x401c68;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;FADD	D0, D1, D0;    (8) 
+0x401c6c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;STR	D0, [SP, #176];    (8) 
+0x401c70;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;CMP	X21, X20;    (8) 
+0x401c74;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;B.NE	401b64 <main._omp_fn.0+0xdc>;    (8) 
+0x401c78;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;ADD	X24, X24, #1;    (8) 
+0x401c7c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;CMP	X26, X24;    (8) 
+0x401c80;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;B.HI	401b20 <main._omp_fn.0+0x98>;    (8) 
+0x401c84;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;LDP	D8, D9, [SP, #96];(9) 
+0x401c88;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;LDP	X23, X24, [SP, #48];(9) 
+0x401c8c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;LDP	D10, D11, [SP, #112];(9) 
+0x401c90;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;LDP	D14, D15, [SP, #144];(9) 
+0x401c94;/fsx/home/etud9-1/Black-sholes/BSM.cxx:105;LDR	X27, [SP, #80];(9) 
+0x401c98;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ADD	X25, X25, #48;(9) 
+0x401c9c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDR	X19, [X25];(9) 
+0x401ca0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;FMOV	D1, X19;  (4) 
+0x401ca4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ORR	X2, XZR, X25;  (4) 
+0x401ca8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ORR	X0, XZR, X19;  (4) 
+0x401cac;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDR	D0, [SP, #176];  (4) 
+0x401cb0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;FADD	D0, D0, D1;  (4) 
+0x401cb4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;FMOV	X1, D0;  (4) 
+0x401cb8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;BL	402130 <__aarch64_cas8_relax>;  (4) 
+0x401cbc;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;CMP	X19, X0;  (4) 
+0x401cc0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;B.NE	401d88 <main._omp_fn.0+0x300>;  (4) 
+0x401cc4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDP	X29, X30, [SP];(9) 
+0x401cc8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDP	X19, X20, [SP, #16];(9) 
+0x401ccc;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDP	X21, X22, [SP, #32];(9) 
+0x401cd0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDP	X25, X26, [SP, #64];(9) 
+0x401cd4;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;LDP	D12, D13, [SP, #128];(9) 
+0x401cd8;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ADD	SP, SP, #2416;(9) 
+0x401cdc;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ADD	SP, SP, #19;(9) 
+0x401ce0;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;RET;(9) 
+0x401ce4;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;ADRP	X2, <402ce4>;  (7) 
+0x401ce8;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;ORR	X1, XZR, X23;  (7) 
+0x401cec;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:189;STR	X22, [SP, #208];  (7) 
+0x401cf0;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;ADD	X0, SP, #208;  (7) 
+0x401cf4;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;ADD	X2, X2, #759;  (7) 
+0x401cf8;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:639;BL	401840 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPKcEEvT_S8_St20forward_iterator_tag.isra.0>;  (7) 
+0x401cfc;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1658;ADD	X1, SP, #208;  (7) 
+0x401d00;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1658;ADD	X0, SP, #240;  (7) 
+0x401d04;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1658;BL	401430 <@plt_start@+0x1f0>;  (7) 
+0x401d08;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:223;LDR	X0, [SP, #208];  (7) 
+0x401d0c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:264;CMP	X0, X22;  (7) 
+0x401d10;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:264;B.EQ	401d20 <main._omp_fn.0+0x298>;  (7) 
+0x401d14;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:289;LDR	X1, [SP, #224];  (7) 
+0x401d18;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/new_allocator.h:168;ADD	X1, X1, #1;  (7) 
+0x401d1c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/new_allocator.h:168;BL	4012a0 <@plt_start@+0x60>;  (7) 
+0x401d20;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1680;ADD	X0, SP, #240;  (7) 
+0x401d24;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1680;BL	4012d0 <@plt_start@+0x90>;  (7) 
+0x401d28;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:337;MOVZ	X3, #35173;  (7) 
+0x401d2c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:330;ADD	X2, X19, #0;  (7) 
+0x401d30;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:330;ADD	X2, X2, #64;  (7) 
+0x401d34;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;ORR	W0, WZR, W0;  (7) 
+0x401d38;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:333;MOVZ	X1, #1;  (7) 
+0x401d3c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:337;MOVK	X3, #27655;  (7) 
+0x401d40;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:330;STR	X0, [X2];  (7) 
+0x401d44;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:336;EOR	X0, X0, X0,LSR #30;    (5) 
+0x401d48;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:143;MADD	W0, W0, W3, W1;    (5) 
+0x401d4c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:339;STR	X0, [X2, X1,LSL #3];    (5) 
+0x401d50;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:333;ADD	X1, X1, #1;    (5) 
+0x401d54;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:333;CMP	X1, #624;    (5) 
+0x401d58;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:333;B.NE	401d44 <main._omp_fn.0+0x2bc>;    (5) 
+0x401d5c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;ADD	X3, X19, #0;  (7) 
+0x401d60;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;ADD	X3, X3, #16;  (7) 
+0x401d64;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;MOVZ	X4, #1;  (7) 
+0x401d68;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc:342;STR	X1, [X2, #4992];  (7) 
+0x401d6c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1664;ADD	X0, SP, #240;  (7) 
+0x401d70;/fsx/home/etud9-1/Black-sholes/BSM.cxx:101;STR	X4, [X3];  (7) 
+0x401d74;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1664;BL	4012c0 <@plt_start@+0x80>;  (7) 
+0x401d78;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1664;B	401b74 <main._omp_fn.0+0xec>;  (7) 
+0x401d7c;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.h:1664;ADD	X26, X26, #1;
+0x401d80;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;MOVZ	X0, #0;
+0x401d84;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;B	401af0 <main._omp_fn.0+0x68>;
+0x401d88;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;ORR	X19, XZR, X0;  (4) 
+0x401d8c;/fsx/home/etud9-1/Black-sholes/BSM.cxx:95;B	401ca0 <main._omp_fn.0+0x218>;  (4) 
+0x401d90;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:792;ADD	X0, SP, #208;
+0x401d94;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/basic_string.h:792;BL	401420 <@plt_start@+0x1e0>;
+0x401d98;/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/allocator.h:184;BL	401470 <@plt_start@+0x230>;
+0x401d9c;:0;HINT	#0;

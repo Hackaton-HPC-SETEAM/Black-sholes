@@ -1,0 +1,42 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_10":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc",
+                    "regions":
+                      [
+                        [
+                        404,
+                        409
+                        ]
+                      ]
+                  }
+                ],
+              "src": "random.tcc:404-409"
+            },
+          "_11":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/include/c++/13.2.0/bits/random.tcc",
+                    "regions":
+                      [
+                        [
+                        412,
+                        417
+                        ]
+                      ]
+                  }
+                ],
+              "src": "random.tcc:412-417"
+            }
+        }
+    }
+}

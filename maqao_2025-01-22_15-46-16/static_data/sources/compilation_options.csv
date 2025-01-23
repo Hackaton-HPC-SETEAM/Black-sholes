@@ -1,0 +1,7 @@
+module;src_file;score;issue;opts;
+BSM;BSM.cxx;0.375;"-O3 or -Ofast is missing. ";"GNU C++14 13.2.0 -mlittle-endian -mabi=lp64 -mtune=demeter -g -O2 -std=c++14 -fopenmp -ftree-vectorize -fopt-info-vec ";
+BSM;BSM.cxx;;"-mcpu=native is missing.";"";
+BSM;BSM.cxx;;"-funroll-loops is missing. ";"";
+BSM;random.tcc;0.375;"-O3 or -Ofast is missing. ";"GNU C++14 13.2.0 -mlittle-endian -mabi=lp64 -mtune=demeter -g -O2 -std=c++14 -fopenmp -ftree-vectorize -fopt-info-vec ";
+BSM;random.tcc;;"-mcpu=native is missing.";"";
+BSM;random.tcc;;"-funroll-loops is missing. ";"";

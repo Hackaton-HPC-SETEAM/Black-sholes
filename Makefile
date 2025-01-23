@@ -1,5 +1,5 @@
 CC=g++
-CCFLAGS=-Wall -std=c++14 -fopenmp -ftree-vectorize -fopt-info-vec -march=native -mtune=native -I/opt/arm/armpl_24.10_gcc/include -L/opt/arm/armpl_24.10_gcc/lib -larmpl -lamath -lm
+CCFLAGS=-Wall -g -std=c++23 -fopenmp -ftree-vectorize -fopt-info-vec -march=native -mtune=native -I/opt/arm/armpl_24.10_gcc/include -L/opt/arm/armpl_24.10_gcc/lib -larmpl -lamath -lm
 OPTILVL=-O2
 SOURCES=BSM.cxx
 SOURCES_ORIGIN=BSM_original.cxx
