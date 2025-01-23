@@ -11,6 +11,6 @@
 module purge
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/arm/armpl_24.10_gcc/lib
 module load armpl/24.10.0_gcc
-
+module list
 # Exécutez votre programme BSM compilé avec les paramètres
 strace ./BSM 1000000 10000
