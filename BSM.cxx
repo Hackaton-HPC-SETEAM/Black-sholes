@@ -45,6 +45,7 @@ Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
 #include <omp.h>
 #include <armpl.h>
 #include <amath.h>
+#include <pcg_random.hpp>
 
 
 #include <sys/time.h>
@@ -84,7 +85,9 @@ int main(int argc, char* argv[]) {
 
     // Generate a random seed at the start of the program using random_device
     std::random_device rd;
-    unsigned long long global_seed = rd();  // This will be the global seed
+    unsigned long long global_seed = rd();  // This will be the global 
+    thread_local static pcg64_fast pcg(global_seed+omp_get_thread_num());
+    thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
 
     std::cout << "Global initial seed: " << global_seed << "      argv[1]= " << argv[1] << "     argv[2]= " << argv[2] <<  std::endl;
 
@@ -98,8 +101,7 @@ int main(int argc, char* argv[]) {
         // std::cout << "Run " << run+1 << std::endl;
 	    #pragma omp simd
         for (ui64 i = 0; i < num_simulations; ++i) {
-            thread_local static std::mt19937 generator(std::random_device{}());
-            thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
+            thread_local static pcg64_fast& generator = pcg;
             alignas(32) double Z =  distribution(generator);
             if (Z > lnZcompare) {
                 sum+= a*exp(lambda* Z)+b; 
