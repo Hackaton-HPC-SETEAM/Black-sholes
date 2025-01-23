@@ -1,10 +1,21 @@
 #!/bin/bash
-#SBATCH --job-name=BSM_opti
-#SBATCH --output=BSM_output_%j.log
-#SBATCH --error=BSM_error_%j.log
+#SBATCH --job-name=BSM_full
+#SBATCH --output=BSM_full_output_%j.log
+#SBATCH --error=BSM_full_error_%j.log
 #SBATCH --time=01:00:0
 #SBATCH --nodes=1
+#SBATCH --cpus-per-task=96
+#SBATCH --partition=c8g
+#SBATCH --exclusive
+module purge
+module use /tools/acfl/24.04/modulefiles
+module load gnu
+module load armpl
 
 
 # Exécutez votre programme BSM compilé avec les paramètres
-./BSM 1000000 1000
+# ./BSM 10000000 1000000
+./BSM 100000 1000000        
+./BSM 1000000 1000000
+./BSM 10000000 1000000
+./BSM 100000000 1000000

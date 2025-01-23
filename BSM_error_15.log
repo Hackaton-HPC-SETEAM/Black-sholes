@@ -1,0 +1,4 @@
+ModuleCmd_Use.c(231):ERROR:64: Directory '/tools/afcl/24.10/modulefiles' not found
+ModuleCmd_Load.c(213):ERROR:105: Unable to locate a modulefile for 'gnu'
+Use of the free of charge version of Arm Performance Libraries is subject to the terms and conditions of the Arm Performance Libraries (free version) -  End User License Agreement (EULA). A copy of the EULA can be found in the '/opt/arm/armpl/23.10/arm-performance-libraries_23.10_gcc-9.3/license_terms' folder
+./BSM: /opt/arm/armpl/gcc/9.3.0/lib64/libstdc++.so.6: version `GLIBCXX_3.4.32' not found (required by ./BSM)

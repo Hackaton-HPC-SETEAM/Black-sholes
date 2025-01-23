@@ -1,0 +1,544 @@
+cmdModule.c(567):ERROR:50: Cannot open file '/opt/arm/modulefiles//armpl/24.10.0_gcc' for 'reading'
+execve("./BSM", ["./BSM", "10000000", "1000"], 0xffffe0b34760 /* 91 vars */) = 0
+brk(NULL)                               = 0x35b96000
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff9ff13000
+faccessat(AT_FDCWD, "/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/tls/aarch64/cpuid/libarmpl.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/tls/aarch64/cpuid", 0xffffe87e93a0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/tls/aarch64/libarmpl.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/tls/aarch64", 0xffffe87e93a0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/tls/cpuid/libarmpl.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/tls/cpuid", 0xffffe87e93a0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/tls/libarmpl.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/tls", 0xffffe87e93a0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/aarch64/cpuid/libarmpl.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/aarch64/cpuid", 0xffffe87e93a0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/aarch64/libarmpl.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/aarch64", 0xffffe87e93a0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/cpuid/libarmpl.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/cpuid", 0xffffe87e93a0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libarmpl.so", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0p\5\37\5\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=130831616, ...}) = 0
+mmap(NULL, 116209272, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff99005000
+mprotect(0xffff9fe49000, 94208, PROT_NONE) = 0
+mmap(0xffff9fe60000, 266240, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6e4b000) = 0xffff9fe60000
+mmap(0xffff9fea1000, 226936, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xffff9fea1000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libamath.so", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\240~\t\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=1992152, ...}) = 0
+mmap(NULL, 1833240, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff98e45000
+mprotect(0xffff98fa9000, 98304, PROT_NONE) = 0
+mmap(0xffff98fc1000, 122880, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x16c000) = 0xffff98fc1000
+mmap(0xffff98fdf000, 153880, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xffff98fdf000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/tls/aarch64/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/tls/aarch64/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/tls/aarch64/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/tls/aarch64", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/tls/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/tls/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/tls/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/tls", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/aarch64/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/aarch64/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/aarch64/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/aarch64", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib", {st_mode=S_IFDIR|0755, st_size=33280, ...}, 0) = 0
+openat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/tls/aarch64/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/tls/aarch64/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/tls/aarch64/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/tls/aarch64", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/tls/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/tls/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/tls/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/tls", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/aarch64/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/aarch64/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/aarch64/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/aarch64", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/opt/arm/armpl_24.10_gcc/lib", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/tls/aarch64/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/tls/aarch64/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/tls/aarch64/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/tls/aarch64", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/tls/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/tls/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/tls/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/tls", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/aarch64/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/aarch64/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/aarch64/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/aarch64", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/cpuid/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/cpuid", 0xffffe87e9340, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=20540600, ...}) = 0
+mmap(NULL, 2452872, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff98bee000
+mprotect(0xffff98e23000, 65536, PROT_NONE) = 0
+mmap(0xffff98e33000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x235000) = 0xffff98e33000
+mmap(0xffff98e41000, 15752, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xffff98e41000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/aarch64/cpuid/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/aarch64/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/cpuid/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "aarch64/cpuid/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "aarch64/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "cpuid/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=91820, ...}) = 0
+mmap(NULL, 91820, PROT_READ, MAP_PRIVATE, 3, 0) = 0xffff9fefc000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib64/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\340\\\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=826336, ...}) = 0
+mmap(NULL, 787064, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff98b2d000
+mprotect(0xffff98bd9000, 77824, PROT_NONE) = 0
+mmap(0xffff98bec000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xaf000) = 0xffff98bec000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/libgomp.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libgomp.so.1", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=1508504, ...}) = 0
+mmap(NULL, 395528, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff98acc000
+mprotect(0xffff98b15000, 90112, PROT_NONE) = 0
+mmap(0xffff98b2b000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4f000) = 0xffff98b2b000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=600272, ...}) = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff9fefa000
+mmap(NULL, 197880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff98a9b000
+mprotect(0xffff98ab3000, 94208, PROT_NONE) = 0
+mmap(0xffff98aca000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1f000) = 0xffff98aca000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/aarch64/cpuid/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/aarch64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/cpuid/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "aarch64/cpuid/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "aarch64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "cpuid/libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "libpthread.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib64/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\240]\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=189920, ...}) = 0
+mmap(NULL, 213968, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff98a66000
+mprotect(0xffff98a82000, 77824, PROT_NONE) = 0
+mmap(0xffff98a95000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1f000) = 0xffff98a95000
+mmap(0xffff98a97000, 13264, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xffff98a97000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/aarch64/cpuid/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/aarch64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/cpuid/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "aarch64/cpuid/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "aarch64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "cpuid/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib64/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\340\376\1\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=1883872, ...}) = 0
+mmap(NULL, 1594200, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff988e0000
+mprotect(0xffff98a4c000, 65536, PROT_NONE) = 0
+mmap(0xffff98a5c000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x16c000) = 0xffff98a5c000
+mmap(0xffff98a62000, 13144, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xffff98a62000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libastring.so", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=70992, ...}) = 0
+mmap(NULL, 131104, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff988bf000
+mprotect(0xffff988c1000, 118784, PROT_NONE) = 0
+mmap(0xffff988de000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xf000) = 0xffff988de000
+close(3)                                = 0
+openat(AT_FDCWD, "/tools/acfl/24.04/armpl-24.04.0_AmazonLinux-2_gcc/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/aarch64/cpuid/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/aarch64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/cpuid/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "tls/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "aarch64/cpuid/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "aarch64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "cpuid/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib64/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0 \17\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=73984, ...}) = 0
+mmap(NULL, 131320, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xffff9889e000
+mprotect(0xffff988a1000, 114688, PROT_NONE) = 0
+mmap(0xffff988bd000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xf000) = 0xffff988bd000
+close(3)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff9889c000
+mmap(NULL, 28672, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff98895000
+mprotect(0xffff98a5c000, 16384, PROT_READ) = 0
+mprotect(0xffff988bd000, 4096, PROT_READ) = 0
+mprotect(0xffff988de000, 4096, PROT_READ) = 0
+mprotect(0xffff98a95000, 4096, PROT_READ) = 0
+mprotect(0xffff98aca000, 4096, PROT_READ) = 0
+mprotect(0xffff98b2b000, 4096, PROT_READ) = 0
+mprotect(0xffff98bec000, 4096, PROT_READ) = 0
+mprotect(0xffff98e33000, 45056, PROT_READ) = 0
+mprotect(0xffff98fc1000, 16384, PROT_READ) = 0
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff98892000
+mmap(NULL, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff9888d000
+mprotect(0xffff9fe60000, 86016, PROT_READ) = 0
+mprotect(0x41f000, 4096, PROT_READ)     = 0
+mprotect(0xffff9ff18000, 4096, PROT_READ) = 0
+munmap(0xffff9fefc000, 91820)           = 0
+set_tid_address(0xffff988950e0)         = 8589
+set_robust_list(0xffff988950f0, 24)     = 0
+rt_sigaction(SIGRTMIN, {sa_handler=0xffff98a6b820, sa_mask=[], sa_flags=SA_SIGINFO}, NULL, 8) = 0
+rt_sigaction(SIGRT_1, {sa_handler=0xffff98a6b8e0, sa_mask=[], sa_flags=SA_RESTART|SA_SIGINFO}, NULL, 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=10240*1024, rlim_max=RLIM64_INFINITY}) = 0
+openat(AT_FDCWD, "/sys/devices/system/cpu", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
+fstat(3, {st_mode=S_IFDIR|0755, st_size=0, ...}) = 0
+brk(NULL)                               = 0x35b96000
+brk(0x35bb7000)                         = 0x35bb7000
+getdents64(3, /* 113 entries */, 32768) = 3520
+getdents64(3, /* 0 entries */, 32768)   = 0
+close(3)                                = 0
+sched_getaffinity(8589, 16, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]) = 16
+futex(0xffff98e418ec, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+futex(0xffff98e418f8, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+futex(0xffff9fea31d4, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+futex(0xffff9fea31e0, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+openat(AT_FDCWD, "/proc/cpuinfo", O_RDONLY) = 3
+read(3, "processor\t: 0\nBogoMIPS\t: 2000.00"..., 8191) = 8191
+read(3, "rocessor\t: 20\nBogoMIPS\t: 2000.00"..., 8191) = 8191
+read(3, "on\t: 1\n\nprocessor\t: 40\nBogoMIPS\t"..., 8191) = 8191
+read(3, "PU revision\t: 1\n\nprocessor\t: 60\n"..., 8191) = 8191
+read(3, ": 0xd4f\nCPU revision\t: 1\n\nproces"..., 8191) = 6586
+read(3, "", 8191)                       = 0
+close(3)                                = 0
+fstat(0, {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}) = 0
+fstat(1, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+fstat(2, {st_mode=S_IFREG|0644, st_size=23879, ...}) = 0
+brk(0x35be1000)                         = 0x35be1000
+openat(AT_FDCWD, "/sys/devices/virtual/dmi/id/sys_vendor", O_RDONLY) = 3
+read(3, "Amazon EC2\n", 8191)           = 11
+close(3)                                = 0
+brk(0x35c02000)                         = 0x35c02000
+brk(0x35c23000)                         = 0x35c23000
+brk(0x35c44000)                         = 0x35c44000
+brk(0x35c65000)                         = 0x35c65000
+getrandom("\xad\x08\xf3\x81", 4, 0)     = 4
+getrandom("\xc1\x1a\x11\x82", 4, 0)     = 4
+fstat(1, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+write(1, "Global initial seed: 2182159041 "..., 73) = 73
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff97e8c000
+mprotect(0xffff97e8d000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff988877a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff98887f60, tls=0xffff98888580, child_tidptr=0xffff98887f60) = 8591
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff9748b000
+mprotect(0xffff9748c000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff97e867a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff97e86f60, tls=0xffff97e87580, child_tidptr=0xffff97e86f60) = 8592
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff96a8a000
+mprotect(0xffff96a8b000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff974857a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff97485f60, tls=0xffff97486580, child_tidptr=0xffff97485f60) = 8593
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff96089000
+mprotect(0xffff9608a000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff96a847a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff96a84f60, tls=0xffff96a85580, child_tidptr=0xffff96a84f60) = 8594
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff95688000
+mprotect(0xffff95689000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff960837a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff96083f60, tls=0xffff96084580, child_tidptr=0xffff96083f60) = 8595
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff94c87000
+mprotect(0xffff94c88000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff956827a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff95682f60, tls=0xffff95683580, child_tidptr=0xffff95682f60) = 8596
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff94286000
+mprotect(0xffff94287000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff94c817a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff94c81f60, tls=0xffff94c82580, child_tidptr=0xffff94c81f60) = 8597
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff93885000
+mprotect(0xffff93886000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff942807a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff94280f60, tls=0xffff94281580, child_tidptr=0xffff94280f60) = 8598
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff92e84000
+mprotect(0xffff92e85000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff9387f7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff9387ff60, tls=0xffff93880580, child_tidptr=0xffff9387ff60) = 8599
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff92483000
+mprotect(0xffff92484000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff92e7e7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff92e7ef60, tls=0xffff92e7f580, child_tidptr=0xffff92e7ef60) = 8600
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff91a82000
+mprotect(0xffff91a83000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff9247d7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff9247df60, tls=0xffff9247e580, child_tidptr=0xffff9247df60) = 8601
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff91081000
+mprotect(0xffff91082000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff91a7c7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff91a7cf60, tls=0xffff91a7d580, child_tidptr=0xffff91a7cf60) = 8602
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff90680000
+mprotect(0xffff90681000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff9107b7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff9107bf60, tls=0xffff9107c580, child_tidptr=0xffff9107bf60) = 8603
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8fc7f000
+mprotect(0xffff8fc80000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff9067a7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff9067af60, tls=0xffff9067b580, child_tidptr=0xffff9067af60) = 8604
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8f27e000
+mprotect(0xffff8f27f000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8fc797a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8fc79f60, tls=0xffff8fc7a580, child_tidptr=0xffff8fc79f60) = 8605
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8e87d000
+mprotect(0xffff8e87e000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8f2787a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8f278f60, tls=0xffff8f279580, child_tidptr=0xffff8f278f60) = 8606
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8de7c000
+mprotect(0xffff8de7d000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8e8777a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8e877f60, tls=0xffff8e878580, child_tidptr=0xffff8e877f60) = 8607
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8d47b000
+mprotect(0xffff8d47c000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8de767a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8de76f60, tls=0xffff8de77580, child_tidptr=0xffff8de76f60) = 8608
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8ca7a000
+mprotect(0xffff8ca7b000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8d4757a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8d475f60, tls=0xffff8d476580, child_tidptr=0xffff8d475f60) = 8609
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8c079000
+mprotect(0xffff8c07a000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8ca747a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8ca74f60, tls=0xffff8ca75580, child_tidptr=0xffff8ca74f60) = 8610
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8b678000
+mprotect(0xffff8b679000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8c0737a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8c073f60, tls=0xffff8c074580, child_tidptr=0xffff8c073f60) = 8611
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8ac77000
+mprotect(0xffff8ac78000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8b6727a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8b672f60, tls=0xffff8b673580, child_tidptr=0xffff8b672f60) = 8612
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8a276000
+mprotect(0xffff8a277000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8ac717a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8ac71f60, tls=0xffff8ac72580, child_tidptr=0xffff8ac71f60) = 8613
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff89875000
+mprotect(0xffff89876000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8a2707a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8a270f60, tls=0xffff8a271580, child_tidptr=0xffff8a270f60) = 8614
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff88e74000
+mprotect(0xffff88e75000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8986f7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8986ff60, tls=0xffff89870580, child_tidptr=0xffff8986ff60) = 8615
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff88473000
+mprotect(0xffff88474000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff88e6e7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff88e6ef60, tls=0xffff88e6f580, child_tidptr=0xffff88e6ef60) = 8616
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff87a72000
+mprotect(0xffff87a73000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8846d7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8846df60, tls=0xffff8846e580, child_tidptr=0xffff8846df60) = 8617
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff87071000
+mprotect(0xffff87072000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff87a6c7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff87a6cf60, tls=0xffff87a6d580, child_tidptr=0xffff87a6cf60) = 8618
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff86670000
+mprotect(0xffff86671000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8706b7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8706bf60, tls=0xffff8706c580, child_tidptr=0xffff8706bf60) = 8619
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff85c6f000
+mprotect(0xffff85c70000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff8666a7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff8666af60, tls=0xffff8666b580, child_tidptr=0xffff8666af60) = 8620
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8526e000
+mprotect(0xffff8526f000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff85c697a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff85c69f60, tls=0xffff85c6a580, child_tidptr=0xffff85c69f60) = 8621
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8486d000
+mprotect(0xffff8486e000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff852687a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff85268f60, tls=0xffff85269580, child_tidptr=0xffff85268f60) = 8622
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff83e6c000
+mprotect(0xffff83e6d000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff848677a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff84867f60, tls=0xffff84868580, child_tidptr=0xffff84867f60) = 8623
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff8346b000
+mprotect(0xffff8346c000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff83e667a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff83e66f60, tls=0xffff83e67580, child_tidptr=0xffff83e66f60) = 8624
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff82a6a000
+mprotect(0xffff82a6b000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff834657a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff83465f60, tls=0xffff83466580, child_tidptr=0xffff83465f60) = 8625
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff82069000
+mprotect(0xffff8206a000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff82a647a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff82a64f60, tls=0xffff82a65580, child_tidptr=0xffff82a64f60) = 8626
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff81668000
+mprotect(0xffff81669000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff820637a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff82063f60, tls=0xffff82064580, child_tidptr=0xffff82063f60) = 8627
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff80c67000
+mprotect(0xffff80c68000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff816627a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff81662f60, tls=0xffff81663580, child_tidptr=0xffff81662f60) = 8628
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff80266000
+mprotect(0xffff80267000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff80c617a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff80c61f60, tls=0xffff80c62580, child_tidptr=0xffff80c61f60) = 8629
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7f865000
+mprotect(0xffff7f866000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff802607a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff80260f60, tls=0xffff80261580, child_tidptr=0xffff80260f60) = 8630
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7ee64000
+mprotect(0xffff7ee65000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7f85f7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7f85ff60, tls=0xffff7f860580, child_tidptr=0xffff7f85ff60) = 8631
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7e463000
+mprotect(0xffff7e464000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7ee5e7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7ee5ef60, tls=0xffff7ee5f580, child_tidptr=0xffff7ee5ef60) = 8632
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7da62000
+mprotect(0xffff7da63000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7e45d7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7e45df60, tls=0xffff7e45e580, child_tidptr=0xffff7e45df60) = 8633
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7d061000
+mprotect(0xffff7d062000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7da5c7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7da5cf60, tls=0xffff7da5d580, child_tidptr=0xffff7da5cf60) = 8634
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7c660000
+mprotect(0xffff7c661000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7d05b7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7d05bf60, tls=0xffff7d05c580, child_tidptr=0xffff7d05bf60) = 8635
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7bc5f000
+mprotect(0xffff7bc60000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7c65a7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7c65af60, tls=0xffff7c65b580, child_tidptr=0xffff7c65af60) = 8636
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7b25e000
+mprotect(0xffff7b25f000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7bc597a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7bc59f60, tls=0xffff7bc5a580, child_tidptr=0xffff7bc59f60) = 8637
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7a85d000
+mprotect(0xffff7a85e000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7b2587a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7b258f60, tls=0xffff7b259580, child_tidptr=0xffff7b258f60) = 8638
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff79e5c000
+mprotect(0xffff79e5d000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7a8577a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7a857f60, tls=0xffff7a858580, child_tidptr=0xffff7a857f60) = 8639
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7945b000
+mprotect(0xffff7945c000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff79e567a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff79e56f60, tls=0xffff79e57580, child_tidptr=0xffff79e56f60) = 8640
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff78a5a000
+mprotect(0xffff78a5b000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff794557a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff79455f60, tls=0xffff79456580, child_tidptr=0xffff79455f60) = 8641
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff78059000
+mprotect(0xffff7805a000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff78a547a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff78a54f60, tls=0xffff78a55580, child_tidptr=0xffff78a54f60) = 8642
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff77658000
+mprotect(0xffff77659000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff780537a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff78053f60, tls=0xffff78054580, child_tidptr=0xffff78053f60) = 8643
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff76c57000
+mprotect(0xffff76c58000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff776527a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff77652f60, tls=0xffff77653580, child_tidptr=0xffff77652f60) = 8644
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff76256000
+mprotect(0xffff76257000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff76c517a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff76c51f60, tls=0xffff76c52580, child_tidptr=0xffff76c51f60) = 8645
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff75855000
+mprotect(0xffff75856000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff762507a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff76250f60, tls=0xffff76251580, child_tidptr=0xffff76250f60) = 8646
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff74e54000
+mprotect(0xffff74e55000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7584f7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7584ff60, tls=0xffff75850580, child_tidptr=0xffff7584ff60) = 8647
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff74453000
+mprotect(0xffff74454000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff74e4e7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff74e4ef60, tls=0xffff74e4f580, child_tidptr=0xffff74e4ef60) = 8648
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff73a52000
+mprotect(0xffff73a53000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7444d7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7444df60, tls=0xffff7444e580, child_tidptr=0xffff7444df60) = 8649
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff73051000
+mprotect(0xffff73052000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff73a4c7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff73a4cf60, tls=0xffff73a4d580, child_tidptr=0xffff73a4cf60) = 8650
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff72650000
+mprotect(0xffff72651000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7304b7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7304bf60, tls=0xffff7304c580, child_tidptr=0xffff7304bf60) = 8651
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff71c4f000
+mprotect(0xffff71c50000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff7264a7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff7264af60, tls=0xffff7264b580, child_tidptr=0xffff7264af60) = 8652
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7124e000
+mprotect(0xffff7124f000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff71c497a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff71c49f60, tls=0xffff71c4a580, child_tidptr=0xffff71c49f60) = 8653
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff7084d000
+mprotect(0xffff7084e000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff712487a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff71248f60, tls=0xffff71249580, child_tidptr=0xffff71248f60) = 8654
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6fe4c000
+mprotect(0xffff6fe4d000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff708477a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff70847f60, tls=0xffff70848580, child_tidptr=0xffff70847f60) = 8655
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6f44b000
+mprotect(0xffff6f44c000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6fe467a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6fe46f60, tls=0xffff6fe47580, child_tidptr=0xffff6fe46f60) = 8656
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6ea4a000
+mprotect(0xffff6ea4b000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6f4457a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6f445f60, tls=0xffff6f446580, child_tidptr=0xffff6f445f60) = 8657
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6e049000
+mprotect(0xffff6e04a000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6ea447a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6ea44f60, tls=0xffff6ea45580, child_tidptr=0xffff6ea44f60) = 8658
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6d648000
+mprotect(0xffff6d649000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6e0437a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6e043f60, tls=0xffff6e044580, child_tidptr=0xffff6e043f60) = 8659
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6cc47000
+mprotect(0xffff6cc48000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6d6427a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6d642f60, tls=0xffff6d643580, child_tidptr=0xffff6d642f60) = 8660
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6c246000
+mprotect(0xffff6c247000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6cc417a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6cc41f60, tls=0xffff6cc42580, child_tidptr=0xffff6cc41f60) = 8661
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6b845000
+mprotect(0xffff6b846000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6c2407a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6c240f60, tls=0xffff6c241580, child_tidptr=0xffff6c240f60) = 8662
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6ae44000
+mprotect(0xffff6ae45000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6b83f7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6b83ff60, tls=0xffff6b840580, child_tidptr=0xffff6b83ff60) = 8663
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6a443000
+mprotect(0xffff6a444000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6ae3e7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6ae3ef60, tls=0xffff6ae3f580, child_tidptr=0xffff6ae3ef60) = 8664
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff69a42000
+mprotect(0xffff69a43000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6a43d7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6a43df60, tls=0xffff6a43e580, child_tidptr=0xffff6a43df60) = 8665
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff69041000
+mprotect(0xffff69042000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff69a3c7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff69a3cf60, tls=0xffff69a3d580, child_tidptr=0xffff69a3cf60) = 8666
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff68640000
+mprotect(0xffff68641000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6903b7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6903bf60, tls=0xffff6903c580, child_tidptr=0xffff6903bf60) = 8667
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff67c3f000
+mprotect(0xffff67c40000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6863a7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6863af60, tls=0xffff6863b580, child_tidptr=0xffff6863af60) = 8668
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6723e000
+mprotect(0xffff6723f000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff67c397a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff67c39f60, tls=0xffff67c3a580, child_tidptr=0xffff67c39f60) = 8669
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6683d000
+mprotect(0xffff6683e000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff672387a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff67238f60, tls=0xffff67239580, child_tidptr=0xffff67238f60) = 8670
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff65e3c000
+mprotect(0xffff65e3d000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff668377a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff66837f60, tls=0xffff66838580, child_tidptr=0xffff66837f60) = 8671
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff6543b000
+mprotect(0xffff6543c000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff65e367a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff65e36f60, tls=0xffff65e37580, child_tidptr=0xffff65e36f60) = 8672
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff64a3a000
+mprotect(0xffff64a3b000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff654357a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff65435f60, tls=0xffff65436580, child_tidptr=0xffff65435f60) = 8673
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff64039000
+mprotect(0xffff6403a000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff64a347a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff64a34f60, tls=0xffff64a35580, child_tidptr=0xffff64a34f60) = 8674
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff63638000
+mprotect(0xffff63639000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff640337a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff64033f60, tls=0xffff64034580, child_tidptr=0xffff64033f60) = 8675
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff62c37000
+mprotect(0xffff62c38000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff636327a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff63632f60, tls=0xffff63633580, child_tidptr=0xffff63632f60) = 8676
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff62236000
+mprotect(0xffff62237000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff62c317a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff62c31f60, tls=0xffff62c32580, child_tidptr=0xffff62c31f60) = 8677
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff61835000
+mprotect(0xffff61836000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff622307a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff62230f60, tls=0xffff62231580, child_tidptr=0xffff62230f60) = 8678
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff60e34000
+mprotect(0xffff60e35000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6182f7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6182ff60, tls=0xffff61830580, child_tidptr=0xffff6182ff60) = 8679
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff60433000
+mprotect(0xffff60434000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff60e2e7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff60e2ef60, tls=0xffff60e2f580, child_tidptr=0xffff60e2ef60) = 8680
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff5fa32000
+mprotect(0xffff5fa33000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff6042d7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff6042df60, tls=0xffff6042e580, child_tidptr=0xffff6042df60) = 8681
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff5f031000
+mprotect(0xffff5f032000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff5fa2c7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff5fa2cf60, tls=0xffff5fa2d580, child_tidptr=0xffff5fa2cf60) = 8682
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff5e630000
+mprotect(0xffff5e631000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff5f02b7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff5f02bf60, tls=0xffff5f02c580, child_tidptr=0xffff5f02bf60) = 8683
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff5dc2f000
+mprotect(0xffff5dc30000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff5e62a7a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff5e62af60, tls=0xffff5e62b580, child_tidptr=0xffff5e62af60) = 8684
+mmap(NULL, 10489856, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0xffff5d22e000
+mprotect(0xffff5d22f000, 10485760, PROT_READ|PROT_WRITE) = 0
+clone(child_stack=0xffff5dc297a0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0xffff5dc29f60, tls=0xffff5dc2a580, child_tidptr=0xffff5dc29f60) = 8685
+futex(0x35c4b074, FUTEX_WAKE_PRIVATE, 2147483647) = 94
+getrandom("\x32\x64\xcf\x6d", 4, 0)     = 4
+getrandom("\xaf\x99\x79\xc0", 4, 0)     = 4
+futex(0x35c4b184, FUTEX_WAIT_PRIVATE, 0, NULL) = 0
+write(1, " Result= 5.137135 in 1.394412 se"..., 38) = 38
+exit_group(0)                           = ?
++++ exited with 0 +++

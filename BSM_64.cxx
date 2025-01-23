@@ -31,13 +31,12 @@ Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
 */
 
 #include <iostream>
-//#include <cmath>
 #include <random>
 #include <vector>
 #include <limits>
 #include <algorithm>
 #include <iomanip>   // For setting precision
-// #include <cmath> // Pour std::erf et std::sqrt
+#include <cmath> // Pour std::erf et std::sqrt
 
 #define ui64 u_int64_t
 #define f32 float
@@ -46,6 +45,7 @@ Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
 #include <omp.h>
 #include <armpl.h>
 #include <amath.h>
+#include <arm_neon.h>
 #include <arm_sve.h>
 
 #include <sys/time.h>
@@ -56,6 +56,33 @@ double dml_micros()
         gettimeofday(&tv,&tz);
         return((tv.tv_sec*1000000.0)+tv.tv_usec);
 }
+
+
+// class SVERandomGenerator {
+// private:
+
+
+// public:
+
+//     svuint64_t state;
+//     svuint64_t inc;
+
+//     SVERandomGenerator(uint64_t seed) {
+//         svuint64_t state = svdup_n_u64(seed);
+//         svuint64_t inc = svdup_n_u64((seed << 1) | 1);
+//     }
+
+//     svfloat64_t generate(svbool_t pg) {
+//         svuint64_t oldstate = state;
+//         state = svadd_u64_z(pg, svmul_u64_z(pg, oldstate, svdup_n_u64(6364136223846793005ULL)), inc);
+//         svuint64_t xorshifted = svlsr_n_u64_z(pg, svxor_u64_z(pg, svlsr_n_u64_z(pg, oldstate, 18), oldstate), 27);
+//         svuint64_t rot = svlsr_n_u64_z(pg, oldstate, 59);
+//         svuint64_t result = svadd_u64_z(pg, svlsr_u64_z(pg, xorshifted, rot), oldstate);
+//         return svscale_f64_z(pg, svcvt_f64_u64_z(pg, result), svdup_n_f64(5.42101086242752217E-20));
+//     }
+// };
+
+// Vectorized Box-Muller transform
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
@@ -97,7 +124,8 @@ int main(int argc, char* argv[]) {
     for (run = 0; run < num_runs; ++run) {
         thread_local static std::mt19937 generator(std::random_device{}());
         thread_local static std::normal_distribution<f64> distribution(0.0, 1.0);
-        
+        //SVERandomGenerator rng(std::random_device{}());
+
         svbool_t pg = svptrue_b64();
         svfloat64_t a_vec = svdup_f64(a);
         svfloat64_t b_vec = svdup_f64(b);
@@ -107,6 +135,8 @@ int main(int argc, char* argv[]) {
         
         for (ui64 i = 0; i < num_simulations; i += svcntd()) {
             // Generate random numbers
+            // svfloat64_t u1 = svdup_f64(0.0);
+            // svfloat64_t u2 = svdup_f64(0.0);
             svfloat64_t Z_vec = svdup_f64(0.0);
             svbool_t mask = svwhilelt_b64(i, num_simulations);
 
@@ -115,20 +145,29 @@ int main(int argc, char* argv[]) {
                 if (svptest_first(svptrue_b64(), mask)) {
                     float random_value = distribution(generator);
                     Z_vec = svdup_n_f64_z(mask, random_value);
+                    // u1 = svdup_n_f64_z(mask, generator());
+                    // u2 = svdup_n_f64_z(mask, generator());
                     mask = svpnext_b64(pg,mask);
                 } else {
                     break;
                 }
             }
-                // Perform computations
-                svbool_t cmp_mask = svcmpgt(pg, Z_vec, lnZcompare_vec);
-                svfloat64_t mul_result = svmul_f64_x(pg, lambda_vec, Z_vec);
-                svfloat64_t exp_result = _ZGVsMxv_exp(mul_result,pg);
-                svfloat64_t result = svadd_f64_x(pg, svmul_f64_x(pg, a_vec, exp_result), b_vec);
-                
-                sum_vec = svadd_f64_m(cmp_mask, sum_vec, result);
+
+            // svfloat64_t two_pi = svdup_n_f64(2.0 * M_PI);
+            // svfloat64_t sqrt_neg_two_log_u1 = svsqrt_f64_z(pg, svneg_f64_z(pg, svmul_f64_z(pg, svdup_n_f64(2.0), _ZGVsMxv_log(u1,pg))));
+            // svfloat64_t two_pi_u2 = svmul_f64_z(pg, two_pi, u2);
+            
+            // // Transform to normal distribution
+            // Z_vec = svmul_f64_z(pg, sqrt_neg_two_log_u1, _ZGVsMxv_sin(two_pi_u2, pg));
+            // Perform computations
+            svbool_t cmp_mask = svcmpgt(pg, Z_vec, lnZcompare_vec);
+            svfloat64_t mul_result = svmul_f64_x(pg, lambda_vec, Z_vec);
+            svfloat64_t exp_result = _ZGVsMxv_exp(mul_result,pg);
+            svfloat64_t result = svadd_f64_x(pg, svmul_f64_x(pg, a_vec, exp_result), b_vec);
+            
+            sum_vec = svadd_f64_m(cmp_mask, sum_vec, result);
         }
-        
+        // std::cout << "u1 : " << run << num_runs << std::endl;
         // Reduce the sum vector to a scalar
         sum += svaddv(svptrue_b64(), sum_vec);
     }

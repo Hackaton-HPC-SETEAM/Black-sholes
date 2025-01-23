@@ -1,7 +1,7 @@
 CC=g++
 CCFLAGS=-Wall -std=c++14 -g -fopenmp -ftree-vectorize -fopt-info-vec -march=armv8.5-a+sve2 -mtune=neoverse-v2 -I/opt/arm/armpl_24.10_gcc/include -L/opt/arm/armpl_24.10_gcc/lib -larmpl -lamath -lm
-OPTILVL=-O3
-SOURCES=BSM_32.cxx
+OPTILVL=-O2
+SOURCES=BSM_64.cxx
 SOURCES_ORIGIN=BSM_original.cxx
 OBJECTS=$(SOURCES:.c=.o)
 TARGET=BSM
