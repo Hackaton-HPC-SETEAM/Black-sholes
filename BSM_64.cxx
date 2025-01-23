@@ -37,10 +37,11 @@ Global initial seed: 4208275479      argv[1]= 100     argv[2]= 1000000
 #include <limits>
 #include <algorithm>
 #include <iomanip>   // For setting precision
-#include <cmath> // Pour std::erf et std::sqrt
+// #include <cmath> // Pour std::erf et std::sqrt
 
 #define ui64 u_int64_t
 #define f32 float
+#define f64 double
 // include added for the optimization
 #include <omp.h>
 #include <armpl.h>
@@ -93,55 +94,39 @@ int main(int argc, char* argv[]) {
     
     #pragma omp parallel for reduction(+:sum)
 
-    // for (run = 0; run < num_runs; ++run) {
-    //     // std::cout << "Run " << run+1 << std::endl;
-	//     // #pragma omp simd
-    //     for (ui64 i = 0; i < num_simulations; ++i) {
-    //         thread_local static std::mt19937 generator(std::random_device{}());
-    //         thread_local static std::normal_distribution<double> distribution(0.0, 1.0);
-    //         alignas(32) double Z =  distribution(generator);
-    //         if (Z > lnZcompare) {
-    //             sum+= a*exp(lambda* Z)+b; 
-    //         }
-    //     }
-    //     // std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
-
-    // }
-
-
     for (run = 0; run < num_runs; ++run) {
         thread_local static std::mt19937 generator(std::random_device{}());
-        thread_local static std::normal_distribution<f32> distribution(0.0, 1.0);
+        thread_local static std::normal_distribution<f64> distribution(0.0, 1.0);
         
-        svbool_t pg = svptrue_b32();
-        svfloat32_t a_vec = svdup_f32(a);
-        svfloat32_t b_vec = svdup_f32(b);
-        svfloat32_t lambda_vec = svdup_f32(lambda);
-        svfloat32_t lnZcompare_vec = svdup_f32(lnZcompare);
-        svfloat32_t sum_vec = svdup_f32(0.0);
+        svbool_t pg = svptrue_b64();
+        svfloat64_t a_vec = svdup_f64(a);
+        svfloat64_t b_vec = svdup_f64(b);
+        svfloat64_t lambda_vec = svdup_f64(lambda);
+        svfloat64_t lnZcompare_vec = svdup_f64(lnZcompare);
+        svfloat64_t sum_vec = svdup_f64(0.0);
         
         for (ui64 i = 0; i < num_simulations; i += svcntd()) {
             // Generate random numbers
-        svfloat32_t Z_vec = svdup_f32(0.0);
-        svbool_t mask = svwhilelt_b32(i, num_simulations);
+            svfloat64_t Z_vec = svdup_f64(0.0);
+            svbool_t mask = svwhilelt_b64(i, num_simulations);
 
-        // Generate random numbers for each active element
-        for (ui64 j = 0; j < svcntw(); ++j) {
-            if (svptest_first(svptrue_b32(), mask)) {
-                float random_value = distribution(generator);
-                Z_vec = svdup_n_f32_z(mask, random_value);
-                mask = svpnext_b32(pg,mask);
-            } else {
-                break;
+            // Generate random numbers for each active element
+            for (ui64 j = 0; j < svcntw(); ++j) {
+                if (svptest_first(svptrue_b64(), mask)) {
+                    float random_value = distribution(generator);
+                    Z_vec = svdup_n_f64_z(mask, random_value);
+                    mask = svpnext_b64(pg,mask);
+                } else {
+                    break;
+                }
             }
-        }
-            // Perform computations
-            svbool_t cmp_mask = svcmpgt(pg, Z_vec, lnZcompare_vec);
-            svfloat32_t mul_result = svmul_f32_x(pg, lambda_vec, Z_vec);
-            svfloat32_t exp_result = _ZGVsMxv_expf(mul_result,pg);
-            svfloat32_t result = svadd_f32_x(pg, svmul_f32_x(pg, a_vec, exp_result), b_vec);
-            
-            sum_vec = svadd_f32_m(cmp_mask, sum_vec, result);
+                // Perform computations
+                svbool_t cmp_mask = svcmpgt(pg, Z_vec, lnZcompare_vec);
+                svfloat64_t mul_result = svmul_f64_x(pg, lambda_vec, Z_vec);
+                svfloat64_t exp_result = _ZGVsMxv_exp(mul_result,pg);
+                svfloat64_t result = svadd_f64_x(pg, svmul_f64_x(pg, a_vec, exp_result), b_vec);
+                
+                sum_vec = svadd_f64_m(cmp_mask, sum_vec, result);
         }
         
         // Reduce the sum vector to a scalar
