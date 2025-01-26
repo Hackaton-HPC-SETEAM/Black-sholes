@@ -1,0 +1,1 @@
+maqao oneview -R1 -WS -xp=BSM_exp_strong_scala -c=template_scalability.json -dbg=1 

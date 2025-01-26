@@ -1,0 +1,20 @@
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 453 - 469
+--------------------------------------------------------------------------------
+
+453:     mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d,
+454: 			    __s, __b, __t, __c, __l, __f>::
+455:     operator()()
+456:     {
+457:       // Reload the vector - cost is O(n) amortized over n calls.
+458:       if (_M_p >= state_size)
+459: 	_M_gen_rand();
+460: 
+461:       // Calculate o(x(i)).
+462:       result_type __z = _M_x[_M_p++];
+463:       __z ^= (__z >> __u) & __d;
+464:       __z ^= (__z << __s) & __b;
+465:       __z ^= (__z << __t) & __c;
+466:       __z ^= (__z >> __l);
+467: 
+468:       return __z;
+469:     }

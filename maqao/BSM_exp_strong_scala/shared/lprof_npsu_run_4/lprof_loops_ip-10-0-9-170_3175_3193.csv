@@ -1,0 +1,10 @@
+loop_id;module;function_name;function_id;source_info;level;inc_time_p;inc_time_s;inc_time_s_min;inc_time_s_avg;inc_time_s_max;inc_cov_deviation;inc_time_deviation;exc_time_p;exc_time_s;exc_time_s_min;exc_time_s_avg;exc_time_s_max;exc_cov_deviation;exc_time_deviation;nb_threads;flops;
+5;BSM;main._omp_fn.0;11;random.tcc:3370-3370,BSM_32.cxx:106-109,BSM_32.cxx:112-113,BSM_32.cxx:122-127;InBetween;29.995941162109;3.7300000190735;;;;;;29.995941162109;3.7300000190735;;;;;;;;
+12;BSM;main._omp_fn.0;11;cmath:443-443;InBetween;29.071132659912;3.6149997711182;;;;;;18.335321426392;2.2800002098083;;;;;;;;
+11;BSM;main._omp_fn.0;11;random.tcc:1832-1834,random.tcc:3367-3371;Innermost;8.8459882736206;1.1000000238419;;;;;;8.8459882736206;1.1000000238419;;;;;;;;
+10;BSM;main._omp_fn.0;11;random.h:2238-2238,random.tcc:1820-1823,random.tcc:1842-1842,BSM_32.cxx:112-116;Innermost;5.3075923919678;0.6599999666214;;;;;;5.3075923919678;0.6599999666214;;;;;;;;
+16;BSM;std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::operator()();16;random.tcc:459-469;Single;3.6590220928192;0.4549999833107;;;;;;3.6590220928192;0.4549999833107;;;;;;;;
+15;BSM;std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand();15;random.tcc:412-417;Single;3.0156774520874;0.37499997019768;;;;;;3.0156774520874;0.37499997019768;;;;;;;;
+13;BSM;main._omp_fn.0;11;random.tcc:1834-1839,random.tcc:3367-3367,random.tcc:3371-3371,cmath:327-327,cmath:443-443;InBetween;10.735812187195;1.3349999189377;;;;;;1.8898243904114;0.23499995470047;;;;;;;;
+6;BSM;main._omp_fn.0;11;BSM_32.cxx:113-113;InBetween;31.403259277344;3.9050002098083;;;;;;1.407316327095;0.17500001192093;;;;;;;;
+14;BSM;std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand();15;random.tcc:404-409;Single;1.407316327095;0.17500001192093;;;;;;1.407316327095;0.17500001192093;;;;;;;;

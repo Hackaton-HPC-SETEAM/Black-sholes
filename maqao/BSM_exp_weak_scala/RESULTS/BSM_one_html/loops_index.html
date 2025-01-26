@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - BSM - Loops</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/jquery.jqplot.min.js"></script>
+<script class="include" src="js/jqplot.pieRenderer.min.js"></script>
+<script class="include" src="js/jqplot.barRenderer.min.js"></script>
+<script class="include" src="js/jqplot.categoryAxisRenderer.min.js"></script>
+<script class="include" src="js/jqplot.pointLabels.min.js"></script>
+<script class="include" src="js/jqplot.cursor.min.js"></script>
+<script class="include" src="js/jqplot.canvasTextRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script class="include" src="js/jqplot.enhancedLegendRenderer.min.js"></script>
+<script class="include" src="js/jqplot.highlighter.min.js"></script>
+<script class="include" src="js/jqplot.logAxisRenderer.min.js"></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+$( function() {
+  $( document ).tooltip({
+    content: function() {
+      if (this.classList.contains ("tooltip-maqao")
+      ||  this.classList.contains ("tooltip-maqao-button")) {
+        return tooltips_texts[$(this).attr('tooltip_id')];
+      }
+    },
+    position: {
+      my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow-tt" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+  });
+} );
+
+// Code from https://www.htmlgoodies.com/beyond/javascript/article.php/3724571/Using-Multiple-JavaScript-Onload-Functions.htm
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+function loadCSS(filename){ 
+  var file = document.createElement("link");
+  file.setAttribute("rel", "stylesheet");
+  file.setAttribute("type", "text/css");
+  file.setAttribute("href", filename);
+  document.head.appendChild(file);
+}
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li><li ><a  href="env.html">Environment Variables</a></li><li ><a  href="outputs.html">Outputs</a></li><li ><a  href="log.html">Logs</a></li></ul></li><li ><a  href="summary.html">Summary</a></li><li ><a  href="application.html">Application</a></li><li ><a  href="fcts_and_loops.html">Functions</a></li><li ><a class="_current_page _first_menu_level" href="loops_index.html">Loops</a></li><li ><a  href="topology.html">Topology</a><ul><li ><a  href="lstopo.html">lstopo</a></li><li ><a  href="lstopo_PU.html">lstopo_PU</a></li><li ><a  href="lstopo_threads.html">lstopo_threads</a></li></ul></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<button id="button_toggle_loop_index" onclick="toggle_loop_index();" type="button" style="margin-bottom: 10px;margin-right: 10px;cursor:pointer;">Show Innermost Profile</button><button onclick="window.open('expert_summary.html');" type="button" style="margin-bottom: 10px;margin-right: 10px;cursor:pointer;">Open Expert Summary</button><div class="_fixed_box" ><h3 class="_header">Loops Index<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0" ></span></h3>
+<div class="_content"><div class="_accordion_box collapsed" ><h3 id="_accordion_header_1" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Scalability Runs Description<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="1" ></span></h3><div id="_accordion_content_1" class="_content collapsed"><table><tr><th>Run run_0</th><td><span style="white-space: nowrap;margin-left: 30px;">Number processes: 1</span><span style="white-space: nowrap;margin-left: 30px;">Number nodes: 1</span><span style="white-space: nowrap;margin-left: 30px;">Run Command: &lt;executable&gt; 1000000 1000</span><span style="white-space: nowrap;margin-left: 30px;">MPI Command: </span><span style="white-space: nowrap;margin-left: 30px;">Dataset: </span><span style="white-space: nowrap;margin-left: 30px;">Run Directory: .</span><span style="white-space: nowrap;margin-left: 30px;">OMP_NUM_THREADS: 16</span></td></tr><tr><th>Run run_1</th><td><span style="white-space: nowrap;margin-left: 30px;">Number processes: 1</span><span style="white-space: nowrap;margin-left: 30px;">Number nodes: 1</span><span style="white-space: nowrap;margin-left: 30px;">Run Command: ./BSM 10000000 1000</span><span style="white-space: nowrap;margin-left: 30px;">MPI Command: </span><span style="white-space: nowrap;margin-left: 30px;">Dataset: </span><span style="white-space: nowrap;margin-left: 30px;">Run Directory: .</span><span style="white-space: nowrap;margin-left: 30px;">OMP_NUM_THREADS: 16</span></td></tr><tr><th>Run run_2</th><td><span style="white-space: nowrap;margin-left: 30px;">Number processes: 1</span><span style="white-space: nowrap;margin-left: 30px;">Number nodes: 1</span><span style="white-space: nowrap;margin-left: 30px;">Run Command: ./BSM 100000000 1000</span><span style="white-space: nowrap;margin-left: 30px;">MPI Command: </span><span style="white-space: nowrap;margin-left: 30px;">Dataset: </span><span style="white-space: nowrap;margin-left: 30px;">Run Directory: .</span><span style="white-space: nowrap;margin-left: 30px;">OMP_NUM_THREADS: 16</span></td></tr></table>
+</div></div><div class="_accordion_box collapsed" ><h3 id="_accordion_header_2" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Filters<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="2" ></span></h3><div id="_accordion_content_2" class="_content collapsed"><form><u>Modules:</u><br style="margin-bottom:10px;">
+<input id="_input_check_all_mods" type="checkbox" style="vertical-align: middle;cursor:pointer" onchange="_onchange_modules (this)" checked ><span id="_input_check_all_mods_text">Uncheck all modules</span><br>
+<input id="_input_check_mod_BSM" type="checkbox" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >BSM - 71.329288005828 %<br>
+<br>
+<u>Dynamic Results:</u><br style="margin-bottom:10px;">
+<input id="_input_check_all_decan" type="checkbox" style="vertical-align: middle;cursor:pointer"><span id="_input_check_all_decan_text">Get only loops with dynamic results</span><br>
+</form><hr><button type="button" onclick="_upd_table();" style="cursor:pointer;">Filter Results</button>
+</div></div><div class="_div_table" id="_fixed_178" ><div class="_accordion_box" ><h3 id="_accordion_header_3" class="_header" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25BC;</span>Columns Filter<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="3" ></span></h3><div id="_accordion_content_3" class="_content"><div style="max-height:165px;"><form>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt4" onclick="click_table_menu('_table178_opt4', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="4" >Level</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt5" onclick="click_table_menu('_table178_opt5', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="5" >Exclusive Coverage run_0 (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt6" onclick="click_table_menu('_table178_opt6', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="6" >Exclusive Coverage run_1 (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt7" onclick="click_table_menu('_table178_opt7', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="7" >Exclusive Coverage run_2 (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt8" onclick="click_table_menu('_table178_opt8', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="8" >Inclusive Coverage run_0 (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt9" onclick="click_table_menu('_table178_opt9', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="9" >Inclusive Coverage run_1 (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt10" onclick="click_table_menu('_table178_opt10', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="10" >Inclusive Coverage run_2 (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt11" onclick="click_table_menu('_table178_opt11', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="11" >Max Exclusive Time Over Threads run_0 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt12" onclick="click_table_menu('_table178_opt12', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="12" >Max Exclusive Time Over Threads run_1 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt13" onclick="click_table_menu('_table178_opt13', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="13" >Max Exclusive Time Over Threads run_2 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt14" onclick="click_table_menu('_table178_opt14', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="14" >Max Inclusive Time Over Threads run_0 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt15" onclick="click_table_menu('_table178_opt15', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="15" >Max Inclusive Time Over Threads run_1 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt16" onclick="click_table_menu('_table178_opt16', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="16" >Max Inclusive Time Over Threads run_2 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt17" onclick="click_table_menu('_table178_opt17', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="17" >Exclusive Time w.r.t. Wall Time run_0 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt18" onclick="click_table_menu('_table178_opt18', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="18" >Exclusive Time w.r.t. Wall Time run_1 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt19" onclick="click_table_menu('_table178_opt19', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="19" >Exclusive Time w.r.t. Wall Time run_2 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt20" onclick="click_table_menu('_table178_opt20', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="20" >Inclusive Time w.r.t. Wall Time run_0 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt21" onclick="click_table_menu('_table178_opt21', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="21" >Inclusive Time w.r.t. Wall Time run_1 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt22" onclick="click_table_menu('_table178_opt22', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="22" >Inclusive Time w.r.t. Wall Time run_2 (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt23" onclick="click_table_menu('_table178_opt23', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="23" >Nb Threads run_0</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt24" onclick="click_table_menu('_table178_opt24', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="24" >Nb Threads run_1</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt25" onclick="click_table_menu('_table178_opt25', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="25" >Nb Threads run_2</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt26" onclick="click_table_menu('_table178_opt26', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="26" >Vectorization Ratio (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt27" onclick="click_table_menu('_table178_opt27', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="27" >Vector Length Use (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt28" onclick="click_table_menu('_table178_opt28', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="28" >Speedup If No Scalar Integer</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt29" onclick="click_table_menu('_table178_opt29', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="29" >Speedup If FP Vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt30" onclick="click_table_menu('_table178_opt30', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="30" >Speedup If Fully Vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt31" onclick="click_table_menu('_table178_opt31', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="31" >Speedup If Perfect Load Balancing run_0</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt32" onclick="click_table_menu('_table178_opt32', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="32" >Speedup If Perfect Load Balancing run_1</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt33" onclick="click_table_menu('_table178_opt33', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="33" >Speedup If Perfect Load Balancing run_2</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt34" onclick="click_table_menu('_table178_opt34', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride 0</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt35" onclick="click_table_menu('_table178_opt35', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride 1</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt36" onclick="click_table_menu('_table178_opt36', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride n</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt37" onclick="click_table_menu('_table178_opt37', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride Unknown</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt38" onclick="click_table_menu('_table178_opt38', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride Indirect</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt39" onclick="click_table_menu('_table178_opt39', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="34" >(run_0) Efficiency</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt40" onclick="click_table_menu('_table178_opt40', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="35" >(run_0) Potential Speed-Up (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt41" onclick="click_table_menu('_table178_opt41', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="36" >(run_1) Efficiency</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt42" onclick="click_table_menu('_table178_opt42', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="37" >(run_1) Potential Speed-Up (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt43" onclick="click_table_menu('_table178_opt43', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="38" >(run_2) Efficiency</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table178_opt44" onclick="click_table_menu('_table178_opt44', '_table178_opt_all', 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="39" >(run_2) Potential Speed-Up (%)</span></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table178_opt_all" onclick="set_all_table_menu(this, 'list_opts_table178')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select all"></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table178_opt_select_all_coverages" onclick="select_all_coverages(_fixed_table_178, '_table178', this)" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select All Coverages" data-selected="false" data-text="Select All Coverages" data-text_alt="Deselect All Coverages" ></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table178_opt_select_all_times_oth" onclick="select_all_times_oth(_fixed_table_178, '_table178', this)" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select All Times Over Threads" data-selected="false" data-text="Select All Times Over Threads" data-text_alt="Deselect All Times Over Threads" ></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table178_opt_select_all_times_wt" onclick="select_all_times_wt(_fixed_table_178, '_table178', this)" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select All Times w.r.t. Wall Time" data-selected="false" data-text="Select All Times w.r.t. Wall Time" data-text_alt="Deselect All Times w.r.t. Wall Time" ></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table178_opt_select_all_speedups" onclick="select_all_speedups(_fixed_table_178, '_table178', this)" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select All Speed-Ups" data-selected="false" data-text="Select All Speed-Ups" data-text_alt="Deselect All Speed-Ups" ></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table178_opt_select_all_efficiencies" onclick="select_all_efficiencies(_fixed_table_178, '_table178', this)" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select All Efficiencies" data-selected="false" data-text="Select All Efficiencies" data-text_alt="Deselect All Efficiencies" ></span>
+</form></div>
+</div></div><div style="overflow:auto;">
+<table class="_fixed_table" id="_fixed_table_178"><tr><th class="_freezed_row  _left _freezed_col tooltip-maqao" title="" tooltip_id="40"><span></span>Loop id</th><th class="_freezed_row  tooltip-maqao" title="" tooltip_id="41"><span></span>Source Location</th><th class="_freezed_row  tooltip-maqao" title="" tooltip_id="42"><span></span>Source Function</th><th class="_freezed_row  _table178_opt4 _tcol_hidden tooltip-maqao" title="" tooltip_id="43"><span></span>Level</th><th class="_freezed_row  _table178_opt5 tooltip-maqao" title="" tooltip_id="44"><span></span>Exclusive Coverage run_0 (%)</th><th class="_freezed_row  _table178_opt6 tooltip-maqao" title="" tooltip_id="45"><span></span>Exclusive Coverage run_1 (%)</th><th class="_freezed_row  _table178_opt7 tooltip-maqao" title="" tooltip_id="46"><span></span>Exclusive Coverage run_2 (%)</th><th class="_freezed_row  _table178_opt8 _tcol_hidden tooltip-maqao" title="" tooltip_id="47"><span></span>Inclusive Coverage run_0 (%)</th><th class="_freezed_row  _table178_opt9 _tcol_hidden tooltip-maqao" title="" tooltip_id="48"><span></span>Inclusive Coverage run_1 (%)</th><th class="_freezed_row  _table178_opt10 _tcol_hidden tooltip-maqao" title="" tooltip_id="49"><span></span>Inclusive Coverage run_2 (%)</th><th class="_freezed_row  _table178_opt11 _tcol_hidden tooltip-maqao" title="" tooltip_id="50"><span></span>Max Exclusive Time Over Threads run_0 (s)</th><th class="_freezed_row  _table178_opt12 _tcol_hidden tooltip-maqao" title="" tooltip_id="51"><span></span>Max Exclusive Time Over Threads run_1 (s)</th><th class="_freezed_row  _table178_opt13 _tcol_hidden tooltip-maqao" title="" tooltip_id="52"><span></span>Max Exclusive Time Over Threads run_2 (s)</th><th class="_freezed_row  _table178_opt14 _tcol_hidden tooltip-maqao" title="" tooltip_id="53"><span></span>Max Inclusive Time Over Threads run_0 (s)</th><th class="_freezed_row  _table178_opt15 _tcol_hidden tooltip-maqao" title="" tooltip_id="54"><span></span>Max Inclusive Time Over Threads run_1 (s)</th><th class="_freezed_row  _table178_opt16 _tcol_hidden tooltip-maqao" title="" tooltip_id="55"><span></span>Max Inclusive Time Over Threads run_2 (s)</th><th class="_freezed_row  _table178_opt17 _tcol_hidden tooltip-maqao" title="" tooltip_id="56"><span></span>Exclusive Time w.r.t. Wall Time run_0 (s)</th><th class="_freezed_row  _table178_opt18 _tcol_hidden tooltip-maqao" title="" tooltip_id="57"><span></span>Exclusive Time w.r.t. Wall Time run_1 (s)</th><th class="_freezed_row  _table178_opt19 _tcol_hidden tooltip-maqao" title="" tooltip_id="58"><span></span>Exclusive Time w.r.t. Wall Time run_2 (s)</th><th class="_freezed_row  _table178_opt20 _tcol_hidden tooltip-maqao" title="" tooltip_id="59"><span></span>Inclusive Time w.r.t. Wall Time run_0 (s)</th><th class="_freezed_row  _table178_opt21 _tcol_hidden tooltip-maqao" title="" tooltip_id="60"><span></span>Inclusive Time w.r.t. Wall Time run_1 (s)</th><th class="_freezed_row  _table178_opt22 _tcol_hidden tooltip-maqao" title="" tooltip_id="61"><span></span>Inclusive Time w.r.t. Wall Time run_2 (s)</th><th class="_freezed_row  _table178_opt23 _tcol_hidden tooltip-maqao" title="" tooltip_id="62"><span></span>Nb Threads run_0</th><th class="_freezed_row  _table178_opt24 _tcol_hidden tooltip-maqao" title="" tooltip_id="63"><span></span>Nb Threads run_1</th><th class="_freezed_row  _table178_opt25 _tcol_hidden tooltip-maqao" title="" tooltip_id="64"><span></span>Nb Threads run_2</th><th class="_freezed_row  _table178_opt26 tooltip-maqao" title="" tooltip_id="65"><span></span>Vectorization Ratio (%)</th><th class="_freezed_row  _table178_opt27 tooltip-maqao" title="" tooltip_id="66"><span></span>Vector Length Use (%)</th><th class="_freezed_row  _table178_opt28 _tcol_hidden tooltip-maqao" title="" tooltip_id="67"><span></span>Speedup If No Scalar Integer</th><th class="_freezed_row  _table178_opt29 _tcol_hidden tooltip-maqao" title="" tooltip_id="68"><span></span>Speedup If FP Vectorized</th><th class="_freezed_row  _table178_opt30 _tcol_hidden tooltip-maqao" title="" tooltip_id="69"><span></span>Speedup If Fully Vectorized</th><th class="_freezed_row  _table178_opt31 _tcol_hidden tooltip-maqao" title="" tooltip_id="70"><span></span>Speedup If Perfect Load Balancing run_0</th><th class="_freezed_row  _table178_opt32 _tcol_hidden tooltip-maqao" title="" tooltip_id="71"><span></span>Speedup If Perfect Load Balancing run_1</th><th class="_freezed_row  _table178_opt33 _tcol_hidden tooltip-maqao" title="" tooltip_id="72"><span></span>Speedup If Perfect Load Balancing run_2</th><th class="_freezed_row  _table178_opt34 _tcol_hidden"><span></span>Stride 0</th><th class="_freezed_row  _table178_opt35 _tcol_hidden"><span></span>Stride 1</th><th class="_freezed_row  _table178_opt36 _tcol_hidden"><span></span>Stride n</th><th class="_freezed_row  _table178_opt37 _tcol_hidden"><span></span>Stride Unknown</th><th class="_freezed_row  _table178_opt38 _tcol_hidden"><span></span>Stride Indirect</th><th class="_freezed_row  _table178_opt39 _tcol_hidden tooltip-maqao" title="" tooltip_id="73"><span></span>(run_0) Efficiency</th><th class="_freezed_row  _table178_opt40 _tcol_hidden tooltip-maqao" title="" tooltip_id="74"><span></span>(run_0) Potential Speed-Up (%)</th><th class="_freezed_row  _table178_opt41 _tcol_hidden tooltip-maqao" title="" tooltip_id="75"><span></span>(run_1) Efficiency</th><th class="_freezed_row  _table178_opt42 _tcol_hidden tooltip-maqao" title="" tooltip_id="76"><span></span>(run_1) Potential Speed-Up (%)</th><th class="_freezed_row  _table178_opt43 _tcol_hidden tooltip-maqao" title="" tooltip_id="77"><span></span>(run_2) Efficiency</th><th class="_freezed_row  _table178_opt44 _tcol_hidden tooltip-maqao" title="" tooltip_id="78"><span></span>(run_2) Potential Speed-Up (%)</th></tr><tr id="_tr_178_1"  ondblclick="_action_116(this,1,-1, 'loops/BSM_5.html');"  style="cursor:pointer;"><td id="_td_178_1_1"  data-_i="1" data-_j="1"  data-_p = "BSM_5"  class=" _left _freezed_col  _centered" >5</td><td id="_td_178_1_2"  data-_i="1" data-_j="2"  data-_p = "BSM_5"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="79" >BSM - BSM_32.cxx:96-131 [...]</span></td><td id="_td_178_1_3"  data-_i="1" data-_j="3"  data-_p = "BSM_5"  style="word-break:break-all;" >main._omp_fn.0</td><td id="_td_178_1_4"  data-_i="1" data-_j="4"  data-_p = "BSM_5"  class=" _centered _table178_opt4 _tcol_hidden" >InBetween</td><td id="_td_178_1_5"  data-_i="1" data-_j="5"  data-_p = "BSM_5"  class=" _centered _table178_opt5"  style="background:#E9442F;" >30.57</td><td id="_td_178_1_6"  data-_i="1" data-_j="6"  data-_p = "BSM_5"  class=" _centered _table178_opt6"  style="background:#E14A3B;" >29.82</td><td id="_td_178_1_7"  data-_i="1" data-_j="7"  data-_p = "BSM_5"  class=" _centered _table178_opt7"  style="background:#E14A3B;" >29.84</td><td id="_td_178_1_8"  data-_i="1" data-_j="8"  data-_p = "BSM_5"  class=" _centered _table178_opt8 _tcol_hidden" >30.57</td><td id="_td_178_1_9"  data-_i="1" data-_j="9"  data-_p = "BSM_5"  class=" _centered _table178_opt9 _tcol_hidden" >29.82</td><td id="_td_178_1_10"  data-_i="1" data-_j="10"  data-_p = "BSM_5"  class=" _centered _table178_opt10 _tcol_hidden" >29.84</td><td id="_td_178_1_11"  data-_i="1" data-_j="11"  data-_p = "BSM_5"  class=" _centered _table178_opt11 _tcol_hidden" >0.25</td><td id="_td_178_1_12"  data-_i="1" data-_j="12"  data-_p = "BSM_5"  class=" _centered _table178_opt12 _tcol_hidden" >1.92</td><td id="_td_178_1_13"  data-_i="1" data-_j="13"  data-_p = "BSM_5"  class=" _centered _table178_opt13 _tcol_hidden" >18.95</td><td id="_td_178_1_14"  data-_i="1" data-_j="14"  data-_p = "BSM_5"  class=" _centered _table178_opt14 _tcol_hidden" >0.25</td><td id="_td_178_1_15"  data-_i="1" data-_j="15"  data-_p = "BSM_5"  class=" _centered _table178_opt15 _tcol_hidden" >1.92</td><td id="_td_178_1_16"  data-_i="1" data-_j="16"  data-_p = "BSM_5"  class=" _centered _table178_opt16 _tcol_hidden" >18.95</td><td id="_td_178_1_17"  data-_i="1" data-_j="17"  data-_p = "BSM_5"  class=" _centered _table178_opt17 _tcol_hidden" >0.22</td><td id="_td_178_1_18"  data-_i="1" data-_j="18"  data-_p = "BSM_5"  class=" _centered _table178_opt18 _tcol_hidden" >1.87</td><td id="_td_178_1_19"  data-_i="1" data-_j="19"  data-_p = "BSM_5"  class=" _centered _table178_opt19 _tcol_hidden" >18.77</td><td id="_td_178_1_20"  data-_i="1" data-_j="20"  data-_p = "BSM_5"  class=" _centered _table178_opt20 _tcol_hidden" >0.22</td><td id="_td_178_1_21"  data-_i="1" data-_j="21"  data-_p = "BSM_5"  class=" _centered _table178_opt21 _tcol_hidden" >1.87</td><td id="_td_178_1_22"  data-_i="1" data-_j="22"  data-_p = "BSM_5"  class=" _centered _table178_opt22 _tcol_hidden" >18.77</td><td id="_td_178_1_23"  data-_i="1" data-_j="23"  data-_p = "BSM_5"  class=" _centered _table178_opt23 _tcol_hidden" >16</td><td id="_td_178_1_24"  data-_i="1" data-_j="24"  data-_p = "BSM_5"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_1_25"  data-_i="1" data-_j="25"  data-_p = "BSM_5"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_1_26"  data-_i="1" data-_j="26"  data-_p = "BSM_5"  class=" _centered _table178_opt26"  style="background:#FF3333" >34.78</td><td id="_td_178_1_27"  data-_i="1" data-_j="27"  data-_p = "BSM_5"  class=" _centered _table178_opt27"  style="background:#FF950E" >70.38</td><td id="_td_178_1_28"  data-_i="1" data-_j="28"  data-_p = "BSM_5"  class=" _centered _table178_opt28 _tcol_hidden"  style="background:#FFCC99" >1.63</td><td id="_td_178_1_29"  data-_i="1" data-_j="29"  data-_p = "BSM_5"  class=" _centered _table178_opt29 _tcol_hidden" >1</td><td id="_td_178_1_30"  data-_i="1" data-_j="30"  data-_p = "BSM_5"  class=" _centered _table178_opt30 _tcol_hidden" >1</td><td id="_td_178_1_31"  data-_i="1" data-_j="31"  data-_p = "BSM_5"  class=" _centered _table178_opt31 _tcol_hidden" >1.21</td><td id="_td_178_1_32"  data-_i="1" data-_j="32"  data-_p = "BSM_5"  class=" _centered _table178_opt32 _tcol_hidden" >1.04</td><td id="_td_178_1_33"  data-_i="1" data-_j="33"  data-_p = "BSM_5"  class=" _centered _table178_opt33 _tcol_hidden" >1.02</td><td id="_td_178_1_34"  data-_i="1" data-_j="34"  data-_p = "BSM_5"  class=" _centered _table178_opt34 _tcol_hidden" >NA</td><td id="_td_178_1_35"  data-_i="1" data-_j="35"  data-_p = "BSM_5"  class=" _centered _table178_opt35 _tcol_hidden" >NA</td><td id="_td_178_1_36"  data-_i="1" data-_j="36"  data-_p = "BSM_5"  class=" _centered _table178_opt36 _tcol_hidden" >NA</td><td id="_td_178_1_37"  data-_i="1" data-_j="37"  data-_p = "BSM_5"  class=" _centered _table178_opt37 _tcol_hidden" >NA</td><td id="_td_178_1_38"  data-_i="1" data-_j="38"  data-_p = "BSM_5"  class=" _centered _table178_opt38 _tcol_hidden" >NA</td><td id="_td_178_1_39"  data-_i="1" data-_j="39"  data-_p = "BSM_5"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_1_40"  data-_i="1" data-_j="40"  data-_p = "BSM_5"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_1_41"  data-_i="1" data-_j="41"  data-_p = "BSM_5"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#AE4029;" >0.12</td><td id="_td_178_1_42"  data-_i="1" data-_j="42"  data-_p = "BSM_5"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#C97F70;" >26.38</td><td id="_td_178_1_43"  data-_i="1" data-_j="43"  data-_p = "BSM_5"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_1_44"  data-_i="1" data-_j="44"  data-_p = "BSM_5"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#C97F70;" >29.5</td></tr>
+<tr id="_tr_178_2"  ondblclick="_action_116(this,2,-1, 'loops/BSM_12.html');"  style="cursor:pointer;"><td id="_td_178_2_1"  data-_i="2" data-_j="1"  data-_p = "BSM_12"  class=" _left _freezed_col  _centered" >12</td><td id="_td_178_2_2"  data-_i="2" data-_j="2"  data-_p = "BSM_12"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="80" >BSM - cmath:327-443 [...]</span></td><td id="_td_178_2_3"  data-_i="2" data-_j="3"  data-_p = "BSM_12"  style="word-break:break-all;" >main._omp_fn.0</td><td id="_td_178_2_4"  data-_i="2" data-_j="4"  data-_p = "BSM_12"  class=" _centered _table178_opt4 _tcol_hidden" >InBetween</td><td id="_td_178_2_5"  data-_i="2" data-_j="5"  data-_p = "BSM_12"  class=" _centered _table178_opt5"  style="background:#D85047;" >17.28</td><td id="_td_178_2_6"  data-_i="2" data-_j="6"  data-_p = "BSM_12"  class=" _centered _table178_opt6"  style="background:#D85047;" >16.02</td><td id="_td_178_2_7"  data-_i="2" data-_j="7"  data-_p = "BSM_12"  class=" _centered _table178_opt7"  style="background:#D85047;" >16.40</td><td id="_td_178_2_8"  data-_i="2" data-_j="8"  data-_p = "BSM_12"  class=" _centered _table178_opt8 _tcol_hidden" >27.93</td><td id="_td_178_2_9"  data-_i="2" data-_j="9"  data-_p = "BSM_12"  class=" _centered _table178_opt9 _tcol_hidden" >27.96</td><td id="_td_178_2_10"  data-_i="2" data-_j="10"  data-_p = "BSM_12"  class=" _centered _table178_opt10 _tcol_hidden" >28.30</td><td id="_td_178_2_11"  data-_i="2" data-_j="11"  data-_p = "BSM_12"  class=" _centered _table178_opt11 _tcol_hidden" >0.18</td><td id="_td_178_2_12"  data-_i="2" data-_j="12"  data-_p = "BSM_12"  class=" _centered _table178_opt12 _tcol_hidden" >1.07</td><td id="_td_178_2_13"  data-_i="2" data-_j="13"  data-_p = "BSM_12"  class=" _centered _table178_opt13 _tcol_hidden" >10.58</td><td id="_td_178_2_14"  data-_i="2" data-_j="14"  data-_p = "BSM_12"  class=" _centered _table178_opt14 _tcol_hidden" >0.22</td><td id="_td_178_2_15"  data-_i="2" data-_j="15"  data-_p = "BSM_12"  class=" _centered _table178_opt15 _tcol_hidden" >1.88</td><td id="_td_178_2_16"  data-_i="2" data-_j="16"  data-_p = "BSM_12"  class=" _centered _table178_opt16 _tcol_hidden" >18.00</td><td id="_td_178_2_17"  data-_i="2" data-_j="17"  data-_p = "BSM_12"  class=" _centered _table178_opt17 _tcol_hidden" >0.12</td><td id="_td_178_2_18"  data-_i="2" data-_j="18"  data-_p = "BSM_12"  class=" _centered _table178_opt18 _tcol_hidden" >1.01</td><td id="_td_178_2_19"  data-_i="2" data-_j="19"  data-_p = "BSM_12"  class=" _centered _table178_opt19 _tcol_hidden" >10.31</td><td id="_td_178_2_20"  data-_i="2" data-_j="20"  data-_p = "BSM_12"  class=" _centered _table178_opt20 _tcol_hidden" >0.20</td><td id="_td_178_2_21"  data-_i="2" data-_j="21"  data-_p = "BSM_12"  class=" _centered _table178_opt21 _tcol_hidden" >1.75</td><td id="_td_178_2_22"  data-_i="2" data-_j="22"  data-_p = "BSM_12"  class=" _centered _table178_opt22 _tcol_hidden" >17.80</td><td id="_td_178_2_23"  data-_i="2" data-_j="23"  data-_p = "BSM_12"  class=" _centered _table178_opt23 _tcol_hidden" >16</td><td id="_td_178_2_24"  data-_i="2" data-_j="24"  data-_p = "BSM_12"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_2_25"  data-_i="2" data-_j="25"  data-_p = "BSM_12"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_2_26"  data-_i="2" data-_j="26"  data-_p = "BSM_12"  class=" _centered _table178_opt26" >NA</td><td id="_td_178_2_27"  data-_i="2" data-_j="27"  data-_p = "BSM_12"  class=" _centered _table178_opt27" >NA</td><td id="_td_178_2_28"  data-_i="2" data-_j="28"  data-_p = "BSM_12"  class=" _centered _table178_opt28 _tcol_hidden" >NA</td><td id="_td_178_2_29"  data-_i="2" data-_j="29"  data-_p = "BSM_12"  class=" _centered _table178_opt29 _tcol_hidden" >NA</td><td id="_td_178_2_30"  data-_i="2" data-_j="30"  data-_p = "BSM_12"  class=" _centered _table178_opt30 _tcol_hidden" >NA</td><td id="_td_178_2_31"  data-_i="2" data-_j="31"  data-_p = "BSM_12"  class=" _centered _table178_opt31 _tcol_hidden" >1.54</td><td id="_td_178_2_32"  data-_i="2" data-_j="32"  data-_p = "BSM_12"  class=" _centered _table178_opt32 _tcol_hidden" >1.08</td><td id="_td_178_2_33"  data-_i="2" data-_j="33"  data-_p = "BSM_12"  class=" _centered _table178_opt33 _tcol_hidden" >1.04</td><td id="_td_178_2_34"  data-_i="2" data-_j="34"  data-_p = "BSM_12"  class=" _centered _table178_opt34 _tcol_hidden" >NA</td><td id="_td_178_2_35"  data-_i="2" data-_j="35"  data-_p = "BSM_12"  class=" _centered _table178_opt35 _tcol_hidden" >NA</td><td id="_td_178_2_36"  data-_i="2" data-_j="36"  data-_p = "BSM_12"  class=" _centered _table178_opt36 _tcol_hidden" >NA</td><td id="_td_178_2_37"  data-_i="2" data-_j="37"  data-_p = "BSM_12"  class=" _centered _table178_opt37 _tcol_hidden" >NA</td><td id="_td_178_2_38"  data-_i="2" data-_j="38"  data-_p = "BSM_12"  class=" _centered _table178_opt38 _tcol_hidden" >NA</td><td id="_td_178_2_39"  data-_i="2" data-_j="39"  data-_p = "BSM_12"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_2_40"  data-_i="2" data-_j="40"  data-_p = "BSM_12"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_2_41"  data-_i="2" data-_j="41"  data-_p = "BSM_12"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#AE4029;" >0.12</td><td id="_td_178_2_42"  data-_i="2" data-_j="42"  data-_p = "BSM_12"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#C69E3B;" >14.08</td><td id="_td_178_2_43"  data-_i="2" data-_j="43"  data-_p = "BSM_12"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_2_44"  data-_i="2" data-_j="44"  data-_p = "BSM_12"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#BF9223;" >16.2</td></tr>
+<tr id="_tr_178_3"  ondblclick="_action_116(this,3,-1, 'loops/BSM_11.html');"  style="cursor:pointer;"><td id="_td_178_3_1"  data-_i="3" data-_j="1"  data-_p = "BSM_11"  class=" _left _freezed_col  _centered" >11</td><td id="_td_178_3_2"  data-_i="3" data-_j="2"  data-_p = "BSM_11"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="81" >BSM - random.tcc:1832-3371 [...]</span></td><td id="_td_178_3_3"  data-_i="3" data-_j="3"  data-_p = "BSM_11"  style="word-break:break-all;" >main._omp_fn.0</td><td id="_td_178_3_4"  data-_i="3" data-_j="4"  data-_p = "BSM_11"  class=" _centered _table178_opt4 _tcol_hidden" >Innermost</td><td id="_td_178_3_5"  data-_i="3" data-_j="5"  data-_p = "BSM_11"  class=" _centered _table178_opt5"  style="background:#B66776;" >8.66</td><td id="_td_178_3_6"  data-_i="3" data-_j="6"  data-_p = "BSM_11"  class=" _centered _table178_opt6"  style="background:#B66776;" >9.98</td><td id="_td_178_3_7"  data-_i="3" data-_j="7"  data-_p = "BSM_11"  class=" _centered _table178_opt7"  style="background:#D05652;" >10.02</td><td id="_td_178_3_8"  data-_i="3" data-_j="8"  data-_p = "BSM_11"  class=" _centered _table178_opt8 _tcol_hidden" >8.66</td><td id="_td_178_3_9"  data-_i="3" data-_j="9"  data-_p = "BSM_11"  class=" _centered _table178_opt9 _tcol_hidden" >9.98</td><td id="_td_178_3_10"  data-_i="3" data-_j="10"  data-_p = "BSM_11"  class=" _centered _table178_opt10 _tcol_hidden" >10.02</td><td id="_td_178_3_11"  data-_i="3" data-_j="11"  data-_p = "BSM_11"  class=" _centered _table178_opt11 _tcol_hidden"  style="background:#C69E3B;" >0.09</td><td id="_td_178_3_12"  data-_i="3" data-_j="12"  data-_p = "BSM_11"  class=" _centered _table178_opt12 _tcol_hidden" >0.70</td><td id="_td_178_3_13"  data-_i="3" data-_j="13"  data-_p = "BSM_11"  class=" _centered _table178_opt13 _tcol_hidden" >6.46</td><td id="_td_178_3_14"  data-_i="3" data-_j="14"  data-_p = "BSM_11"  class=" _centered _table178_opt14 _tcol_hidden" >0.09</td><td id="_td_178_3_15"  data-_i="3" data-_j="15"  data-_p = "BSM_11"  class=" _centered _table178_opt15 _tcol_hidden" >0.70</td><td id="_td_178_3_16"  data-_i="3" data-_j="16"  data-_p = "BSM_11"  class=" _centered _table178_opt16 _tcol_hidden" >6.46</td><td id="_td_178_3_17"  data-_i="3" data-_j="17"  data-_p = "BSM_11"  class=" _centered _table178_opt17 _tcol_hidden" >0.06</td><td id="_td_178_3_18"  data-_i="3" data-_j="18"  data-_p = "BSM_11"  class=" _centered _table178_opt18 _tcol_hidden" >0.63</td><td id="_td_178_3_19"  data-_i="3" data-_j="19"  data-_p = "BSM_11"  class=" _centered _table178_opt19 _tcol_hidden" >6.30</td><td id="_td_178_3_20"  data-_i="3" data-_j="20"  data-_p = "BSM_11"  class=" _centered _table178_opt20 _tcol_hidden" >0.06</td><td id="_td_178_3_21"  data-_i="3" data-_j="21"  data-_p = "BSM_11"  class=" _centered _table178_opt21 _tcol_hidden" >0.63</td><td id="_td_178_3_22"  data-_i="3" data-_j="22"  data-_p = "BSM_11"  class=" _centered _table178_opt22 _tcol_hidden" >6.30</td><td id="_td_178_3_23"  data-_i="3" data-_j="23"  data-_p = "BSM_11"  class=" _centered _table178_opt23 _tcol_hidden" >16</td><td id="_td_178_3_24"  data-_i="3" data-_j="24"  data-_p = "BSM_11"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_3_25"  data-_i="3" data-_j="25"  data-_p = "BSM_11"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_3_26"  data-_i="3" data-_j="26"  data-_p = "BSM_11"  class=" _centered _table178_opt26"  style="background:#FF3333" >0</td><td id="_td_178_3_27"  data-_i="3" data-_j="27"  data-_p = "BSM_11"  class=" _centered _table178_opt27"  style="background:#FF3333" >31.16</td><td id="_td_178_3_28"  data-_i="3" data-_j="28"  data-_p = "BSM_11"  class=" _centered _table178_opt28 _tcol_hidden" >1</td><td id="_td_178_3_29"  data-_i="3" data-_j="29"  data-_p = "BSM_11"  class=" _centered _table178_opt29 _tcol_hidden" >1</td><td id="_td_178_3_30"  data-_i="3" data-_j="30"  data-_p = "BSM_11"  class=" _centered _table178_opt30 _tcol_hidden"  style="background:#FF950E" >3.33</td><td id="_td_178_3_31"  data-_i="3" data-_j="31"  data-_p = "BSM_11"  class=" _centered _table178_opt31 _tcol_hidden" >1.63</td><td id="_td_178_3_32"  data-_i="3" data-_j="32"  data-_p = "BSM_11"  class=" _centered _table178_opt32 _tcol_hidden" >1.14</td><td id="_td_178_3_33"  data-_i="3" data-_j="33"  data-_p = "BSM_11"  class=" _centered _table178_opt33 _tcol_hidden" >1.04</td><td id="_td_178_3_34"  data-_i="3" data-_j="34"  data-_p = "BSM_11"  class=" _centered _table178_opt34 _tcol_hidden" >NA</td><td id="_td_178_3_35"  data-_i="3" data-_j="35"  data-_p = "BSM_11"  class=" _centered _table178_opt35 _tcol_hidden" >NA</td><td id="_td_178_3_36"  data-_i="3" data-_j="36"  data-_p = "BSM_11"  class=" _centered _table178_opt36 _tcol_hidden" >NA</td><td id="_td_178_3_37"  data-_i="3" data-_j="37"  data-_p = "BSM_11"  class=" _centered _table178_opt37 _tcol_hidden" >NA</td><td id="_td_178_3_38"  data-_i="3" data-_j="38"  data-_p = "BSM_11"  class=" _centered _table178_opt38 _tcol_hidden" >NA</td><td id="_td_178_3_39"  data-_i="3" data-_j="39"  data-_p = "BSM_11"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_3_40"  data-_i="3" data-_j="40"  data-_p = "BSM_11"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_3_41"  data-_i="3" data-_j="41"  data-_p = "BSM_11"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#AE4029;" >0.1</td><td id="_td_178_3_42"  data-_i="3" data-_j="42"  data-_p = "BSM_11"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#CDAA54;" >9.01</td><td id="_td_178_3_43"  data-_i="3" data-_j="43"  data-_p = "BSM_11"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_3_44"  data-_i="3" data-_j="44"  data-_p = "BSM_11"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#CDAA54;" >9.92</td></tr>
+<tr id="_tr_178_4"  ondblclick="_action_116(this,4,-1, 'loops/BSM_10.html');"  style="cursor:pointer;"><td id="_td_178_4_1"  data-_i="4" data-_j="1"  data-_p = "BSM_10"  class=" _left _freezed_col  _centered" >10</td><td id="_td_178_4_2"  data-_i="4" data-_j="2"  data-_p = "BSM_10"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="82" >BSM - random.tcc:1820-1842 [...]</span></td><td id="_td_178_4_3"  data-_i="4" data-_j="3"  data-_p = "BSM_10"  style="word-break:break-all;" >main._omp_fn.0</td><td id="_td_178_4_4"  data-_i="4" data-_j="4"  data-_p = "BSM_10"  class=" _centered _table178_opt4 _tcol_hidden" >Innermost</td><td id="_td_178_4_5"  data-_i="4" data-_j="5"  data-_p = "BSM_10"  class=" _centered _table178_opt5"  style="background:#947FA5;" >4.68</td><td id="_td_178_4_6"  data-_i="4" data-_j="6"  data-_p = "BSM_10"  class=" _centered _table178_opt6"  style="background:#947FA5;" >4.82</td><td id="_td_178_4_7"  data-_i="4" data-_j="7"  data-_p = "BSM_10"  class=" _centered _table178_opt7"  style="background:#947FA5;" >4.68</td><td id="_td_178_4_8"  data-_i="4" data-_j="8"  data-_p = "BSM_10"  class=" _centered _table178_opt8 _tcol_hidden" >4.68</td><td id="_td_178_4_9"  data-_i="4" data-_j="9"  data-_p = "BSM_10"  class=" _centered _table178_opt9 _tcol_hidden" >4.82</td><td id="_td_178_4_10"  data-_i="4" data-_j="10"  data-_p = "BSM_10"  class=" _centered _table178_opt10 _tcol_hidden" >4.68</td><td id="_td_178_4_11"  data-_i="4" data-_j="11"  data-_p = "BSM_10"  class=" _centered _table178_opt11 _tcol_hidden"  style="background:#C69E3B;" >0.05</td><td id="_td_178_4_12"  data-_i="4" data-_j="12"  data-_p = "BSM_10"  class=" _centered _table178_opt12 _tcol_hidden" >0.41</td><td id="_td_178_4_13"  data-_i="4" data-_j="13"  data-_p = "BSM_10"  class=" _centered _table178_opt13 _tcol_hidden" >3.07</td><td id="_td_178_4_14"  data-_i="4" data-_j="14"  data-_p = "BSM_10"  class=" _centered _table178_opt14 _tcol_hidden" >0.05</td><td id="_td_178_4_15"  data-_i="4" data-_j="15"  data-_p = "BSM_10"  class=" _centered _table178_opt15 _tcol_hidden" >0.41</td><td id="_td_178_4_16"  data-_i="4" data-_j="16"  data-_p = "BSM_10"  class=" _centered _table178_opt16 _tcol_hidden" >3.07</td><td id="_td_178_4_17"  data-_i="4" data-_j="17"  data-_p = "BSM_10"  class=" _centered _table178_opt17 _tcol_hidden" >0.03</td><td id="_td_178_4_18"  data-_i="4" data-_j="18"  data-_p = "BSM_10"  class=" _centered _table178_opt18 _tcol_hidden" >0.30</td><td id="_td_178_4_19"  data-_i="4" data-_j="19"  data-_p = "BSM_10"  class=" _centered _table178_opt19 _tcol_hidden" >2.94</td><td id="_td_178_4_20"  data-_i="4" data-_j="20"  data-_p = "BSM_10"  class=" _centered _table178_opt20 _tcol_hidden" >0.03</td><td id="_td_178_4_21"  data-_i="4" data-_j="21"  data-_p = "BSM_10"  class=" _centered _table178_opt21 _tcol_hidden" >0.30</td><td id="_td_178_4_22"  data-_i="4" data-_j="22"  data-_p = "BSM_10"  class=" _centered _table178_opt22 _tcol_hidden" >2.94</td><td id="_td_178_4_23"  data-_i="4" data-_j="23"  data-_p = "BSM_10"  class=" _centered _table178_opt23 _tcol_hidden" >16</td><td id="_td_178_4_24"  data-_i="4" data-_j="24"  data-_p = "BSM_10"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_4_25"  data-_i="4" data-_j="25"  data-_p = "BSM_10"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_4_26"  data-_i="4" data-_j="26"  data-_p = "BSM_10"  class=" _centered _table178_opt26"  style="background:#FF3333" >35.71</td><td id="_td_178_4_27"  data-_i="4" data-_j="27"  data-_p = "BSM_10"  class=" _centered _table178_opt27"  style="background:#FF3333" >31.7</td><td id="_td_178_4_28"  data-_i="4" data-_j="28"  data-_p = "BSM_10"  class=" _centered _table178_opt28 _tcol_hidden"  style="background:#FFCC99" >1.29</td><td id="_td_178_4_29"  data-_i="4" data-_j="29"  data-_p = "BSM_10"  class=" _centered _table178_opt29 _tcol_hidden"  style="background:#FFCC99" >1.71</td><td id="_td_178_4_30"  data-_i="4" data-_j="30"  data-_p = "BSM_10"  class=" _centered _table178_opt30 _tcol_hidden"  style="background:#FFCC99" >1.64</td><td id="_td_178_4_31"  data-_i="4" data-_j="31"  data-_p = "BSM_10"  class=" _centered _table178_opt31 _tcol_hidden" >1.58</td><td id="_td_178_4_32"  data-_i="4" data-_j="32"  data-_p = "BSM_10"  class=" _centered _table178_opt32 _tcol_hidden" >1.37</td><td id="_td_178_4_33"  data-_i="4" data-_j="33"  data-_p = "BSM_10"  class=" _centered _table178_opt33 _tcol_hidden" >1.05</td><td id="_td_178_4_34"  data-_i="4" data-_j="34"  data-_p = "BSM_10"  class=" _centered _table178_opt34 _tcol_hidden" >NA</td><td id="_td_178_4_35"  data-_i="4" data-_j="35"  data-_p = "BSM_10"  class=" _centered _table178_opt35 _tcol_hidden" >NA</td><td id="_td_178_4_36"  data-_i="4" data-_j="36"  data-_p = "BSM_10"  class=" _centered _table178_opt36 _tcol_hidden" >NA</td><td id="_td_178_4_37"  data-_i="4" data-_j="37"  data-_p = "BSM_10"  class=" _centered _table178_opt37 _tcol_hidden" >NA</td><td id="_td_178_4_38"  data-_i="4" data-_j="38"  data-_p = "BSM_10"  class=" _centered _table178_opt38 _tcol_hidden" >NA</td><td id="_td_178_4_39"  data-_i="4" data-_j="39"  data-_p = "BSM_10"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_4_40"  data-_i="4" data-_j="40"  data-_p = "BSM_10"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_4_41"  data-_i="4" data-_j="41"  data-_p = "BSM_10"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#AE4029;" >0.11</td><td id="_td_178_4_42"  data-_i="4" data-_j="42"  data-_p = "BSM_10"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#D4B66C;" >4.29</td><td id="_td_178_4_43"  data-_i="4" data-_j="43"  data-_p = "BSM_10"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_4_44"  data-_i="4" data-_j="44"  data-_p = "BSM_10"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#D4B66C;" >4.63</td></tr>
+<tr id="_tr_178_5"  ondblclick="_action_116(this,5,-1, 'loops/BSM_16.html');"  style="cursor:pointer;"><td id="_td_178_5_1"  data-_i="5" data-_j="1"  data-_p = "BSM_16"  class=" _left _freezed_col  _centered" >16</td><td id="_td_178_5_2"  data-_i="5" data-_j="2"  data-_p = "BSM_16"  style="word-break:break-all;" >BSM - random.tcc:459-469</td><td id="_td_178_5_3"  data-_i="5" data-_j="3"  data-_p = "BSM_16"  style="word-break:break-all;" >std::mersenne_twister_engine&lt;unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul&gt;::operator()()</td><td id="_td_178_5_4"  data-_i="5" data-_j="4"  data-_p = "BSM_16"  class=" _centered _table178_opt4 _tcol_hidden" >Single</td><td id="_td_178_5_5"  data-_i="5" data-_j="5"  data-_p = "BSM_16"  class=" _centered _table178_opt5"  style="background:#947FA5;" >3.10</td><td id="_td_178_5_6"  data-_i="5" data-_j="6"  data-_p = "BSM_16"  class=" _centered _table178_opt6"  style="background:#947FA5;" >3.56</td><td id="_td_178_5_7"  data-_i="5" data-_j="7"  data-_p = "BSM_16"  class=" _centered _table178_opt7"  style="background:#947FA5;" >3.62</td><td id="_td_178_5_8"  data-_i="5" data-_j="8"  data-_p = "BSM_16"  class=" _centered _table178_opt8 _tcol_hidden" >3.10</td><td id="_td_178_5_9"  data-_i="5" data-_j="9"  data-_p = "BSM_16"  class=" _centered _table178_opt9 _tcol_hidden" >3.56</td><td id="_td_178_5_10"  data-_i="5" data-_j="10"  data-_p = "BSM_16"  class=" _centered _table178_opt10 _tcol_hidden" >3.62</td><td id="_td_178_5_11"  data-_i="5" data-_j="11"  data-_p = "BSM_16"  class=" _centered _table178_opt11 _tcol_hidden"  style="background:#C69E3B;" >0.05</td><td id="_td_178_5_12"  data-_i="5" data-_j="12"  data-_p = "BSM_16"  class=" _centered _table178_opt12 _tcol_hidden" >0.27</td><td id="_td_178_5_13"  data-_i="5" data-_j="13"  data-_p = "BSM_16"  class=" _centered _table178_opt13 _tcol_hidden" >2.49</td><td id="_td_178_5_14"  data-_i="5" data-_j="14"  data-_p = "BSM_16"  class=" _centered _table178_opt14 _tcol_hidden" >0.05</td><td id="_td_178_5_15"  data-_i="5" data-_j="15"  data-_p = "BSM_16"  class=" _centered _table178_opt15 _tcol_hidden" >0.27</td><td id="_td_178_5_16"  data-_i="5" data-_j="16"  data-_p = "BSM_16"  class=" _centered _table178_opt16 _tcol_hidden" >2.49</td><td id="_td_178_5_17"  data-_i="5" data-_j="17"  data-_p = "BSM_16"  class=" _centered _table178_opt17 _tcol_hidden" >0.02</td><td id="_td_178_5_18"  data-_i="5" data-_j="18"  data-_p = "BSM_16"  class=" _centered _table178_opt18 _tcol_hidden" >0.22</td><td id="_td_178_5_19"  data-_i="5" data-_j="19"  data-_p = "BSM_16"  class=" _centered _table178_opt19 _tcol_hidden" >2.28</td><td id="_td_178_5_20"  data-_i="5" data-_j="20"  data-_p = "BSM_16"  class=" _centered _table178_opt20 _tcol_hidden" >0.02</td><td id="_td_178_5_21"  data-_i="5" data-_j="21"  data-_p = "BSM_16"  class=" _centered _table178_opt21 _tcol_hidden" >0.22</td><td id="_td_178_5_22"  data-_i="5" data-_j="22"  data-_p = "BSM_16"  class=" _centered _table178_opt22 _tcol_hidden" >2.28</td><td id="_td_178_5_23"  data-_i="5" data-_j="23"  data-_p = "BSM_16"  class=" _centered _table178_opt23 _tcol_hidden" >15</td><td id="_td_178_5_24"  data-_i="5" data-_j="24"  data-_p = "BSM_16"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_5_25"  data-_i="5" data-_j="25"  data-_p = "BSM_16"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_5_26"  data-_i="5" data-_j="26"  data-_p = "BSM_16"  class=" _centered _table178_opt26"  style="background:#FF3333" >0</td><td id="_td_178_5_27"  data-_i="5" data-_j="27"  data-_p = "BSM_16"  class=" _centered _table178_opt27"  style="background:#FF3333" >54.55</td><td id="_td_178_5_28"  data-_i="5" data-_j="28"  data-_p = "BSM_16"  class=" _centered _table178_opt28 _tcol_hidden" >1</td><td id="_td_178_5_29"  data-_i="5" data-_j="29"  data-_p = "BSM_16"  class=" _centered _table178_opt29 _tcol_hidden" >1</td><td id="_td_178_5_30"  data-_i="5" data-_j="30"  data-_p = "BSM_16"  class=" _centered _table178_opt30 _tcol_hidden"  style="background:#FFCC99" >1.23</td><td id="_td_178_5_31"  data-_i="5" data-_j="31"  data-_p = "BSM_16"  class=" _centered _table178_opt31 _tcol_hidden" >2.24</td><td id="_td_178_5_32"  data-_i="5" data-_j="32"  data-_p = "BSM_16"  class=" _centered _table178_opt32 _tcol_hidden" >1.22</td><td id="_td_178_5_33"  data-_i="5" data-_j="33"  data-_p = "BSM_16"  class=" _centered _table178_opt33 _tcol_hidden" >1.1</td><td id="_td_178_5_34"  data-_i="5" data-_j="34"  data-_p = "BSM_16"  class=" _centered _table178_opt34 _tcol_hidden" >NA</td><td id="_td_178_5_35"  data-_i="5" data-_j="35"  data-_p = "BSM_16"  class=" _centered _table178_opt35 _tcol_hidden" >NA</td><td id="_td_178_5_36"  data-_i="5" data-_j="36"  data-_p = "BSM_16"  class=" _centered _table178_opt36 _tcol_hidden" >NA</td><td id="_td_178_5_37"  data-_i="5" data-_j="37"  data-_p = "BSM_16"  class=" _centered _table178_opt37 _tcol_hidden" >NA</td><td id="_td_178_5_38"  data-_i="5" data-_j="38"  data-_p = "BSM_16"  class=" _centered _table178_opt38 _tcol_hidden" >NA</td><td id="_td_178_5_39"  data-_i="5" data-_j="39"  data-_p = "BSM_16"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_5_40"  data-_i="5" data-_j="40"  data-_p = "BSM_16"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_5_41"  data-_i="5" data-_j="41"  data-_p = "BSM_16"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#AE4029;" >0.1</td><td id="_td_178_5_42"  data-_i="5" data-_j="42"  data-_p = "BSM_16"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#D4B66C;" >3.21</td><td id="_td_178_5_43"  data-_i="5" data-_j="43"  data-_p = "BSM_16"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_5_44"  data-_i="5" data-_j="44"  data-_p = "BSM_16"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#D4B66C;" >3.58</td></tr>
+<tr id="_tr_178_6"  ondblclick="_action_116(this,6,-1, 'loops/BSM_15.html');"  style="cursor:pointer;"><td id="_td_178_6_1"  data-_i="6" data-_j="1"  data-_p = "BSM_15"  class=" _left _freezed_col  _centered" >15</td><td id="_td_178_6_2"  data-_i="6" data-_j="2"  data-_p = "BSM_15"  style="word-break:break-all;" >BSM - random.tcc:412-417</td><td id="_td_178_6_3"  data-_i="6" data-_j="3"  data-_p = "BSM_15"  style="word-break:break-all;" >std::mersenne_twister_engine&lt;unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul&gt;::_M_gen_rand()</td><td id="_td_178_6_4"  data-_i="6" data-_j="4"  data-_p = "BSM_15"  class=" _centered _table178_opt4 _tcol_hidden" >Single</td><td id="_td_178_6_5"  data-_i="6" data-_j="5"  data-_p = "BSM_15"  class=" _centered _table178_opt5"  style="background:#947FA5;" >2.55</td><td id="_td_178_6_6"  data-_i="6" data-_j="6"  data-_p = "BSM_15"  class=" _centered _table178_opt6"  style="background:#947FA5;" >2.89</td><td id="_td_178_6_7"  data-_i="6" data-_j="7"  data-_p = "BSM_15"  class=" _centered _table178_opt7"  style="background:#947FA5;" >2.73</td><td id="_td_178_6_8"  data-_i="6" data-_j="8"  data-_p = "BSM_15"  class=" _centered _table178_opt8 _tcol_hidden" >2.55</td><td id="_td_178_6_9"  data-_i="6" data-_j="9"  data-_p = "BSM_15"  class=" _centered _table178_opt9 _tcol_hidden" >2.89</td><td id="_td_178_6_10"  data-_i="6" data-_j="10"  data-_p = "BSM_15"  class=" _centered _table178_opt10 _tcol_hidden" >2.73</td><td id="_td_178_6_11"  data-_i="6" data-_j="11"  data-_p = "BSM_15"  class=" _centered _table178_opt11 _tcol_hidden"  style="background:#C69E3B;" >0.03</td><td id="_td_178_6_12"  data-_i="6" data-_j="12"  data-_p = "BSM_15"  class=" _centered _table178_opt12 _tcol_hidden" >0.23</td><td id="_td_178_6_13"  data-_i="6" data-_j="13"  data-_p = "BSM_15"  class=" _centered _table178_opt13 _tcol_hidden" >1.80</td><td id="_td_178_6_14"  data-_i="6" data-_j="14"  data-_p = "BSM_15"  class=" _centered _table178_opt14 _tcol_hidden" >0.03</td><td id="_td_178_6_15"  data-_i="6" data-_j="15"  data-_p = "BSM_15"  class=" _centered _table178_opt15 _tcol_hidden" >0.23</td><td id="_td_178_6_16"  data-_i="6" data-_j="16"  data-_p = "BSM_15"  class=" _centered _table178_opt16 _tcol_hidden" >1.80</td><td id="_td_178_6_17"  data-_i="6" data-_j="17"  data-_p = "BSM_15"  class=" _centered _table178_opt17 _tcol_hidden" >0.02</td><td id="_td_178_6_18"  data-_i="6" data-_j="18"  data-_p = "BSM_15"  class=" _centered _table178_opt18 _tcol_hidden" >0.18</td><td id="_td_178_6_19"  data-_i="6" data-_j="19"  data-_p = "BSM_15"  class=" _centered _table178_opt19 _tcol_hidden" >1.71</td><td id="_td_178_6_20"  data-_i="6" data-_j="20"  data-_p = "BSM_15"  class=" _centered _table178_opt20 _tcol_hidden" >0.02</td><td id="_td_178_6_21"  data-_i="6" data-_j="21"  data-_p = "BSM_15"  class=" _centered _table178_opt21 _tcol_hidden" >0.18</td><td id="_td_178_6_22"  data-_i="6" data-_j="22"  data-_p = "BSM_15"  class=" _centered _table178_opt22 _tcol_hidden" >1.71</td><td id="_td_178_6_23"  data-_i="6" data-_j="23"  data-_p = "BSM_15"  class=" _centered _table178_opt23 _tcol_hidden" >16</td><td id="_td_178_6_24"  data-_i="6" data-_j="24"  data-_p = "BSM_15"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_6_25"  data-_i="6" data-_j="25"  data-_p = "BSM_15"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_6_26"  data-_i="6" data-_j="26"  data-_p = "BSM_15"  class=" _centered _table178_opt26"  style="background:#66cc00" >100</td><td id="_td_178_6_27"  data-_i="6" data-_j="27"  data-_p = "BSM_15"  class=" _centered _table178_opt27"  style="background:#66cc00" >100</td><td id="_td_178_6_28"  data-_i="6" data-_j="28"  data-_p = "BSM_15"  class=" _centered _table178_opt28 _tcol_hidden" >1</td><td id="_td_178_6_29"  data-_i="6" data-_j="29"  data-_p = "BSM_15"  class=" _centered _table178_opt29 _tcol_hidden" >1</td><td id="_td_178_6_30"  data-_i="6" data-_j="30"  data-_p = "BSM_15"  class=" _centered _table178_opt30 _tcol_hidden" >1</td><td id="_td_178_6_31"  data-_i="6" data-_j="31"  data-_p = "BSM_15"  class=" _centered _table178_opt31 _tcol_hidden" >1.75</td><td id="_td_178_6_32"  data-_i="6" data-_j="32"  data-_p = "BSM_15"  class=" _centered _table178_opt32 _tcol_hidden" >1.25</td><td id="_td_178_6_33"  data-_i="6" data-_j="33"  data-_p = "BSM_15"  class=" _centered _table178_opt33 _tcol_hidden" >1.06</td><td id="_td_178_6_34"  data-_i="6" data-_j="34"  data-_p = "BSM_15"  class=" _centered _table178_opt34 _tcol_hidden" >0</td><td id="_td_178_6_35"  data-_i="6" data-_j="35"  data-_p = "BSM_15"  class=" _centered _table178_opt35 _tcol_hidden" >3</td><td id="_td_178_6_36"  data-_i="6" data-_j="36"  data-_p = "BSM_15"  class=" _centered _table178_opt36 _tcol_hidden" >0</td><td id="_td_178_6_37"  data-_i="6" data-_j="37"  data-_p = "BSM_15"  class=" _centered _table178_opt37 _tcol_hidden" >0</td><td id="_td_178_6_38"  data-_i="6" data-_j="38"  data-_p = "BSM_15"  class=" _centered _table178_opt38 _tcol_hidden" >0</td><td id="_td_178_6_39"  data-_i="6" data-_j="39"  data-_p = "BSM_15"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_6_40"  data-_i="6" data-_j="40"  data-_p = "BSM_15"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_6_41"  data-_i="6" data-_j="41"  data-_p = "BSM_15"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#AE4029;" >0.1</td><td id="_td_178_6_42"  data-_i="6" data-_j="42"  data-_p = "BSM_15"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#D4B66C;" >2.61</td><td id="_td_178_6_43"  data-_i="6" data-_j="43"  data-_p = "BSM_15"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_6_44"  data-_i="6" data-_j="44"  data-_p = "BSM_15"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#D4B66C;" >2.7</td></tr>
+<tr id="_tr_178_7"  ondblclick="_action_116(this,7,-1, 'loops/BSM_13.html');"  style="cursor:pointer;"><td id="_td_178_7_1"  data-_i="7" data-_j="1"  data-_p = "BSM_13"  class=" _left _freezed_col  _centered" >13</td><td id="_td_178_7_2"  data-_i="7" data-_j="2"  data-_p = "BSM_13"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="83" >BSM - cmath:327-443 [...]</span></td><td id="_td_178_7_3"  data-_i="7" data-_j="3"  data-_p = "BSM_13"  style="word-break:break-all;" >main._omp_fn.0</td><td id="_td_178_7_4"  data-_i="7" data-_j="4"  data-_p = "BSM_13"  class=" _centered _table178_opt4 _tcol_hidden" >InBetween</td><td id="_td_178_7_5"  data-_i="7" data-_j="5"  data-_p = "BSM_13"  class=" _centered _table178_opt5"  style="background:#947FA5;" >1.99</td><td id="_td_178_7_6"  data-_i="7" data-_j="6"  data-_p = "BSM_13"  class=" _centered _table178_opt6"  style="background:#947FA5;" >1.96</td><td id="_td_178_7_7"  data-_i="7" data-_j="7"  data-_p = "BSM_13"  class=" _centered _table178_opt7"  style="background:#947FA5;" >1.88</td><td id="_td_178_7_8"  data-_i="7" data-_j="8"  data-_p = "BSM_13"  class=" _centered _table178_opt8 _tcol_hidden" >10.65</td><td id="_td_178_7_9"  data-_i="7" data-_j="9"  data-_p = "BSM_13"  class=" _centered _table178_opt9 _tcol_hidden" >11.94</td><td id="_td_178_7_10"  data-_i="7" data-_j="10"  data-_p = "BSM_13"  class=" _centered _table178_opt10 _tcol_hidden" >11.90</td><td id="_td_178_7_11"  data-_i="7" data-_j="11"  data-_p = "BSM_13"  class=" _centered _table178_opt11 _tcol_hidden"  style="background:#C69E3B;" >0.02</td><td id="_td_178_7_12"  data-_i="7" data-_j="12"  data-_p = "BSM_13"  class=" _centered _table178_opt12 _tcol_hidden" >0.16</td><td id="_td_178_7_13"  data-_i="7" data-_j="13"  data-_p = "BSM_13"  class=" _centered _table178_opt13 _tcol_hidden" >1.31</td><td id="_td_178_7_14"  data-_i="7" data-_j="14"  data-_p = "BSM_13"  class=" _centered _table178_opt14 _tcol_hidden" >0.10</td><td id="_td_178_7_15"  data-_i="7" data-_j="15"  data-_p = "BSM_13"  class=" _centered _table178_opt15 _tcol_hidden" >0.86</td><td id="_td_178_7_16"  data-_i="7" data-_j="16"  data-_p = "BSM_13"  class=" _centered _table178_opt16 _tcol_hidden" >7.77</td><td id="_td_178_7_17"  data-_i="7" data-_j="17"  data-_p = "BSM_13"  class=" _centered _table178_opt17 _tcol_hidden" >0.01</td><td id="_td_178_7_18"  data-_i="7" data-_j="18"  data-_p = "BSM_13"  class=" _centered _table178_opt18 _tcol_hidden" >0.12</td><td id="_td_178_7_19"  data-_i="7" data-_j="19"  data-_p = "BSM_13"  class=" _centered _table178_opt19 _tcol_hidden" >1.19</td><td id="_td_178_7_20"  data-_i="7" data-_j="20"  data-_p = "BSM_13"  class=" _centered _table178_opt20 _tcol_hidden" >0.08</td><td id="_td_178_7_21"  data-_i="7" data-_j="21"  data-_p = "BSM_13"  class=" _centered _table178_opt21 _tcol_hidden" >0.75</td><td id="_td_178_7_22"  data-_i="7" data-_j="22"  data-_p = "BSM_13"  class=" _centered _table178_opt22 _tcol_hidden" >7.49</td><td id="_td_178_7_23"  data-_i="7" data-_j="23"  data-_p = "BSM_13"  class=" _centered _table178_opt23 _tcol_hidden" >15</td><td id="_td_178_7_24"  data-_i="7" data-_j="24"  data-_p = "BSM_13"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_7_25"  data-_i="7" data-_j="25"  data-_p = "BSM_13"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_7_26"  data-_i="7" data-_j="26"  data-_p = "BSM_13"  class=" _centered _table178_opt26"  style="background:#FF3333" >0</td><td id="_td_178_7_27"  data-_i="7" data-_j="27"  data-_p = "BSM_13"  class=" _centered _table178_opt27"  style="background:#FF3333" >28.94</td><td id="_td_178_7_28"  data-_i="7" data-_j="28"  data-_p = "BSM_13"  class=" _centered _table178_opt28 _tcol_hidden"  style="background:#FFCC99" >1.46</td><td id="_td_178_7_29"  data-_i="7" data-_j="29"  data-_p = "BSM_13"  class=" _centered _table178_opt29 _tcol_hidden"  style="background:#FFCC99" >1.71</td><td id="_td_178_7_30"  data-_i="7" data-_j="30"  data-_p = "BSM_13"  class=" _centered _table178_opt30 _tcol_hidden" >1.02</td><td id="_td_178_7_31"  data-_i="7" data-_j="31"  data-_p = "BSM_13"  class=" _centered _table178_opt31 _tcol_hidden" >1.74</td><td id="_td_178_7_32"  data-_i="7" data-_j="32"  data-_p = "BSM_13"  class=" _centered _table178_opt32 _tcol_hidden" >1.31</td><td id="_td_178_7_33"  data-_i="7" data-_j="33"  data-_p = "BSM_13"  class=" _centered _table178_opt33 _tcol_hidden" >1.12</td><td id="_td_178_7_34"  data-_i="7" data-_j="34"  data-_p = "BSM_13"  class=" _centered _table178_opt34 _tcol_hidden" >NA</td><td id="_td_178_7_35"  data-_i="7" data-_j="35"  data-_p = "BSM_13"  class=" _centered _table178_opt35 _tcol_hidden" >NA</td><td id="_td_178_7_36"  data-_i="7" data-_j="36"  data-_p = "BSM_13"  class=" _centered _table178_opt36 _tcol_hidden" >NA</td><td id="_td_178_7_37"  data-_i="7" data-_j="37"  data-_p = "BSM_13"  class=" _centered _table178_opt37 _tcol_hidden" >NA</td><td id="_td_178_7_38"  data-_i="7" data-_j="38"  data-_p = "BSM_13"  class=" _centered _table178_opt38 _tcol_hidden" >NA</td><td id="_td_178_7_39"  data-_i="7" data-_j="39"  data-_p = "BSM_13"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_7_40"  data-_i="7" data-_j="40"  data-_p = "BSM_13"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_7_41"  data-_i="7" data-_j="41"  data-_p = "BSM_13"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#AE4029;" >0.11</td><td id="_td_178_7_42"  data-_i="7" data-_j="42"  data-_p = "BSM_13"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#D4B66C;" >1.74</td><td id="_td_178_7_43"  data-_i="7" data-_j="43"  data-_p = "BSM_13"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_7_44"  data-_i="7" data-_j="44"  data-_p = "BSM_13"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#D4B66C;" >1.86</td></tr>
+<tr id="_tr_178_8"  ondblclick="_action_116(this,8,-1, 'loops/BSM_6.html');"  style="cursor:pointer;"><td id="_td_178_8_1"  data-_i="8" data-_j="1"  data-_p = "BSM_6"  class=" _left _freezed_col  _centered" >6</td><td id="_td_178_8_2"  data-_i="8" data-_j="2"  data-_p = "BSM_6"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="84" >BSM - BSM_32.cxx:96-131 [...]</span></td><td id="_td_178_8_3"  data-_i="8" data-_j="3"  data-_p = "BSM_6"  style="word-break:break-all;" >main._omp_fn.0</td><td id="_td_178_8_4"  data-_i="8" data-_j="4"  data-_p = "BSM_6"  class=" _centered _table178_opt4 _tcol_hidden" >InBetween</td><td id="_td_178_8_5"  data-_i="8" data-_j="5"  data-_p = "BSM_6"  class=" _centered _table178_opt5"  style="background:#947FA5;" >1.25</td><td id="_td_178_8_6"  data-_i="8" data-_j="6"  data-_p = "BSM_6"  class=" _centered _table178_opt6"  style="background:#947FA5;" >1.58</td><td id="_td_178_8_7"  data-_i="8" data-_j="7"  data-_p = "BSM_6"  class=" _centered _table178_opt7"  style="background:#947FA5;" >1.54</td><td id="_td_178_8_8"  data-_i="8" data-_j="8"  data-_p = "BSM_6"  class=" _centered _table178_opt8 _tcol_hidden" >31.82</td><td id="_td_178_8_9"  data-_i="8" data-_j="9"  data-_p = "BSM_6"  class=" _centered _table178_opt9 _tcol_hidden" >31.40</td><td id="_td_178_8_10"  data-_i="8" data-_j="10"  data-_p = "BSM_6"  class=" _centered _table178_opt10 _tcol_hidden" >31.38</td><td id="_td_178_8_11"  data-_i="8" data-_j="11"  data-_p = "BSM_6"  class=" _centered _table178_opt11 _tcol_hidden"  style="background:#C69E3B;" >0.02</td><td id="_td_178_8_12"  data-_i="8" data-_j="12"  data-_p = "BSM_6"  class=" _centered _table178_opt12 _tcol_hidden" >0.15</td><td id="_td_178_8_13"  data-_i="8" data-_j="13"  data-_p = "BSM_6"  class=" _centered _table178_opt13 _tcol_hidden" >1.13</td><td id="_td_178_8_14"  data-_i="8" data-_j="14"  data-_p = "BSM_6"  class=" _centered _table178_opt14 _tcol_hidden" >0.26</td><td id="_td_178_8_15"  data-_i="8" data-_j="15"  data-_p = "BSM_6"  class=" _centered _table178_opt15 _tcol_hidden" >2.03</td><td id="_td_178_8_16"  data-_i="8" data-_j="16"  data-_p = "BSM_6"  class=" _centered _table178_opt16 _tcol_hidden" >19.83</td><td id="_td_178_8_17"  data-_i="8" data-_j="17"  data-_p = "BSM_6"  class=" _centered _table178_opt17 _tcol_hidden" >0.01</td><td id="_td_178_8_18"  data-_i="8" data-_j="18"  data-_p = "BSM_6"  class=" _centered _table178_opt18 _tcol_hidden" >0.10</td><td id="_td_178_8_19"  data-_i="8" data-_j="19"  data-_p = "BSM_6"  class=" _centered _table178_opt19 _tcol_hidden" >0.97</td><td id="_td_178_8_20"  data-_i="8" data-_j="20"  data-_p = "BSM_6"  class=" _centered _table178_opt20 _tcol_hidden" >0.22</td><td id="_td_178_8_21"  data-_i="8" data-_j="21"  data-_p = "BSM_6"  class=" _centered _table178_opt21 _tcol_hidden" >1.97</td><td id="_td_178_8_22"  data-_i="8" data-_j="22"  data-_p = "BSM_6"  class=" _centered _table178_opt22 _tcol_hidden" >19.74</td><td id="_td_178_8_23"  data-_i="8" data-_j="23"  data-_p = "BSM_6"  class=" _centered _table178_opt23 _tcol_hidden" >14</td><td id="_td_178_8_24"  data-_i="8" data-_j="24"  data-_p = "BSM_6"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_8_25"  data-_i="8" data-_j="25"  data-_p = "BSM_6"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_8_26"  data-_i="8" data-_j="26"  data-_p = "BSM_6"  class=" _centered _table178_opt26"  style="background:#FF3333" >50</td><td id="_td_178_8_27"  data-_i="8" data-_j="27"  data-_p = "BSM_6"  class=" _centered _table178_opt27"  style="background:#FF3333" >12.5</td><td id="_td_178_8_28"  data-_i="8" data-_j="28"  data-_p = "BSM_6"  class=" _centered _table178_opt28 _tcol_hidden" >1</td><td id="_td_178_8_29"  data-_i="8" data-_j="29"  data-_p = "BSM_6"  class=" _centered _table178_opt29 _tcol_hidden" >1</td><td id="_td_178_8_30"  data-_i="8" data-_j="30"  data-_p = "BSM_6"  class=" _centered _table178_opt30 _tcol_hidden"  style="background:#FF950E" >8</td><td id="_td_178_8_31"  data-_i="8" data-_j="31"  data-_p = "BSM_6"  class=" _centered _table178_opt31 _tcol_hidden" >2.07</td><td id="_td_178_8_32"  data-_i="8" data-_j="32"  data-_p = "BSM_6"  class=" _centered _table178_opt32 _tcol_hidden" >1.47</td><td id="_td_178_8_33"  data-_i="8" data-_j="33"  data-_p = "BSM_6"  class=" _centered _table178_opt33 _tcol_hidden" >1.19</td><td id="_td_178_8_34"  data-_i="8" data-_j="34"  data-_p = "BSM_6"  class=" _centered _table178_opt34 _tcol_hidden" >NA</td><td id="_td_178_8_35"  data-_i="8" data-_j="35"  data-_p = "BSM_6"  class=" _centered _table178_opt35 _tcol_hidden" >NA</td><td id="_td_178_8_36"  data-_i="8" data-_j="36"  data-_p = "BSM_6"  class=" _centered _table178_opt36 _tcol_hidden" >NA</td><td id="_td_178_8_37"  data-_i="8" data-_j="37"  data-_p = "BSM_6"  class=" _centered _table178_opt37 _tcol_hidden" >NA</td><td id="_td_178_8_38"  data-_i="8" data-_j="38"  data-_p = "BSM_6"  class=" _centered _table178_opt38 _tcol_hidden" >NA</td><td id="_td_178_8_39"  data-_i="8" data-_j="39"  data-_p = "BSM_6"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_8_40"  data-_i="8" data-_j="40"  data-_p = "BSM_6"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_8_41"  data-_i="8" data-_j="41"  data-_p = "BSM_6"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#A52B12;" >0.09</td><td id="_td_178_8_42"  data-_i="8" data-_j="42"  data-_p = "BSM_6"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#D4B66C;" >1.44</td><td id="_td_178_8_43"  data-_i="8" data-_j="43"  data-_p = "BSM_6"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_8_44"  data-_i="8" data-_j="44"  data-_p = "BSM_6"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#D4B66C;" >1.52</td></tr>
+<tr id="_tr_178_9"  ondblclick="_action_116(this,9,-1, 'loops/BSM_14.html');"  style="cursor:pointer;"><td id="_td_178_9_1"  data-_i="9" data-_j="1"  data-_p = "BSM_14"  class=" _left _freezed_col  _centered" >14</td><td id="_td_178_9_2"  data-_i="9" data-_j="2"  data-_p = "BSM_14"  style="word-break:break-all;" >BSM - random.tcc:404-409</td><td id="_td_178_9_3"  data-_i="9" data-_j="3"  data-_p = "BSM_14"  style="word-break:break-all;" >std::mersenne_twister_engine&lt;unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul&gt;::_M_gen_rand()</td><td id="_td_178_9_4"  data-_i="9" data-_j="4"  data-_p = "BSM_14"  class=" _centered _table178_opt4 _tcol_hidden" >Single</td><td id="_td_178_9_5"  data-_i="9" data-_j="5"  data-_p = "BSM_14"  class=" _centered _table178_opt5"  style="background:#947FA5;" >1.25</td><td id="_td_178_9_6"  data-_i="9" data-_j="6"  data-_p = "BSM_14"  class=" _centered _table178_opt6"  style="background:#947FA5;" >1.28</td><td id="_td_178_9_7"  data-_i="9" data-_j="7"  data-_p = "BSM_14"  class=" _centered _table178_opt7"  style="background:#947FA5;" >1.42</td><td id="_td_178_9_8"  data-_i="9" data-_j="8"  data-_p = "BSM_14"  class=" _centered _table178_opt8 _tcol_hidden" >1.25</td><td id="_td_178_9_9"  data-_i="9" data-_j="9"  data-_p = "BSM_14"  class=" _centered _table178_opt9 _tcol_hidden" >1.28</td><td id="_td_178_9_10"  data-_i="9" data-_j="10"  data-_p = "BSM_14"  class=" _centered _table178_opt10 _tcol_hidden" >1.42</td><td id="_td_178_9_11"  data-_i="9" data-_j="11"  data-_p = "BSM_14"  class=" _centered _table178_opt11 _tcol_hidden"  style="background:#C69E3B;" >0.02</td><td id="_td_178_9_12"  data-_i="9" data-_j="12"  data-_p = "BSM_14"  class=" _centered _table178_opt12 _tcol_hidden" >0.14</td><td id="_td_178_9_13"  data-_i="9" data-_j="13"  data-_p = "BSM_14"  class=" _centered _table178_opt13 _tcol_hidden" >0.96</td><td id="_td_178_9_14"  data-_i="9" data-_j="14"  data-_p = "BSM_14"  class=" _centered _table178_opt14 _tcol_hidden" >0.02</td><td id="_td_178_9_15"  data-_i="9" data-_j="15"  data-_p = "BSM_14"  class=" _centered _table178_opt15 _tcol_hidden" >0.14</td><td id="_td_178_9_16"  data-_i="9" data-_j="16"  data-_p = "BSM_14"  class=" _centered _table178_opt16 _tcol_hidden" >0.96</td><td id="_td_178_9_17"  data-_i="9" data-_j="17"  data-_p = "BSM_14"  class=" _centered _table178_opt17 _tcol_hidden" >0.01</td><td id="_td_178_9_18"  data-_i="9" data-_j="18"  data-_p = "BSM_14"  class=" _centered _table178_opt18 _tcol_hidden" >0.08</td><td id="_td_178_9_19"  data-_i="9" data-_j="19"  data-_p = "BSM_14"  class=" _centered _table178_opt19 _tcol_hidden" >0.89</td><td id="_td_178_9_20"  data-_i="9" data-_j="20"  data-_p = "BSM_14"  class=" _centered _table178_opt20 _tcol_hidden" >0.01</td><td id="_td_178_9_21"  data-_i="9" data-_j="21"  data-_p = "BSM_14"  class=" _centered _table178_opt21 _tcol_hidden" >0.08</td><td id="_td_178_9_22"  data-_i="9" data-_j="22"  data-_p = "BSM_14"  class=" _centered _table178_opt22 _tcol_hidden" >0.89</td><td id="_td_178_9_23"  data-_i="9" data-_j="23"  data-_p = "BSM_14"  class=" _centered _table178_opt23 _tcol_hidden" >14</td><td id="_td_178_9_24"  data-_i="9" data-_j="24"  data-_p = "BSM_14"  class=" _centered _table178_opt24 _tcol_hidden" >16</td><td id="_td_178_9_25"  data-_i="9" data-_j="25"  data-_p = "BSM_14"  class=" _centered _table178_opt25 _tcol_hidden" >16</td><td id="_td_178_9_26"  data-_i="9" data-_j="26"  data-_p = "BSM_14"  class=" _centered _table178_opt26"  style="background:#66cc00" >100</td><td id="_td_178_9_27"  data-_i="9" data-_j="27"  data-_p = "BSM_14"  class=" _centered _table178_opt27"  style="background:#66cc00" >100</td><td id="_td_178_9_28"  data-_i="9" data-_j="28"  data-_p = "BSM_14"  class=" _centered _table178_opt28 _tcol_hidden" >1</td><td id="_td_178_9_29"  data-_i="9" data-_j="29"  data-_p = "BSM_14"  class=" _centered _table178_opt29 _tcol_hidden" >1</td><td id="_td_178_9_30"  data-_i="9" data-_j="30"  data-_p = "BSM_14"  class=" _centered _table178_opt30 _tcol_hidden" >1</td><td id="_td_178_9_31"  data-_i="9" data-_j="31"  data-_p = "BSM_14"  class=" _centered _table178_opt31 _tcol_hidden" >2.07</td><td id="_td_178_9_32"  data-_i="9" data-_j="32"  data-_p = "BSM_14"  class=" _centered _table178_opt32 _tcol_hidden" >1.76</td><td id="_td_178_9_33"  data-_i="9" data-_j="33"  data-_p = "BSM_14"  class=" _centered _table178_opt33 _tcol_hidden" >1.08</td><td id="_td_178_9_34"  data-_i="9" data-_j="34"  data-_p = "BSM_14"  class=" _centered _table178_opt34 _tcol_hidden" >0</td><td id="_td_178_9_35"  data-_i="9" data-_j="35"  data-_p = "BSM_14"  class=" _centered _table178_opt35 _tcol_hidden" >0</td><td id="_td_178_9_36"  data-_i="9" data-_j="36"  data-_p = "BSM_14"  class=" _centered _table178_opt36 _tcol_hidden" >0</td><td id="_td_178_9_37"  data-_i="9" data-_j="37"  data-_p = "BSM_14"  class=" _centered _table178_opt37 _tcol_hidden" >0</td><td id="_td_178_9_38"  data-_i="9" data-_j="38"  data-_p = "BSM_14"  class=" _centered _table178_opt38 _tcol_hidden" >0</td><td id="_td_178_9_39"  data-_i="9" data-_j="39"  data-_p = "BSM_14"  class=" _centered _table178_opt39 _tcol_hidden"  style="background:#579619;" >1</td><td id="_td_178_9_40"  data-_i="9" data-_j="40"  data-_p = "BSM_14"  class=" _centered _table178_opt40 _tcol_hidden"  style="background:#458B00;" >0</td><td id="_td_178_9_41"  data-_i="9" data-_j="41"  data-_p = "BSM_14"  class=" _centered _table178_opt41 _tcol_hidden"  style="background:#AE4029;" >0.11</td><td id="_td_178_9_42"  data-_i="9" data-_j="42"  data-_p = "BSM_14"  class=" _centered _table178_opt42 _tcol_hidden"  style="background:#D4B66C;" >1.14</td><td id="_td_178_9_43"  data-_i="9" data-_j="43"  data-_p = "BSM_14"  class=" _centered _table178_opt43 _tcol_hidden"  style="background:#A52B12;" >0.01</td><td id="_td_178_9_44"  data-_i="9" data-_j="44"  data-_p = "BSM_14"  class=" _centered _table178_opt44 _tcol_hidden"  style="background:#D4B66C;" >1.41</td></tr>
+</table></div>
+</div><script>
+function _action_116 (obj, i, j, p){open(""+p+"");}
+</script>
+<style>
+.menu {
+width: 250px;
+  color: var(--cntxt_menu_font);
+  z-index: 4;
+  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  display: none;
+  transition: 0.2s display ease-in;
+  background-color: var(--cntxt_menu_background);
+}
+.menu-options {
+  list-style: none;
+  padding: 0px 0;
+  z-index: 1;
+  font-weight: 500;
+  z-index: 1;
+  font-size: 14px;
+  padding: 2px 10px 2px 10px;
+  cursor: pointer;
+  color: var(--cntxt_menu_font);
+}
+.menu-option:hover {
+  background: var(--cntxt_menu_background_over);
+}
+</style>
+<div class="menu" data-visible=false id="mctxMenu4">
+  <ul class="menu-options">
+<li class="menu-option" id="mctxMenu4_1" onclick="_action_117('_p', '_p4_1')" oncontextmenu="_action_117('_p', '_p4_1')" >Load Distribution</li>
+<li class="menu-option" id="mctxMenu4_2" onclick="_action_118('_p', '_p4_2')" oncontextmenu="_action_118('_p', '_p4_2')" >Sorted Load Distribution</li>
+<li class="menu-option" id="mctxMenu4_3" onclick="_action_119('_p', '_p4_3')" oncontextmenu="_action_119('_p', '_p4_3')" >Load Distribution All Threads</li>
+<li class="menu-option" id="mctxMenu4_4" onclick="_action_120('_p', '_p4_4')" oncontextmenu="_action_120('_p', '_p4_4')" >Scalability Report</li>
+<li class="menu-option" id="mctxMenu4_5" onclick="_action_121('_p', '_p4_5')" oncontextmenu="_action_121('_p', '_p4_5')" >Load Callchains</li>
+<li class="menu-option" id="mctxMenu4_6" onclick="_action_122('_p', '_p4_6')" oncontextmenu="_action_122('_p', '_p4_6')" >Go to report ...</li>
+  </ul>
+</div>
+<script>
+function toggleMenu_178 (menu, command) {
+  menu.style.display = command === "show" ? "block" : "none";
+  if (menu.style.display == "block") {
+    menu.dataset.visible = true;
+  }
+  else {
+    menu.dataset.visible = false;
+    if (_previous_elem != null) {
+      _previous_elem.parentNode.classList.remove ("selected-context");
+    }
+  }
+}
+const setPosition_178 = (menu, { top, left }) => {
+  menu.style.left = `${left}px`;
+  menu.style.top = `${top}px`;
+  toggleMenu_178(menu, "show");
+};
+var _global_elem = null;
+var _previous_elem = null;
+var _ids;
+var _current_menu = null;
+
+document.addEventListener("click", e => {
+  if (_current_menu != null && _current_menu.dataset.visible) {
+    toggleMenu_178 (_current_menu, "hide");
+    _current_menu = null;
+  }
+});
+document.getElementById("mctxMenu4").addEventListener('contextmenu', event => event.preventDefault());
+
+let _ids_178_4 = ["_tr_178_1", "_tr_178_2", "_tr_178_3", "_tr_178_4", "_tr_178_5", "_tr_178_6", "_tr_178_7", "_tr_178_8", "_tr_178_9"];
+for (var i = 0; i < _ids_178_4.length; i++) {
+  var elem = document.getElementById(_ids_178_4[i]);
+  elem.addEventListener("contextmenu", e => {
+    e.preventDefault();
+    _global_elem = event.target || event.srcElement;
+    if (_global_elem.nodeName == "SPAN") {
+       _global_elem = _global_elem.parentNode;
+    }
+    const origin = {
+      left: e.clientX, top: e.clientY
+    };
+    if (_current_menu != null && _current_menu.dataset.visible) {
+      toggleMenu_178 (_current_menu, "hide");
+      _current_menu = null;
+    }
+    _previous_elem = _global_elem;    var menu = document.getElementById("mctxMenu4");
+    if (menu != null) {
+      _current_menu = menu;
+      setPosition_178(menu, origin);
+      _global_elem.parentNode.classList.add ("selected-context");
+    }
+    return false;
+  });
+}
+function _action_117 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=loadbal\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_118 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=loadbal_sorted\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_119 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=loadbal_all\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_120 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=scalability\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_121 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=callchains\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_122 (p, pm){open("loops/"+_global_elem.dataset._p+".html", "_self");}
+</script>
+<script>
+var list_opts_table178 = ['_table178_opt4','_table178_opt5','_table178_opt6','_table178_opt7','_table178_opt8','_table178_opt9','_table178_opt10','_table178_opt11','_table178_opt12','_table178_opt13','_table178_opt14','_table178_opt15','_table178_opt16','_table178_opt17','_table178_opt18','_table178_opt19','_table178_opt20','_table178_opt21','_table178_opt22','_table178_opt23','_table178_opt24','_table178_opt25','_table178_opt26','_table178_opt27','_table178_opt28','_table178_opt29','_table178_opt30','_table178_opt31','_table178_opt32','_table178_opt33','_table178_opt34','_table178_opt35','_table178_opt36','_table178_opt37','_table178_opt38','_table178_opt39','_table178_opt40','_table178_opt41','_table178_opt42','_table178_opt43','_table178_opt44',];
+function __reset_checkboxes_table178 () {
+  var displayed_columns = [{id:"_table178_opt1", value:true}, {id:"_table178_opt2", value:true}, {id:"_table178_opt3", value:true}, {id:"_table178_opt4", value:false}, {id:"_table178_opt5", value:true}, {id:"_table178_opt6", value:true}, {id:"_table178_opt7", value:true}, {id:"_table178_opt8", value:false}, {id:"_table178_opt9", value:false}, {id:"_table178_opt10", value:false}, {id:"_table178_opt11", value:false}, {id:"_table178_opt12", value:false}, {id:"_table178_opt13", value:false}, {id:"_table178_opt14", value:false}, {id:"_table178_opt15", value:false}, {id:"_table178_opt16", value:false}, {id:"_table178_opt17", value:false}, {id:"_table178_opt18", value:false}, {id:"_table178_opt19", value:false}, {id:"_table178_opt20", value:false}, {id:"_table178_opt21", value:false}, {id:"_table178_opt22", value:false}, {id:"_table178_opt23", value:false}, {id:"_table178_opt24", value:false}, {id:"_table178_opt25", value:false}, {id:"_table178_opt26", value:true}, {id:"_table178_opt27", value:true}, {id:"_table178_opt28", value:false}, {id:"_table178_opt29", value:false}, {id:"_table178_opt30", value:false}, {id:"_table178_opt31", value:false}, {id:"_table178_opt32", value:false}, {id:"_table178_opt33", value:false}, {id:"_table178_opt34", value:false}, {id:"_table178_opt35", value:false}, {id:"_table178_opt36", value:false}, {id:"_table178_opt37", value:false}, {id:"_table178_opt38", value:false}, {id:"_table178_opt39", value:false}, {id:"_table178_opt40", value:false}, {id:"_table178_opt41", value:false}, {id:"_table178_opt42", value:false}, {id:"_table178_opt43", value:false}, {id:"_table178_opt44", value:false}];
+  // Update initial state using localStorage
+  for (var i = 0; i < displayed_columns.length; i++) {
+    var dcol = displayed_columns[i];
+    var val = localStorage.getItem (dcol.id);
+    if (val) {
+      dcol.value = (val === "true");
+    }
+    var obj = document.getElementById(dcol.id);
+    if (obj) {
+      if (dcol.value == true) {
+        obj.checked = true;
+      }
+      else {
+        obj.checked = false;
+      }
+    }
+  }
+  // Update table
+  var table = document.getElementById("_fixed_table_178");
+  for (let i in table.rows) {
+    let row = table.rows[i]
+    for (let j in row.cells) {
+      let col = row.cells[j]
+      if (col.classList) {
+        if (displayed_columns[j].value == true) {
+          col.classList.remove("_tcol_hidden");
+        }
+        else {
+          col.classList.add("_tcol_hidden");
+        }
+      }
+    }
+  }
+  {
+    var value = localStorage.getItem("_table178_opt_all");
+    if (value) {
+      var obj = document.getElementById ("_table178_opt_all");
+      if (obj) {
+        obj.value = value;
+      }
+    }
+  }
+  _check_all_checkbox_ ("_table178_opt_all", "list_opts_table178");
+  {
+    var text     = localStorage.getItem("_table178_opt_select_all_coverages_value");
+    var selected = localStorage.getItem("_table178_opt_select_all_coverages_selected");
+    if (text && selected) {
+      var checkbox = document.getElementById ("_table178_opt_select_all_coverages");
+      if (checkbox) {
+        checkbox.dataset.selected = selected;
+        checkbox.value            = text;
+      }
+    }
+  }
+  {
+    var text     = localStorage.getItem("_table178_opt_select_all_times_oth_value");
+    var selected = localStorage.getItem("_table178_opt_select_all_times_oth_selected");
+    if (text && selected) {
+      var checkbox = document.getElementById ("_table178_opt_select_all_times_oth");
+      if (checkbox) {
+        checkbox.dataset.selected = selected;
+        checkbox.value            = text;
+      }
+    }
+  }
+  {
+    var text     = localStorage.getItem("_table178_opt_select_all_times_wt_value");
+    var selected = localStorage.getItem("_table178_opt_select_all_times_wt_selected");
+    if (text && selected) {
+      var checkbox = document.getElementById ("_table178_opt_select_all_times_wt");
+      if (checkbox) {
+        checkbox.dataset.selected = selected;
+        checkbox.value            = text;
+      }
+    }
+  }
+  {
+    var text     = localStorage.getItem("_table178_opt_select_all_speedups_value");
+    var selected = localStorage.getItem("_table178_opt_select_all_speedups_selected");
+    if (text && selected) {
+      var checkbox = document.getElementById ("_table178_opt_select_all_speedups");
+      if (checkbox) {
+        checkbox.dataset.selected = selected;
+        checkbox.value            = text;
+      }
+    }
+  }
+  {
+    var text     = localStorage.getItem("_table178_opt_select_all_efficiencies_value");
+    var selected = localStorage.getItem("_table178_opt_select_all_efficiencies_selected");
+    if (text && selected) {
+      var checkbox = document.getElementById ("_table178_opt_select_all_efficiencies");
+      if (checkbox) {
+        checkbox.dataset.selected = selected;
+        checkbox.value            = text;
+      }
+    }
+  }
+};
+addLoadEvent(function(){
+  __reset_checkboxes_table178 ();
+});
+</script>
+<script>
+function select_all_coverages(table, id_root, checkbox){
+  for (var j = 0, col; col = table.rows[0].cells[j]; j++) {
+    var regex = /Coverage/;
+    if (regex.test(col.innerHTML) == true) {
+      var classes = col.className.split(' ');
+      for (var c = 0; c < classes.length; c++) {
+        if (classes[c].indexOf(id_root) != -1) {
+          if (document.getElementById (classes[c]).checked == false
+          && checkbox.dataset.selected == "false") {
+            document.getElementById (classes[c]).checked = true;
+            click_table_menu (classes[c]);
+          }
+          else if (document.getElementById (classes[c]).checked == true
+          && checkbox.dataset.selected == "true") {
+            document.getElementById (classes[c]).checked = false;
+            click_table_menu (classes[c]);
+          }
+        }
+      }
+    }
+  }
+  if (checkbox.dataset.selected == "true") {
+    checkbox.dataset.selected = "false";
+    checkbox.value = checkbox.dataset.text;
+  }
+  else {
+    checkbox.dataset.selected = "true";
+    checkbox.value = checkbox.dataset.text_alt;
+  }
+  localStorage.setItem(checkbox.id+"_value", checkbox.value);
+  localStorage.setItem(checkbox.id+"_selected", checkbox.dataset.selected);
+  _check_all_checkbox_ (id_root + "_opt_all", "list_opts" + id_root);
+}
+function select_all_times_oth(table, id_root, checkbox){
+  for (var j = 0, col; col = table.rows[0].cells[j]; j++) {
+    var regex = /(Max .* Time Over Threads)/;
+    if (regex.test(col.innerHTML) == true) {
+      var classes = col.className.split(' ');
+      for (var c = 0; c < classes.length; c++) {
+        if (classes[c].indexOf(id_root) != -1) {
+          if (document.getElementById (classes[c]).checked == false
+          && checkbox.dataset.selected == "false") {
+            document.getElementById (classes[c]).checked = true;
+            click_table_menu (classes[c]);
+          }
+          else if (document.getElementById (classes[c]).checked == true
+          && checkbox.dataset.selected == "true") {
+            document.getElementById (classes[c]).checked = false;
+            click_table_menu (classes[c]);
+          }
+        }
+      }
+    }
+  }
+  if (checkbox.dataset.selected == "true") {
+    checkbox.dataset.selected = "false";
+    checkbox.value = checkbox.dataset.text;
+  }
+  else {
+    checkbox.dataset.selected = "true";
+    checkbox.value = checkbox.dataset.text_alt;
+  }
+  localStorage.setItem(checkbox.id+"_value", checkbox.value);
+  localStorage.setItem(checkbox.id+"_selected", checkbox.dataset.selected);
+  _check_all_checkbox_ (id_root + "_opt_all", "list_opts" + id_root);
+}
+function select_all_times_wt(table, id_root, checkbox){
+  for (var j = 0, col; col = table.rows[0].cells[j]; j++) {
+    var regex = /(Time w.r.t. Wall Time)/;
+    if (regex.test(col.innerHTML) == true) {
+      var classes = col.className.split(' ');
+      for (var c = 0; c < classes.length; c++) {
+        if (classes[c].indexOf(id_root) != -1) {
+          if (document.getElementById (classes[c]).checked == false
+          && checkbox.dataset.selected == "false") {
+            document.getElementById (classes[c]).checked = true;
+            click_table_menu (classes[c]);
+          }
+          else if (document.getElementById (classes[c]).checked == true
+          && checkbox.dataset.selected == "true") {
+            document.getElementById (classes[c]).checked = false;
+            click_table_menu (classes[c]);
+          }
+        }
+      }
+    }
+  }
+  if (checkbox.dataset.selected == "true") {
+    checkbox.dataset.selected = "false";
+    checkbox.value = checkbox.dataset.text;
+  }
+  else {
+    checkbox.dataset.selected = "true";
+    checkbox.value = checkbox.dataset.text_alt;
+  }
+  localStorage.setItem(checkbox.id+"_value", checkbox.value);
+  localStorage.setItem(checkbox.id+"_selected", checkbox.dataset.selected);
+  _check_all_checkbox_ (id_root + "_opt_all", "list_opts" + id_root);
+}
+function select_all_speedups(table, id_root, checkbox){
+  for (var j = 0, col; col = table.rows[0].cells[j]; j++) {
+    var regex = /Potential Speed-Up/;
+    if (regex.test(col.innerHTML) == true) {
+      var classes = col.className.split(' ');
+      for (var c = 0; c < classes.length; c++) {
+        if (classes[c].indexOf(id_root) != -1) {
+          if (document.getElementById (classes[c]).checked == false
+          && checkbox.dataset.selected == "false") {
+            document.getElementById (classes[c]).checked = true;
+            click_table_menu (classes[c]);
+          }
+          else if (document.getElementById (classes[c]).checked == true
+          && checkbox.dataset.selected == "true") {
+            document.getElementById (classes[c]).checked = false;
+            click_table_menu (classes[c]);
+          }
+        }
+      }
+    }
+  }
+  if (checkbox.dataset.selected == "true") {
+    checkbox.dataset.selected = "false";
+    checkbox.value = checkbox.dataset.text;
+  }
+  else {
+    checkbox.dataset.selected = "true";
+    checkbox.value = checkbox.dataset.text_alt;
+  }
+  localStorage.setItem(checkbox.id+"_value", checkbox.value);
+  localStorage.setItem(checkbox.id+"_selected", checkbox.dataset.selected);
+  _check_all_checkbox_ (id_root + "_opt_all", "list_opts" + id_root);
+}
+function select_all_efficiencies(table, id_root, checkbox){
+  for (var j = 0, col; col = table.rows[0].cells[j]; j++) {
+    var regex = /Efficiency/;
+    if (regex.test(col.innerHTML) == true) {
+      var classes = col.className.split(' ');
+      for (var c = 0; c < classes.length; c++) {
+        if (classes[c].indexOf(id_root) != -1) {
+          if (document.getElementById (classes[c]).checked == false
+          && checkbox.dataset.selected == "false") {
+            document.getElementById (classes[c]).checked = true;
+            click_table_menu (classes[c]);
+          }
+          else if (document.getElementById (classes[c]).checked == true
+          && checkbox.dataset.selected == "true") {
+            document.getElementById (classes[c]).checked = false;
+            click_table_menu (classes[c]);
+          }
+        }
+      }
+    }
+  }
+  if (checkbox.dataset.selected == "true") {
+    checkbox.dataset.selected = "false";
+    checkbox.value = checkbox.dataset.text;
+  }
+  else {
+    checkbox.dataset.selected = "true";
+    checkbox.value = checkbox.dataset.text_alt;
+  }
+  localStorage.setItem(checkbox.id+"_value", checkbox.value);
+  localStorage.setItem(checkbox.id+"_selected", checkbox.dataset.selected);
+  _check_all_checkbox_ (id_root + "_opt_all", "list_opts" + id_root);
+}
+</script>
+</div></div><script>
+// Function called to check / uncheck all modules in the filter
+function _onchange_modules (obj) {
+  var inputs = ["_input_check_mod_BSM", ];
+  if (obj.checked == true) {
+    document.getElementById("_input_check_all_mods_text").innerHTML = "Uncheck all modules";
+    for (var i = 0; i < inputs.length; i++) {
+      document.getElementById(inputs[i]).checked = true;
+    }
+  }
+  else {
+    document.getElementById("_input_check_all_mods_text").innerHTML = "Check all modules";
+    for (var i = 0; i < inputs.length; i++) {
+      document.getElementById(inputs[i]).checked = false;
+    }
+  }
+}
+// Function called to handle filters
+function _upd_table() {
+  var tab     = document.getElementById("_fixed_table_178");
+  var rows    = tab.childNodes[0].rows;
+  var nb_rows = rows.length;
+  var button  = document.getElementById("button_toggle_loop_index");
+  for (var i = 1; i < nb_rows; i++) {
+    var cells = rows[i].cells;
+    if (cells[1].innerHTML != "") {
+       if (document.getElementById("_input_check_all_decan").checked == true
+       &&  cells[0].style.backgroundColor == "") {
+          rows[i].classList.add("_tree_hidden");
+      }
+      else if ((document.getElementById("_input_check_mod_" + cells[1].textContent.replace (/ - .*/g, "")).checked == false)
+      ||  ((button.innerHTML.localeCompare ("Show Full Profile") == 0)
+        && (cells[3].innerHTML.localeCompare("Single") != 0)
+        && (cells[3].innerHTML.localeCompare("Innermost") != 0))) {
+          rows[i].classList.add("_tree_hidden");
+      }
+      else {
+          rows[i].classList.remove("_tree_hidden");
+      }
+    }
+  }
+}
+addLoadEvent(function(){
+  var boxs_on  = ["_input_check_all_mods","_input_check_mod_BSM", ];
+  var boxs_off = ["_input_check_all_decan"];
+  for (var i = 0; i < boxs_on.length; i++) {
+    document.getElementById(boxs_on[i]).checked = true;
+  }
+  for (var i = 0; i < boxs_off.length; i++) {
+    document.getElementById(boxs_off[i]).checked = false;
+  }
+});
+function getPos(el) {
+  for (var lx=0, ly=0;
+      el != null;
+      lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+  return {x: lx,y: ly};
+}
+function _onresize () {
+  __maqao_legacy_onresize ();
+  var d = document.getElementById ("_fixed_table_178").parentNode;
+  d.style.maxHeight = (window.innerHeight - getPos (d).y - 20)+"px";
+}
+window.onresize = _onresize;
+function toggle_loop_index() {
+  var table = document.getElementById("_fixed_table_178");
+  var button = document.getElementById("button_toggle_loop_index");
+  if (button.innerHTML.localeCompare ("Show Full Profile") == 0) {
+    button.innerHTML = "Show Innermost Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      var mod = "";
+      if (row.cells[1].children.length == 0) {
+        mod = row.cells[1].innerHTML.replace (/ - .*/g, "");
+      }
+      else {
+        mod = row.cells[1].children[0].innerText.replace (/ - .*/g, "");
+      }
+      if (document.getElementById("_input_check_mod_" + mod).checked == true) {
+        row.classList.remove ("_tree_hidden");
+      }
+    }
+    let level_selector_id = "_table178_opt4";
+    let level_selector = document.getElementById (level_selector_id);
+    if (level_selector && level_selector.checked == false ) {
+       level_selector.checked = true;
+       click_table_menu(level_selector_id, "_table178_opt_all", "list_opts_table178");
+       level_selector.dataset.allLoopsFlag = "true";
+    }
+  }
+  else {
+    button.innerHTML = "Show Full Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      if (row.cells[3].innerHTML.localeCompare("Single") != 0
+      && row.cells[3].innerHTML.localeCompare("Innermost") != 0) {
+        row.classList.add ("_tree_hidden");
+      }
+    }
+    let level_selector_id = "_table178_opt4";
+    let level_selector = document.getElementById (level_selector_id);
+    if (level_selector && level_selector.checked == true && level_selector.dataset.allLoopsFlag == "true") {
+       level_selector.checked = false;
+       click_table_menu(level_selector_id, "_table178_opt_all", "list_opts_table178");
+       level_selector.dataset.allLoopsFlag = "false";
+    }
+  }
+}
+addLoadEvent(function(){
+  toggle_loop_index();
+  _onresize ();
+});
+</script>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['List of profiled loops. Details about metrics can be obtained by moving the cursor on the column header. Rows can be sorted ascending or descending by clicking on the column header. Colors in the coverage column are from red for hot loops to blue for cold loops. Some additionnal columns can be displayed by clicking on the form above the table. Double click on a loop to display its analysis report in a new tab.',
+'Summary of all user-defined parameters in multiruns_params table',
+'A form that can be displayed / hidden by clicking on the header to specify which modules must be displayed in the profiling. By clicking on the button, only checked categories are displayed.',
+'A set of filters to display / hide some columns',
+'Loop Level (Innermost / Single / InBetween / Outermost)',
+'Exclusive percentage of the execution time spent in the loop for run run_0',
+'Exclusive percentage of the execution time spent in the loop for run run_1',
+'Exclusive percentage of the execution time spent in the loop for run run_2',
+'Inclusive percentage of the execution time spent in the loop for run run_0',
+'Inclusive percentage of the execution time spent in the loop for run run_1',
+'Inclusive percentage of the execution time spent in the loop for run run_2',
+'Maximal exclusive execution time over all threads spent in the loop in seconds for run run_0',
+'Maximal exclusive execution time over all threads spent in the loop in seconds for run run_1',
+'Maximal exclusive execution time over all threads spent in the loop in seconds for run run_2',
+'Maximal inclusive execution time over all threads spent in the loop in seconds for run run_0',
+'Maximal inclusive execution time over all threads spent in the loop in seconds for run run_1',
+'Maximal inclusive execution time over all threads spent in the loop in seconds for run run_2',
+'Exclusive time of the loop with regard to the global wall time in seconds for run run_0',
+'Exclusive time of the loop with regard to the global wall time in seconds for run run_1',
+'Exclusive time of the loop with regard to the global wall time in seconds for run run_2',
+'Inclusive time of the loop with regard to the global wall time in seconds for run run_0',
+'Inclusive time of the loop with regard to the global wall time in seconds for run run_1',
+'Inclusive time of the loop with regard to the global wall time in seconds for run run_2',
+'Number of threads that executed the loop for run run_0',
+'Number of threads that executed the loop for run run_1',
+'Number of threads that executed the loop for run run_2',
+'Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%.',
+'Average width (percentage) of vector registers used by the loop. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Optimistic speedup of the loop available if it has no scalar integer instructions. This speedup can be achieved by removing all instructions which do not perform any floating-point computation or memory accesses. Instructions used to handle the loop control flow are not included in the instructions set to remove. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.',
+'Optimistic speedup of the loop available if it has all its floating point computation vectorized. This speedup can be achived by vectorizing all instructions performing floating point computation. It does not take into account memory accesses. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.</li>',
+'Optimistic speedup of the loop available if it has all its instructions vectorized. This speedup can be achived by vectorizing all instructions, both floating point computation instructions and memory accesses instructions. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Optimistic speedup of the loop available if it is perfectly load balanced for run run_0. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Optimistic speedup of the loop available if it is perfectly load balanced for run run_1. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Optimistic speedup of the loop available if it is perfectly load balanced for run run_2. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Efficiency = (Time (Ref) / Time (run_0)) / Ideal_Speedup',
+'Speedup at the application level based on the efficiency: Speedup = (1 - Efficiency) * Coverage.',
+'Efficiency = (Time (Ref) / Time (run_1)) / Ideal_Speedup',
+'Speedup at the application level based on the efficiency: Speedup = (1 - Efficiency) * Coverage.',
+'Efficiency = (Time (Ref) / Time (run_2)) / Ideal_Speedup',
+'Speedup at the application level based on the efficiency: Speedup = (1 - Efficiency) * Coverage.',
+'MAQAO loop identifier. A green cell means the loop has been dynamically analyzed with DECAN, an orange cell means there no DECAN results but only VPROF results',
+'Name of the source file that contains the loop and its location in the file.',
+'Name of the fonction that contains the loop.',
+'Loop Level (Innermost / Single / InBetween / Outermost)',
+'Exclusive percentage of the execution time spent in the loop for run run_0',
+'Exclusive percentage of the execution time spent in the loop for run run_1',
+'Exclusive percentage of the execution time spent in the loop for run run_2',
+'Inclusive percentage of the execution time spent in the loop for run run_0',
+'Inclusive percentage of the execution time spent in the loop for run run_1',
+'Inclusive percentage of the execution time spent in the loop for run run_2',
+'Maximal exclusive execution time over all threads spent in the loop in seconds for run run_0',
+'Maximal exclusive execution time over all threads spent in the loop in seconds for run run_1',
+'Maximal exclusive execution time over all threads spent in the loop in seconds for run run_2',
+'Maximal inclusive execution time over all threads spent in the loop in seconds for run run_0',
+'Maximal inclusive execution time over all threads spent in the loop in seconds for run run_1',
+'Maximal inclusive execution time over all threads spent in the loop in seconds for run run_2',
+'Exclusive time of the loop with regard to the global wall time in seconds for run run_0',
+'Exclusive time of the loop with regard to the global wall time in seconds for run run_1',
+'Exclusive time of the loop with regard to the global wall time in seconds for run run_2',
+'Inclusive time of the loop with regard to the global wall time in seconds for run run_0',
+'Inclusive time of the loop with regard to the global wall time in seconds for run run_1',
+'Inclusive time of the loop with regard to the global wall time in seconds for run run_2',
+'Number of threads that executed the loop for run run_0',
+'Number of threads that executed the loop for run run_1',
+'Number of threads that executed the loop for run run_2',
+'Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%.',
+'Average width (percentage) of vector registers used by the loop. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Optimistic speedup of the loop available if it has no scalar integer instructions. This speedup can be achieved by removing all instructions which do not perform any floating-point computation or memory accesses. Instructions used to handle the loop control flow are not included in the instructions set to remove. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.',
+'Optimistic speedup of the loop available if it has all its floating point computation vectorized. This speedup can be achived by vectorizing all instructions performing floating point computation. It does not take into account memory accesses. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.</li>',
+'Optimistic speedup of the loop available if it has all its instructions vectorized. This speedup can be achived by vectorizing all instructions, both floating point computation instructions and memory accesses instructions. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Optimistic speedup of the loop available if it is perfectly load balanced for run run_0. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Optimistic speedup of the loop available if it is perfectly load balanced for run run_1. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Optimistic speedup of the loop available if it is perfectly load balanced for run run_2. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Efficiency = (Time (Ref) / Time (run_0)) / Ideal_Speedup',
+'Speedup at the application level based on the efficiency: Speedup = (1 - Efficiency) * Coverage.',
+'Efficiency = (Time (Ref) / Time (run_1)) / Ideal_Speedup',
+'Speedup at the application level based on the efficiency: Speedup = (1 - Efficiency) * Coverage.',
+'Efficiency = (Time (Ref) / Time (run_2)) / Ideal_Speedup',
+'Speedup at the application level based on the efficiency: Speedup = (1 - Efficiency) * Coverage.',
+'/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 248-248<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 1760-1760<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 1766-1766<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 1782-1782<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 2173-2175<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/char_traits.h: 350-350<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/char_traits.h: 427-427<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 194-194<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 223-228<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 269-269<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 294-294<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 330-342<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 3370-3370<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/new_allocator.h: 172-172<br>/fsx/home/etud9-2/Black-sholes/BSM_32.cxx: 96-113<br>/fsx/home/etud9-2/Black-sholes/BSM_32.cxx: 122-131<br>',
+'/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 1832-1839<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 3367-3371<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/cmath: 327-327<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/cmath: 443-443<br>',
+'/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 1832-1834<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 3367-3371<br>',
+'/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 2238-2238<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 1820-1823<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 1842-1842<br>/fsx/home/etud9-2/Black-sholes/BSM_32.cxx: 112-116<br>',
+'/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 1832-1839<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 3367-3371<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/cmath: 327-327<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/cmath: 443-443<br>',
+'/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 248-248<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 1760-1760<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 1766-1766<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 1782-1782<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 2173-2175<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/char_traits.h: 350-350<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/char_traits.h: 427-427<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 194-194<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 223-228<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 269-269<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 294-294<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 330-342<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 3370-3370<br>/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/new_allocator.h: 172-172<br>/fsx/home/etud9-2/Black-sholes/BSM_32.cxx: 96-113<br>/fsx/home/etud9-2/Black-sholes/BSM_32.cxx: 122-131<br>'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+function _check_all_checkbox_ (obj_id, opts_ids) {
+  var obj   = document.getElementById (obj_id);
+  var opts  = window[opts_ids];
+  var count = 0
+  for (i = 0; i < opts.length; i++) {
+    var obj_s = document.getElementById(opts[i]);
+    if (obj_s.checked) {
+      count ++;
+    }
+  }
+  if (count == 0) {
+    obj.value = "Select all";
+  }
+  else if (count == opts.length) {
+    obj.value = "Select none";
+  }
+}
+// Fonction for table selector
+function click_table_menu (c, obj_id, opt_ids) {
+  var is_checked = document.getElementById (c).checked;
+  localStorage.setItem(c, is_checked);
+  $("."+c).each(function(index, element) {
+    if (is_checked) {
+      element.classList.remove("_tcol_hidden");
+    }
+    else {
+      element.classList.add("_tcol_hidden");
+    }
+  });
+  if (obj_id != undefined) {
+    _check_all_checkbox_ (obj_id, opt_ids)
+  }
+}
+function set_all_table_menu (obj, var_opt_ids) {
+  var opt_ids = window[var_opt_ids];
+  var is_selected = true
+  if (obj.value == "Select all") {
+    is_selected = false;
+  }
+  for (i = 0; i < opt_ids.length; i++) {
+    var obj_s = document.getElementById(opt_ids[i]);
+    if (is_selected == obj_s.checked) {
+      obj_s.checked = !obj_s.checked;
+      click_table_menu (opt_ids[i]);
+    }
+  }
+  if (is_selected == false) {
+    obj.value = "Select none";
+  } else {
+    obj.value = "Select all";
+  }
+  localStorage.setItem(obj.id, obj.value);
+}
+// Script for accordion box
+function _click_accordion_header(obj) {
+  var content = obj.nextSibling;
+  content.classList.toggle('collapsed');
+  obj.classList.toggle('collapsed');
+  obj.parentNode.classList.toggle('collapsed');
+  // Check if the box must be openned ...
+  if (obj.classList.contains ('collapsed'))
+  {
+    obj.firstChild.textContent = "\u25B6";
+  }
+  // or closed.
+  else 
+  {
+    obj.firstChild.textContent = "\u25BC";
+  }
+  if (typeof _onresize === "function") {
+    _onresize ();
+  }
+}
+  // Script for paged table
+function _click_paged_prev(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page > 1) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + (cur_page - 2));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+  document.getElementById(pages_content_id).textContent = "Page " + (cur_page - 1) + "/" + max_pages;
+  }
+}
+function _click_paged_next(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page < max_pages) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + cur_page);
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    document.getElementById(pages_content_id).textContent = "Page " + (cur_page + 1) + "/" + max_pages;
+  }
+}
+// Function for tree table
+function _click_tree(obj) {
+  if (obj.innerHTML == "\u25BA") {
+    obj.textContent = "\u25BC";
+    // Open childs
+    var x = document.getElementsByClassName(obj.parentNode.parentNode.id);
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_tree_hidden');
+    }
+  }
+  else if (obj.innerHTML == "\u25BC") {
+    obj.textContent = "\u25BA";
+    // Close all childs
+    var trs = document.getElementsByTagName('tr');
+    var r   = obj.parentNode.parentNode.id+'_';
+    var re  = new RegExp (r, "g");
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+""
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+          o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    if (obj.parentNode.childNodes.length == 3) {
+      obj.parentNode.childNodes[2].textContent = '+';
+    }
+  }
+}
+function _click_expand (obj) {
+  var trs = document.getElementsByTagName('tr');
+  var r   = obj.parentNode.parentNode.id+'_';
+  var re  = new RegExp (r, "g");
+  // Symbole + => expand all
+  if (obj.textContent == "+") {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BA") {
+          o.firstChild.firstChild.textContent = "\u25BC";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '\u2010';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BA") {
+      o.firstChild.firstChild.textContent = "\u25BC";
+    }
+    obj.textContent = "\u2010";
+  }
+  // Symbole - => collapse all
+  else {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BC") {
+      o.firstChild.firstChild.textContent = "\u25BA";
+    }
+    obj.textContent = "+";
+  }
+}
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+// Change tab
+function change_tab (e, baseId) {
+  // Handle tabs
+  var i = 1;
+  while (true) {
+    var id = baseId + i;
+    var t = document.getElementById (id);
+    if (t == null) {
+      break;
+    }
+    if (id == e.dataset.tab) {
+      t.style.removeProperty("display");
+    }
+    else {
+      t.style.display = "none";
+    }
+    i = i + 1;
+  }
+  // Handle headers
+  $(e).siblings().each( function () {
+    this.classList.remove("selected_tab");
+  });
+  e.classList.add("selected_tab");
+}
+function __maqao_legacy_onresize () {
+  var obj = document.getElementById("spacer_page_title");
+  if (obj) {
+    obj.style.height = (document.getElementById("page_title").clientHeight + 20)+"px";
+  }
+  var obj = document.getElementById("page_title");
+  if (obj) {
+    var elems = document.getElementsByClassName ("_first_menu_level")
+    if (obj.clientHeight < 90) {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "";
+        elems.item(i).style.borderBottomRightRadius = "";
+      }
+    }
+    else {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "10px";
+        elems.item(i).style.borderBottomRightRadius = "10px";
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>

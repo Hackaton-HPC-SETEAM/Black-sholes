@@ -1,0 +1,5 @@
+module;src_file;score;issue;opts;
+BSM;BSM_32.cxx;0.625;"-O3 or -Ofast is missing. ";"GNU C++14 14.2.0 -march=armv8.5-a+sve2 -mtune=neoverse-v2 -mlittle-endian -mabi=lp64 -g -O2 -std=c++14 -fopenmp -ftree-vectorize -fopt-info-vec ";
+BSM;BSM_32.cxx;;"-funroll-loops is missing. ";"";
+BSM;random.tcc;0.625;"-O3 or -Ofast is missing. ";"GNU C++14 14.2.0 -march=armv8.5-a+sve2 -mtune=neoverse-v2 -mlittle-endian -mabi=lp64 -g -O2 -std=c++14 -fopenmp -ftree-vectorize -fopt-info-vec ";
+BSM;random.tcc;;"-funroll-loops is missing. ";"";

@@ -1,0 +1,10 @@
+loop_id;module;function_name;function_id;source_info;level;inc_time_p;inc_time_s;inc_time_s_min;inc_time_s_avg;inc_time_s_max;inc_cov_deviation;inc_time_deviation;exc_time_p;exc_time_s;exc_time_s_min;exc_time_s_avg;exc_time_s_max;exc_cov_deviation;exc_time_deviation;nb_threads;flops;
+5;BSM;main._omp_fn.0;11;random.tcc:3370-3370,BSM_32.cxx:106-109,BSM_32.cxx:112-113,BSM_32.cxx:122-127;InBetween;30.07279586792;1.8600002527237;;;;;;30.07279586792;1.8600002527237;;;;;;;;
+12;BSM;main._omp_fn.0;11;cmath:443-443;InBetween;27.162521362305;1.6800000667572;;;;;;16.249008178711;1.0049999952316;;;;;;;;
+11;BSM;main._omp_fn.0;11;random.tcc:1832-1834,random.tcc:3367-3371;Innermost;9.1350154876709;0.56500005722046;;;;;;9.1350154876709;0.56500005722046;;;;;;;;
+10;BSM;main._omp_fn.0;11;random.h:2238-2238,random.tcc:1820-1823,random.tcc:1842-1842,BSM_32.cxx:112-116;Innermost;4.2037239074707;0.26000002026558;;;;;;4.2037239074707;0.26000002026558;;;;;;;;
+16;BSM;std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::operator()();16;random.tcc:459-469;Single;4.0420422554016;0.25000002980232;;;;;;4.0420422554016;0.25000002980232;;;;;;;;
+15;BSM;std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand();15;random.tcc:412-417;Single;3.637838602066;0.22500006854534;;;;;;3.637838602066;0.22500006854534;;;;;;;;
+13;BSM;main._omp_fn.0;11;random.tcc:1834-1839,random.tcc:3367-3367,random.tcc:3371-3371,cmath:327-327,cmath:443-443;InBetween;10.913514137268;0.67500007152557;;;;;;1.7784984111786;0.10999999940395;;;;;;;;
+14;BSM;std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand();15;random.tcc:404-409;Single;1.4551349878311;0.089999996125698;;;;;;1.4551349878311;0.089999996125698;;;;;;;;
+6;BSM;main._omp_fn.0;11;BSM_32.cxx:113-113;InBetween;31.366249084473;1.940000295639;;;;;;1.2934534549713;0.080000005662441;;;;;;;;

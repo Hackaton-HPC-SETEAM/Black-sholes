@@ -1,0 +1,4 @@
+name;time_p;time_s;cpi_ratio;
+/fsx/home/etud9-2/Black-sholes/maqao_2025-01-24_16-22-42/binaries/BSM;75.206001281738;4.7191796302795;;
+/opt/arm/armpl/23.10/armpl_23.10_gcc-9.3/lib/libamath.so;24.788938522339;1.5555068254471;;
+/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libgomp.so.1.0.0;0.0050251227803528;0.00031532664434053;;

@@ -1,0 +1,6 @@
+********************************************************************************
+MAQAO 2.21.1 - a9bb74606c7e260f7f87782e64f16b00a6f20c1b::20250121-112452 || 2025/01/21
+maqao oneview -R1 --executable=./BSM "--run-command=<executable> 1000000 1000" --nprocs=16 
+CPY:  [true] ./BSM --> /fsx/home/etud9-2/Black-sholes/maqao_2025-01-24_15-45-54/binaries/BSM
+CMD:   /fsx/home/etud9-2/Black-sholes/maqao/maqao.aarch64.2.21.1/bin/maqao lprof _caller=oneview  --xp="/fsx/home/etud9-2/Black-sholes/maqao_2025-01-24_15-45-54/tools/lprof_npsu_run_0" --mpi-command="" --collect-CPU-time-intervals --collect-topology   -- /fsx/home/etud9-2/Black-sholes/maqao_2025-01-24_15-45-54/binaries/BSM 1000000 1000
+###   ERROR 1   ###

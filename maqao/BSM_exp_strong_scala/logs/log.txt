@@ -1,0 +1,19 @@
+********************************************************************************
+MAQAO 2.21.1 - a9bb74606c7e260f7f87782e64f16b00a6f20c1b::20250121-112452 || 2025/01/21
+maqao oneview -R1 -WS -xp=BSM_exp_strong_scala -c=template_scalability.json -dbg=1 
+Warning: run_command configuration option doesn't contain the tag <executable>. As the binary path as been found
+         in run_command, it has been replaced by the tag <executable>. New run_command value is
+         <executable> 10000000 1000
+CPY:  [true] ./BSM --> /fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/binaries/BSM
+CMD:  OMP_NUM_THREADS=1   /fsx/home/etud9-2/Black-sholes/maqao/maqao.aarch64.2.21.1/bin/maqao lprof _caller=oneview  --xp="/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_0" --mpi-command="" --collect-CPU-time-intervals --collect-topology   -- /fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/binaries/BSM 10000000 1000
+CMD:  OMP_NUM_THREADS=1   /fsx/home/etud9-2/Black-sholes/maqao/maqao.aarch64.2.21.1/bin/maqao lprof _caller=oneview  --xp="/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_1" --mpi-command="" --collect-CPU-time-intervals --collect-topology   -- ./BSM 10000000 1000
+CMD:  OMP_NUM_THREADS=2   /fsx/home/etud9-2/Black-sholes/maqao/maqao.aarch64.2.21.1/bin/maqao lprof _caller=oneview  --xp="/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_2" --mpi-command="" --collect-CPU-time-intervals --collect-topology   -- ./BSM 10000000 1000
+CMD:  OMP_NUM_THREADS=4   /fsx/home/etud9-2/Black-sholes/maqao/maqao.aarch64.2.21.1/bin/maqao lprof _caller=oneview  --xp="/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3" --mpi-command="" --collect-CPU-time-intervals --collect-topology   -- ./BSM 10000000 1000
+CMD:  OMP_NUM_THREADS=8   /fsx/home/etud9-2/Black-sholes/maqao/maqao.aarch64.2.21.1/bin/maqao lprof _caller=oneview  --xp="/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_4" --mpi-command="" --collect-CPU-time-intervals --collect-topology   -- ./BSM 10000000 1000
+CMD:  OMP_NUM_THREADS=16   /fsx/home/etud9-2/Black-sholes/maqao/maqao.aarch64.2.21.1/bin/maqao lprof _caller=oneview  --xp="/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_5" --mpi-command="" --collect-CPU-time-intervals --collect-topology   -- ./BSM 10000000 1000
+1 functions were discarded from static analysis because their coverage
+are lower than object_coverage_threshold value (0.01%).
+That represents 0.0050236107781529% of the execution time. To include them, change the value
+in the experiment directory configuration file, then rerun the command with the additionnal parameter
+--force-static-analysis
+CMD:  /fsx/home/etud9-2/Black-sholes/maqao/maqao.aarch64.2.21.1/bin/maqao otter  -input=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/OTTER/input_manifest.csv -output=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/OTTER/output_manifest.csv -dbg=1

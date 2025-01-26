@@ -1,0 +1,8 @@
+Global initial seed: 1974247375      argv[1]= 100000     argv[2]= 1000000
+ Result= 5.136864 in 10.080235 seconds
+Global initial seed: 1018552136      argv[1]= 1000000     argv[2]= 1000000
+ Result= 5.136964 in 101.087398 seconds
+Global initial seed: 684911025      argv[1]= 10000000     argv[2]= 1000000
+ Result= 5.135563 in 1008.199848 seconds
+Global initial seed: 2578463501      argv[1]= 100000000     argv[2]= 1000000
+ Result= 4.999878 in 10108.951464 seconds

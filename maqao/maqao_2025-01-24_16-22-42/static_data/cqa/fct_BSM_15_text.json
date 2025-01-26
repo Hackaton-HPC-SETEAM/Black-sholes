@@ -1,0 +1,304 @@
+{
+  "_cqa_text_report":
+    {
+      "_objects":
+        {
+          "image_vec_align":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/vec_align.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_8x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/8x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_2x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_2x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_row_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/row_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_col_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/col_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            }
+        },
+      "AVG":
+        {
+          "hint":
+            [
+              {
+                "title": "Matching between your function (in the source code) and the binary function",
+                "txt": "The binary function does not contain any FP arithmetical operations.\nThe binary function is loading 176 bytes.\nThe binary function is storing 24 bytes."
+              }
+            ],
+          "expert":
+            [
+              {
+                "title": "General properties",
+                "txt": "nb instructions    : 50\nloop length        : 200\nnb stack references: 0\n"
+              },
+              {
+                "title": "Front-end",
+                "txt": "FIT IN UOP CACHE\nfront end: 5.50 cycles\n"
+              },
+              {
+                "title": "Back-end",
+                "txt": "       | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8   | P9   | P10  | P11  | P12  | P13  | P14  | P15  | P16\n-----------------------------------------------------------------------------------------------------------------------------\nuops   | 0.50 | 0.50 | 4.33 | 4.33 | 4.33 | 4.33 | 4.33 | 4.33 | 0.00 | 0.00 | 0.00 | 0.00 | 5.83 | 5.50 | 5.67 | 1.50 | 1.50\ncycles | 0.50 | 0.50 | 4.33 | 4.33 | 4.33 | 4.33 | 4.33 | 4.33 | 0.00 | 0.00 | 0.00 | 0.00 | 5.83 | 5.50 | 5.67 | 1.50 | 1.50\n\nExecution ports to units layout:\n - P0: BRU\n - P1: BRU\n - P2: ALU\n - P3: ALU\n - P4: ALU\n - P5: ALU\n - P6: ALU\n - P7: ALU\n - P8 (128 bits): VPU, FP store data, ALU, DIV/SQRT\n - P9 (128 bits): VPU, ALU, FP store data\n - P10 (128 bits): VPU, ALU, DIV/SQRT\n - P11 (128 bits): ALU, VPU\n - P12 (256 bits): store address, load\n - P13 (256 bits): store address, load\n - P14 (256 bits): load\n - P15 (64 bits): store data\n - P16 (64 bits): store data\n\nCycles executing div or sqrt instructions: NA\n"
+              },
+              {
+                "title": "Cycles summary",
+                "txt": "Front-end : 5.50\nOverall L1: 5.83\n"
+              },
+              {
+                "title": "Vectorization ratios",
+                "txt": "all     : 40%\nload    : 72%\nstore   : 0%\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 0%\nfma     : 0%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 0%\n"
+              },
+              {
+                "title": "Cycles and memory resources usage",
+                "txt": "Assuming all data fit into the L1 cache, each call to the function takes 5.83 cycles. At this rate:\n - 31% of peak load performance is reached (30.17 out of 96.00 bytes loaded per cycle (GB/s @ 1GHz))\n - 8% of peak store performance is reached (4.11 out of 48.00 bytes stored per cycle (GB/s @ 1GHz))\n"
+              },
+              {
+                "title": "ASM code",
+                "txt": "In the binary file, the address of the function is: 401f80\n\nInstruction                                                                                                                                                                       | Nb FU | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8 | P9 | P10 | P11 | P12  | P13  | P14  | P15  | P16  | Latency | Recip. throughput | Vectorization\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nADRP X3, <402f80>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nADRP X1, <402f84>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nADD X2, X0, #1816                                                                                                                                                                 | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nLDR Q29, [X3, #768]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nADRP X3, <402f90>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nLDR Q28, [X3, #784]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nLDR Q31, [X1, #736]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nADRP X1, <402f9c>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nLDR Q30, [X1, #752]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nADD X1, X0, #8                                                                                                                                                                    | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nLDR X4, [X0, #1808]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | scal (50.0%)\nMOVZ W6, #45279                                                                                                                                                                   | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nADRP X8, <402fec>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nMOVK W6, #39176                                                                                                                                                                   | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nMOVZ X1, #0                                                                                                                                                                       | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nLDR X5, [X0, #1816]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | N/A\nADD X3, X0, #1824                                                                                                                                                                 | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nLDR X7, [X0, #4984]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | N/A\nLDR Q24, [X8, #736]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nBFM X4, X5, #0, #30                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (50.0%)\nADRP X5, 40200c <_ZNSt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EE11_M_gen_randEv+0x8c> | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nLDR Q23, [X5, #752]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nAND X5, X4, #4096                                                                                                                                                                 | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nEOR X4, X7, X4,LSR #1                                                                                                                                                             | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nADRP X7, 40201c <_ZNSt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EE11_M_gen_randEv+0x9c> | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nUMADDL X5, W5, W6, XZR                                                                                                                                                            | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | N/A\nADRP X6, 402024 <_ZNSt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EE11_M_gen_randEv+0xa4> | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nLDR Q22, [X7, #768]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nLDR Q21, [X6, #784]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nEOR X4, X4, X5                                                                                                                                                                    | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nSTR X4, [X0, #1808]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.50 | 0.50 | 0    | 0.50 | 0.50 | 1       | 0.50              | scal (50.0%)\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nLDR X2, [X0]                                                                                                                                                                      | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | scal (50.0%)\nMOVZ W3, #45279                                                                                                                                                                   | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nMOVK W3, #39176                                                                                                                                                                   | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nSTR XZR, [X0, #4992]                                                                                                                                                              | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.50 | 0.50 | 0    | 0.50 | 0.50 | 1       | 0.50              | scal (50.0%)\nLDR X1, [X0, #4984]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | N/A\nLDR X4, [X0, #3168]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | scal (50.0%)\nBFM X1, X2, #0, #30                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nAND X2, X1, #4096                                                                                                                                                                 | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nEOR X1, X4, X1,LSR #1                                                                                                                                                             | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nUMADDL X2, W2, W3, XZR                                                                                                                                                            | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | scal (50.0%)\nEOR X1, X1, X2                                                                                                                                                                    | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nSTR X1, [X0, #4984]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.50 | 0.50 | 0    | 0.50 | 0.50 | 1       | 0.50              | scal (50.0%)\nRET                                                                                                                                                                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\n"
+              }
+            ],
+          "header":
+            [
+            "Warnings:\nThe number of fused uops of the instruction [HINT	#0] is unknown",
+            "0% of peak computational performance is used (0.00 out of 32.00 FLOP per cycle (GFLOPS @ 1GHz))"
+            ],
+          "brief":
+            [
+
+            ],
+          "gain":
+            [
+              {
+                "workaround": " - Try to reorganize arrays of structures to structures of arrays\n - Consider to permute loops (see vectorization gain report)\n",
+                "title": "Code clean check",
+                "txt": "Detected a slowdown caused by scalar integer instructions (typically used for address computation).\nBy removing them, you can lower the cost of an iteration from 5.83 to 2.67 cycles (2.19x speedup)."
+              },
+              {
+                "workaround": " - Try another compiler or update/tune your current one\n - Make array accesses unit-stride:\n  * If your function streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\nfor(i) a[i].x = b[i].x; (slow, non stride 1) => for(i) a.x[i] = b.x[i]; (fast, stride 1)\n",
+                "details": "40% of VPU instructions are used in vector version (process two or more data elements in vector registers):\n - 72% of VPU loads are used in vector version.\n - 0% of VPU stores are used in vector version.\n - 0% of VPU addition or subtraction instructions are used in vector version.\n - 0% of VPU fused multiply-add instructions are used in vector version.\n - 0% of VPU instructions that are not load, store, addition, subtraction nor multiply instructions are used in vector version.\nSince your execution units are vector units, only a fully vectorized function can use their full power.\n",
+                "title": "Vectorization",
+                "txt": "Your function is poorly vectorized.\nOnly 70% of vector register length is used (average across all VPU instructions).\nBy fully vectorizing your function, you can lower the cost of an iteration from 5.83 to 4.84 cycles (1.21x speedup)."
+              }
+            ],
+          "potential":
+            [
+
+            ]
+        },
+      "paths":
+        [
+          {
+            "hint":
+              [
+                {
+                  "title": "Matching between your function (in the source code) and the binary function",
+                  "txt": "The binary function does not contain any FP arithmetical operations.\nThe binary function is loading 176 bytes.\nThe binary function is storing 24 bytes."
+                }
+              ],
+            "expert":
+              [
+                {
+                  "title": "General properties",
+                  "txt": "nb instructions    : 50\nloop length        : 200\nnb stack references: 0\n"
+                },
+                {
+                  "title": "Front-end",
+                  "txt": "FIT IN UOP CACHE\nfront end: 5.50 cycles\n"
+                },
+                {
+                  "title": "Back-end",
+                  "txt": "       | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8   | P9   | P10  | P11  | P12  | P13  | P14  | P15  | P16\n-----------------------------------------------------------------------------------------------------------------------------\nuops   | 0.50 | 0.50 | 4.33 | 4.33 | 4.33 | 4.33 | 4.33 | 4.33 | 0.00 | 0.00 | 0.00 | 0.00 | 5.83 | 5.50 | 5.67 | 1.50 | 1.50\ncycles | 0.50 | 0.50 | 4.33 | 4.33 | 4.33 | 4.33 | 4.33 | 4.33 | 0.00 | 0.00 | 0.00 | 0.00 | 5.83 | 5.50 | 5.67 | 1.50 | 1.50\n\nExecution ports to units layout:\n - P0: BRU\n - P1: BRU\n - P2: ALU\n - P3: ALU\n - P4: ALU\n - P5: ALU\n - P6: ALU\n - P7: ALU\n - P8 (128 bits): VPU, FP store data, ALU, DIV/SQRT\n - P9 (128 bits): VPU, ALU, FP store data\n - P10 (128 bits): VPU, ALU, DIV/SQRT\n - P11 (128 bits): ALU, VPU\n - P12 (256 bits): store address, load\n - P13 (256 bits): store address, load\n - P14 (256 bits): load\n - P15 (64 bits): store data\n - P16 (64 bits): store data\n\nCycles executing div or sqrt instructions: NA\n"
+                },
+                {
+                  "title": "Cycles summary",
+                  "txt": "Front-end : 5.50\nOverall L1: 5.83\n"
+                },
+                {
+                  "title": "Vectorization ratios",
+                  "txt": "all     : 40%\nload    : 72%\nstore   : 0%\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 0%\nfma     : 0%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 0%\n"
+                },
+                {
+                  "title": "Cycles and memory resources usage",
+                  "txt": "Assuming all data fit into the L1 cache, each call to the function takes 5.83 cycles. At this rate:\n - 31% of peak load performance is reached (30.17 out of 96.00 bytes loaded per cycle (GB/s @ 1GHz))\n - 8% of peak store performance is reached (4.11 out of 48.00 bytes stored per cycle (GB/s @ 1GHz))\n"
+                },
+                {
+                  "title": "ASM code",
+                  "txt": "In the binary file, the address of the function is: 401f80\n\nInstruction                                                                                                                                                                       | Nb FU | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8 | P9 | P10 | P11 | P12  | P13  | P14  | P15  | P16  | Latency | Recip. throughput | Vectorization\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nADRP X3, <402f80>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nADRP X1, <402f84>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nADD X2, X0, #1816                                                                                                                                                                 | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nLDR Q29, [X3, #768]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nADRP X3, <402f90>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nLDR Q28, [X3, #784]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nLDR Q31, [X1, #736]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nADRP X1, <402f9c>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nLDR Q30, [X1, #752]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nADD X1, X0, #8                                                                                                                                                                    | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nLDR X4, [X0, #1808]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | scal (50.0%)\nMOVZ W6, #45279                                                                                                                                                                   | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nADRP X8, <402fec>                                                                                                                                                                 | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nMOVK W6, #39176                                                                                                                                                                   | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nMOVZ X1, #0                                                                                                                                                                       | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nLDR X5, [X0, #1816]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | N/A\nADD X3, X0, #1824                                                                                                                                                                 | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nLDR X7, [X0, #4984]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | N/A\nLDR Q24, [X8, #736]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nBFM X4, X5, #0, #30                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (50.0%)\nADRP X5, 40200c <_ZNSt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EE11_M_gen_randEv+0x8c> | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nLDR Q23, [X5, #752]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nAND X5, X4, #4096                                                                                                                                                                 | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nEOR X4, X7, X4,LSR #1                                                                                                                                                             | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nADRP X7, 40201c <_ZNSt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EE11_M_gen_randEv+0x9c> | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nUMADDL X5, W5, W6, XZR                                                                                                                                                            | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | N/A\nADRP X6, 402024 <_ZNSt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EE11_M_gen_randEv+0xa4> | 1     | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0.25 | 0.25 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.25              | N/A\nLDR Q22, [X7, #768]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nLDR Q21, [X6, #784]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | vect (100.0%)\nEOR X4, X4, X5                                                                                                                                                                    | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nSTR X4, [X0, #1808]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.50 | 0.50 | 0    | 0.50 | 0.50 | 1       | 0.50              | scal (50.0%)\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nLDR X2, [X0]                                                                                                                                                                      | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | scal (50.0%)\nMOVZ W3, #45279                                                                                                                                                                   | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nMOVK W3, #39176                                                                                                                                                                   | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nSTR XZR, [X0, #4992]                                                                                                                                                              | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.50 | 0.50 | 0    | 0.50 | 0.50 | 1       | 0.50              | scal (50.0%)\nLDR X1, [X0, #4984]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | N/A\nLDR X4, [X0, #3168]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.33 | 0.33 | 0.33 | 0    | 0    | 4       | 0.33              | scal (50.0%)\nBFM X1, X2, #0, #30                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nAND X2, X1, #4096                                                                                                                                                                 | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nEOR X1, X4, X1,LSR #1                                                                                                                                                             | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nUMADDL X2, W2, W3, XZR                                                                                                                                                            | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | scal (50.0%)\nEOR X1, X1, X2                                                                                                                                                                    | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nSTR X1, [X0, #4984]                                                                                                                                                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0.50 | 0.50 | 0    | 0.50 | 0.50 | 1       | 0.50              | scal (50.0%)\nRET                                                                                                                                                                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0  | 0  | 0   | 0   | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\nHINT #0                                                                                                                                                                           |       |      |      |      |      |      |      |      |      |    |    |     |     |      |      |      |      |      |         |                   | N/A\n"
+                }
+              ],
+            "header":
+              [
+              "Warnings:\nThe number of fused uops of the instruction [HINT	#0] is unknown",
+              "0% of peak computational performance is used (0.00 out of 32.00 FLOP per cycle (GFLOPS @ 1GHz))"
+              ],
+            "brief":
+              [
+
+              ],
+            "gain":
+              [
+                {
+                  "workaround": " - Try to reorganize arrays of structures to structures of arrays\n - Consider to permute loops (see vectorization gain report)\n",
+                  "title": "Code clean check",
+                  "txt": "Detected a slowdown caused by scalar integer instructions (typically used for address computation).\nBy removing them, you can lower the cost of an iteration from 5.83 to 2.67 cycles (2.19x speedup)."
+                },
+                {
+                  "workaround": " - Try another compiler or update/tune your current one\n - Make array accesses unit-stride:\n  * If your function streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\nfor(i) a[i].x = b[i].x; (slow, non stride 1) => for(i) a.x[i] = b.x[i]; (fast, stride 1)\n",
+                  "details": "40% of VPU instructions are used in vector version (process two or more data elements in vector registers):\n - 72% of VPU loads are used in vector version.\n - 0% of VPU stores are used in vector version.\n - 0% of VPU addition or subtraction instructions are used in vector version.\n - 0% of VPU fused multiply-add instructions are used in vector version.\n - 0% of VPU instructions that are not load, store, addition, subtraction nor multiply instructions are used in vector version.\nSince your execution units are vector units, only a fully vectorized function can use their full power.\n",
+                  "title": "Vectorization",
+                  "txt": "Your function is poorly vectorized.\nOnly 70% of vector register length is used (average across all VPU instructions).\nBy fully vectorizing your function, you can lower the cost of an iteration from 5.83 to 4.84 cycles (1.21x speedup)."
+                }
+              ],
+            "potential":
+              [
+
+              ]
+          }
+        ],
+      "common":
+        {
+          "header":
+            [
+            "The function is defined in /tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc:404-425.\n",
+            "Warnings:\nIgnoring paths for analysis"
+            ]
+        }
+    }
+}

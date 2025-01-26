@@ -1,0 +1,128 @@
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 248 - 2238
+--------------------------------------------------------------------------------
+
+248: 	    __res %= __m;
+[...]
+1760:     random_device() { _M_init("default"); }
+[...]
+1766:     { _M_fini(); }
+[...]
+1782:     { return this->_M_getval(); }
+[...]
+2173:       normal_distribution(result_type __mean,
+2174: 			  result_type __stddev = result_type(1))
+2175:       : _M_param(__mean, __stddev)
+[...]
+2238: 	operator()(_UniformRandomNumberGenerator& __urng)
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/char_traits.h: 350 - 427
+--------------------------------------------------------------------------------
+
+350: 	__c1 = __c2;
+[...]
+427: 	return static_cast<char_type*>(__builtin_memcpy(__s1, __s2, __n));
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/basic_string.h: 194 - 809
+--------------------------------------------------------------------------------
+
+194: 	: allocator_type(__a), _M_p(__dat) { }
+[...]
+223:       { _M_string_length = __length; }
+224: 
+225:       _GLIBCXX20_CONSTEXPR
+226:       pointer
+227:       _M_data() const
+228:       { return _M_dataplus._M_p; }
+[...]
+269: 	if (_M_data() == _M_local_data())
+[...]
+294:       { _Alloc_traits::deallocate(_M_get_allocator(), _M_data(), __size + 1); }
+[...]
+809:       { _M_dispose(); }
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 330 - 3371
+--------------------------------------------------------------------------------
+
+330:       _M_x[0] = __detail::__mod<_UIntType,
+331: 	__detail::_Shift<_UIntType, __w>::__value>(__sd);
+332: 
+333:       for (size_t __i = 1; __i < state_size; ++__i)
+334: 	{
+335: 	  _UIntType __x = _M_x[__i - 1];
+336: 	  __x ^= __x >> (__w - 2);
+337: 	  __x *= __f;
+338: 	  __x += __detail::__mod<_UIntType, __n>(__i);
+339: 	  _M_x[__i] = __detail::__mod<_UIntType,
+340: 	    __detail::_Shift<_UIntType, __w>::__value>(__x);
+341: 	}
+342:       _M_p = state_size;
+[...]
+1820: 	if (_M_saved_available)
+1821: 	  {
+1822: 	    _M_saved_available = false;
+1823: 	    __ret = _M_saved;
+[...]
+1832: 		__r2 = __x * __x + __y * __y;
+1833: 	      }
+1834: 	    while (__r2 > 1.0 || __r2 == 0.0);
+1835: 
+1836: 	    const result_type __mult = std::sqrt(-2 * std::log(__r2) / __r2);
+1837: 	    _M_saved = __x * __mult;
+1838: 	    _M_saved_available = true;
+1839: 	    __ret = __y * __mult;
+1840: 	  }
+1841: 
+1842: 	__ret = __ret * __param.stddev() + __param.mean();
+[...]
+3367: 	  __sum += _RealType(__urng() - __urng.min()) * __tmp;
+3368: 	  __tmp *= __r;
+3369: 	}
+3370:       __ret = __sum / __tmp;
+3371:       if (__builtin_expect(__ret >= _RealType(1), 0))
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/cmath: 327 - 443
+--------------------------------------------------------------------------------
+
+327:   { return __builtin_logf(__x); }
+[...]
+443:   { return __builtin_sqrtf(__x); }
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/new_allocator.h: 104 - 172
+--------------------------------------------------------------------------------
+
+104:       ~__new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+[...]
+172: 	_GLIBCXX_OPERATOR_DELETE(_GLIBCXX_SIZED_DEALLOC(__p, __n));
+/fsx/home/etud9-2/Black-sholes/BSM_32.cxx: 93 - 131
+--------------------------------------------------------------------------------
+
+93:     #pragma omp parallel for reduction(+:sum)
+94: 
+95:     for (run = 0; run < num_runs; ++run) {
+96:         thread_local static std::mt19937 generator(std::random_device{}());
+97:         thread_local static std::normal_distribution<f32> distribution(0.0, 1.0);
+98:         
+99:         svbool_t pg = svptrue_b32();
+100:         svfloat32_t a_vec = svdup_f32(a);
+101:         svfloat32_t b_vec = svdup_f32(b);
+102:         svfloat32_t lambda_vec = svdup_f32(lambda);
+103:         svfloat32_t lnZcompare_vec = svdup_f32(lnZcompare);
+104:         svfloat32_t sum_vec = svdup_f32(0.0);
+105:         
+106:         for (ui64 i = 0; i < num_simulations; i += svcntd()) {
+107:             // Generate random numbers
+108:             svfloat32_t Z_vec = svdup_f32(0.0);
+109:             svbool_t mask = svwhilelt_b32(i, num_simulations);
+110: 
+111:             // Generate random numbers for each active element
+112:             for (ui64 j = 0; j < svcntw(); ++j) {
+113:                 if (svptest_first(svptrue_b32(), mask)) {
+114:                     float random_value = distribution(generator);
+115:                     Z_vec = svdup_n_f32_z(mask, random_value);
+116:                     mask = svpnext_b32(pg,mask);
+[...]
+122:                 svbool_t cmp_mask = svcmpgt(pg, Z_vec, lnZcompare_vec);
+123:                 svfloat32_t mul_result = svmul_f32_x(pg, lambda_vec, Z_vec);
+124:                 svfloat32_t exp_result = _ZGVsMxv_expf(mul_result,pg);
+125:                 svfloat32_t result = svadd_f32_x(pg, svmul_f32_x(pg, a_vec, exp_result), b_vec);
+126:                 
+127:                 sum_vec = svadd_f32_m(cmp_mask, sum_vec, result);
+128:         }
+129:         
+130:         // Reduce the sum vector to a scalar
+131:         sum += svaddv(svptrue_b64(), sum_vec);

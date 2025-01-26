@@ -1,0 +1,25 @@
+
+* Info: "ref-cycles" not supported on ip-10-0-9-170: fallback to "cpu-clock"Global initial seed: 773687456      argv[1]= 10000000     argv[2]= 1000
+ Result= 5.135637 in 25.123346 seconds
+
+* Info: Dumping samples (host ip-10-0-9-170, process 1811)
+* Info: Dumping source info for callchain nodes (host ip-10-0-9-170, process 1811)
+* Info: Building/writing metadata (host ip-10-0-9-170)
+* Info: Finished collect step (host ip-10-0-9-170, process 1811)
+
+Your experiment path is /fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3
+
+To display your profiling results:
+######################################################################################################################################
+#    LEVEL    |     REPORT     |                                               COMMAND                                               #
+######################################################################################################################################
+#  Functions  |  Cluster-wide  |  maqao lprof -df xp=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3      #
+#  Functions  |  Per-node      |  maqao lprof -df -dn xp=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3  #
+#  Functions  |  Per-process   |  maqao lprof -df -dp xp=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3  #
+#  Functions  |  Per-thread    |  maqao lprof -df -dt xp=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3  #
+#  Loops      |  Cluster-wide  |  maqao lprof -dl xp=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3      #
+#  Loops      |  Per-node      |  maqao lprof -dl -dn xp=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3  #
+#  Loops      |  Per-process   |  maqao lprof -dl -dp xp=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3  #
+#  Loops      |  Per-thread    |  maqao lprof -dl -dt xp=/fsx/home/etud9-2/Black-sholes/BSM_exp_strong_scala/tools/lprof_npsu_run_3  #
+######################################################################################################################################
+

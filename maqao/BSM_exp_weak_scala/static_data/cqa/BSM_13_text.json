@@ -1,0 +1,318 @@
+{
+  "_cqa_text_report":
+    {
+      "_objects":
+        {
+          "image_vec_align":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/vec_align.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_8x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/8x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_2x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_2x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_row_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/row_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_col_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/col_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            }
+        },
+      "AVG":
+        {
+          "hint":
+            [
+              {
+                "title": "Matching between your loop (in the source code) and the binary loop",
+                "txt": "The binary loop is composed of 8 FP arithmetical operations:\n - 5: multiply\n - 3: divide\nThe binary loop is loading 8 bytes.\nThe binary loop is storing 5 bytes."
+              },
+              {
+                "title": "Arithmetic intensity",
+                "txt": "Arithmetic intensity is 0.62 FP operations per loaded or stored byte."
+              }
+            ],
+          "expert":
+            [
+              {
+                "title": "General properties",
+                "txt": "nb instructions    : 42\nloop length        : 168\nnb stack references: 0\n"
+              },
+              {
+                "title": "Front-end",
+                "txt": "FIT IN UOP CACHE\nfront end: 5.13 cycles\n"
+              },
+              {
+                "title": "Back-end",
+                "txt": "       | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8   | P9   | P10  | P11  | P12  | P13  | P14  | P15  | P16\n-----------------------------------------------------------------------------------------------------------------------------\nuops   | 5.00 | 5.00 | 2.00 | 2.00 | 1.50 | 1.50 | 2.50 | 2.50 | 5.00 | 5.00 | 5.00 | 5.00 | 1.33 | 1.33 | 1.33 | 0.50 | 0.50\ncycles | 5.00 | 5.00 | 2.00 | 2.00 | 1.50 | 1.50 | 2.50 | 2.50 | 5.00 | 5.00 | 5.00 | 5.00 | 1.33 | 1.33 | 1.33 | 0.50 | 0.50\n\nExecution ports to units layout:\n - P0: BRU\n - P1: BRU\n - P2: ALU\n - P3: ALU\n - P4: ALU\n - P5: ALU\n - P6: ALU\n - P7: ALU\n - P8 (128 bits): VPU, FP store data, ALU, DIV/SQRT\n - P9 (128 bits): VPU, ALU, FP store data\n - P10 (128 bits): VPU, ALU, DIV/SQRT\n - P11 (128 bits): ALU, VPU\n - P12 (256 bits): store address, load\n - P13 (256 bits): store address, load\n - P14 (256 bits): load\n - P15 (64 bits): store data\n - P16 (64 bits): store data\n\nCycles executing div or sqrt instructions: 2.62-3.38\n"
+              },
+              {
+                "title": "Cycles summary",
+                "txt": "Front-end : 5.13\nOverall L1: 5.13\n"
+              },
+              {
+                "title": "Vectorization ratios",
+                "txt": "INT\nall    : 0%\nload   : 0%\nstore  : 0%\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: 0%\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 0%\nFP\nall     : 0%\nload    : NA (no load vectorizable/vectorized instructions)\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : 0%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: 0%\nother   : 0%\nINT+FP\nall     : 0%\nload    : 0%\nstore   : 0%\nmul     : 0%\nadd-sub : 0%\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: 0%\nother   : 0%\n"
+              },
+              {
+                "title": "Cycles and memory resources usage",
+                "txt": "Assuming all data fit into the L1 cache, each iteration of the binary loop takes 5.13 cycles. At this rate:\n - 1% of peak load performance is reached (1.56 out of 96.00 bytes loaded per cycle (GB/s @ 1GHz))\n - 2% of peak store performance is reached (0.98 out of 48.00 bytes stored per cycle (GB/s @ 1GHz))\n"
+              },
+              {
+                "title": "ASM code",
+                "txt": "In the binary file, the address of the loop is: 401a6c\n\nInstruction                        | Nb FU | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8   | P9   | P10  | P11  | P12  | P13  | P14  | P15  | P16  | Latency | Recip. throughput | Vectorization\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nMOVI V15.2S, #0                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nFMOV S11, #1.0000000               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nADD X19, X21, #0                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (50.0%)\nADD X19, X19, #48                  | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nHINT #0                            |       |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |         |                   | N/A\nFMOV S0, S10                       | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nBL 4013a0 <@plt_start@+0x220>      | 1     | 0.50 | 0.50 | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nFMOV S28, #-2.0000000              | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nFMUL S0, S0, S28                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nFDIV S0, S0, S10                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 7-10    | 0.87-1.13         | scal (25.0%)\nFCMP S0, #0                        | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | scal (25.0%)\nB.PL 401b64 <main._omp_fn.0+0x278> | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nBL 401330 <@plt_start@+0x1b0>      | 1     | 0.50 | 0.50 | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nPTRUE P15.S, ALL                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (100.0%)\nB 401b6c <main._omp_fn.0+0x280>    | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nFMUL S31, S8, S0                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nADD X0, X21, #0                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nADD X0, X0, #16                    | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nMOVZ W1, #1                        | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (25.0%)\nFMUL S30, S0, S9                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nSTRB W1, [X0, #28]                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0.50 | 0.50 | 1       | 0.50              | scal (6.3%)\nSTR S31, [X0, #24]                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 2       | 0.50              | scal (25.0%)\nADDPL X0, SP, #4                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nFMOV S0, S10                       | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nLDR S8, [X0, #160]                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | scal (25.0%)\nBL 4013a0 <@plt_start@+0x220>      | 1     | 0.50 | 0.50 | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nFMOV S28, #-2.0000000              | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nFMUL S0, S0, S28                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nFDIV S0, S0, S10                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 7-10    | 0.87-1.13         | scal (25.0%)\nFCMP S0, #0                        | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | scal (25.0%)\nB.PL 401b64 <main._omp_fn.0+0x278> | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nB 401afc <main._omp_fn.0+0x210>    | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nADDPL X0, SP, #4                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nFMOV S0, S10                       | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nLDR S9, [X0, #160]                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | scal (25.0%)\nBL 4013a0 <@plt_start@+0x220>      | 1     | 0.50 | 0.50 | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nFMOV S28, #-2.0000000              | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nFMUL S0, S0, S28                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nFDIV S0, S0, S10                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 7-10    | 0.87-1.13         | scal (25.0%)\nFCMP S0, #0                        | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | scal (25.0%)\nB.PL 401b64 <main._omp_fn.0+0x278> | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nB 401afc <main._omp_fn.0+0x210>    | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\n"
+              }
+            ],
+          "header":
+            [
+            "Warnings:\n - get_nb_fused_uops:\n  * The number of fused uops of the instruction [HINT	#0] is unknown\n - get_path_cqa_results:\n  * Detected a function call instruction: ignoring called function instructions.\nRerun with --follow-calls=append to include them to analysis  or with --follow-calls=inline to simulate inlining.\n",
+            "4% of peak computational performance is used (1.56 out of 32.00 FLOP per cycle (GFLOPS @ 1GHz))"
+            ],
+          "brief":
+            [
+
+            ],
+          "gain":
+            [
+              {
+                "workaround": " - Try to reorganize arrays of structures to structures of arrays\n - Consider to permute loops (see vectorization gain report)\n",
+                "title": "Code clean check",
+                "txt": "Detected a slowdown caused by scalar integer instructions (typically used for address computation).\nBy removing them, you can lower the cost of an iteration from 5.13 to 3.50 cycles (1.46x speedup)."
+              },
+              {
+                "workaround": " - Try another compiler or update/tune your current one:\n  * recompile with fassociative-math (included in Ofast or ffast-math) to extend loop vectorization to FP reductions.\n - Remove inter-iterations dependences from your loop and make it unit-stride:\n  * If your arrays have 2 or more dimensions, check whether elements are accessed contiguously and, otherwise, try to permute loops accordingly:\nC storage order is row-major: for(i) for(j) a[j][i] = b[j][i]; (slow, non stride 1) => for(i) for(j) a[i][j] = b[i][j]; (fast, stride 1)<<image_row_maj>>\n  * If your loop streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\nfor(i) a[i].x = b[i].x; (slow, non stride 1) => for(i) a.x[i] = b.x[i]; (fast, stride 1)\n",
+                "details": "All VPU instructions are used in scalar version (process only one data element in vector registers).\nSince your execution units are vector units, only a vectorized loop can use their full power.\n",
+                "title": "Vectorization",
+                "txt": "Your loop is not vectorized.\nOnly 28% of vector register length is used (average across all VPU instructions).\nBy vectorizing your loop, you can lower the cost of an iteration from 5.13 to 5.00 cycles (1.02x speedup)."
+              }
+            ],
+          "potential":
+            [
+              {
+                "title": "Expensive FP math instructions/calls",
+                "txt": "Detected performance impact from expensive FP math instructions/calls.\nBy removing/reexpressing them, you can lower the cost of an iteration from 5.13 to 2.00 cycles (2.56x speedup)."
+              }
+            ]
+        },
+      "paths":
+        [
+          {
+            "hint":
+              [
+                {
+                  "title": "Matching between your loop (in the source code) and the binary loop",
+                  "txt": "The binary loop is composed of 8 FP arithmetical operations:\n - 5: multiply\n - 3: divide\nThe binary loop is loading 8 bytes.\nThe binary loop is storing 5 bytes."
+                },
+                {
+                  "title": "Arithmetic intensity",
+                  "txt": "Arithmetic intensity is 0.62 FP operations per loaded or stored byte."
+                }
+              ],
+            "expert":
+              [
+                {
+                  "title": "General properties",
+                  "txt": "nb instructions    : 42\nloop length        : 168\nnb stack references: 0\n"
+                },
+                {
+                  "title": "Front-end",
+                  "txt": "FIT IN UOP CACHE\nfront end: 5.13 cycles\n"
+                },
+                {
+                  "title": "Back-end",
+                  "txt": "       | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8   | P9   | P10  | P11  | P12  | P13  | P14  | P15  | P16\n-----------------------------------------------------------------------------------------------------------------------------\nuops   | 5.00 | 5.00 | 2.00 | 2.00 | 1.50 | 1.50 | 2.50 | 2.50 | 5.00 | 5.00 | 5.00 | 5.00 | 1.33 | 1.33 | 1.33 | 0.50 | 0.50\ncycles | 5.00 | 5.00 | 2.00 | 2.00 | 1.50 | 1.50 | 2.50 | 2.50 | 5.00 | 5.00 | 5.00 | 5.00 | 1.33 | 1.33 | 1.33 | 0.50 | 0.50\n\nExecution ports to units layout:\n - P0: BRU\n - P1: BRU\n - P2: ALU\n - P3: ALU\n - P4: ALU\n - P5: ALU\n - P6: ALU\n - P7: ALU\n - P8 (128 bits): VPU, FP store data, ALU, DIV/SQRT\n - P9 (128 bits): VPU, ALU, FP store data\n - P10 (128 bits): VPU, ALU, DIV/SQRT\n - P11 (128 bits): ALU, VPU\n - P12 (256 bits): store address, load\n - P13 (256 bits): store address, load\n - P14 (256 bits): load\n - P15 (64 bits): store data\n - P16 (64 bits): store data\n\nCycles executing div or sqrt instructions: 2.62-3.38\n"
+                },
+                {
+                  "title": "Cycles summary",
+                  "txt": "Front-end : 5.13\nOverall L1: 5.13\n"
+                },
+                {
+                  "title": "Vectorization ratios",
+                  "txt": "INT\nall    : 0%\nload   : 0%\nstore  : 0%\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: 0%\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 0%\nFP\nall     : 0%\nload    : NA (no load vectorizable/vectorized instructions)\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : 0%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: 0%\nother   : 0%\nINT+FP\nall     : 0%\nload    : 0%\nstore   : 0%\nmul     : 0%\nadd-sub : 0%\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: 0%\nother   : 0%\n"
+                },
+                {
+                  "title": "Cycles and memory resources usage",
+                  "txt": "Assuming all data fit into the L1 cache, each iteration of the binary loop takes 5.13 cycles. At this rate:\n - 1% of peak load performance is reached (1.56 out of 96.00 bytes loaded per cycle (GB/s @ 1GHz))\n - 2% of peak store performance is reached (0.98 out of 48.00 bytes stored per cycle (GB/s @ 1GHz))\n"
+                },
+                {
+                  "title": "ASM code",
+                  "txt": "In the binary file, the address of the loop is: 401a6c\n\nInstruction                        | Nb FU | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8   | P9   | P10  | P11  | P12  | P13  | P14  | P15  | P16  | Latency | Recip. throughput | Vectorization\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nMOVI V15.2S, #0                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nFMOV S11, #1.0000000               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nADD X19, X21, #0                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (50.0%)\nADD X19, X19, #48                  | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (50.0%)\nHINT #0                            |       |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |         |                   | N/A\nFMOV S0, S10                       | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nBL 4013a0 <@plt_start@+0x220>      | 1     | 0.50 | 0.50 | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nFMOV S28, #-2.0000000              | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nFMUL S0, S0, S28                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nFDIV S0, S0, S10                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 7-10    | 0.87-1.13         | scal (25.0%)\nFCMP S0, #0                        | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | scal (25.0%)\nB.PL 401b64 <main._omp_fn.0+0x278> | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nBL 401330 <@plt_start@+0x1b0>      | 1     | 0.50 | 0.50 | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nPTRUE P15.S, ALL                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (100.0%)\nB 401b6c <main._omp_fn.0+0x280>    | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nFMUL S31, S8, S0                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nADD X0, X21, #0                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nADD X0, X0, #16                    | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | N/A\nMOVZ W1, #1                        | 1     | 0    | 0    | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0.17 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.17              | scal (25.0%)\nFMUL S30, S0, S9                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nSTRB W1, [X0, #28]                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0.50 | 0.50 | 1       | 0.50              | scal (6.3%)\nSTR S31, [X0, #24]                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 2       | 0.50              | scal (25.0%)\nADDPL X0, SP, #4                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nFMOV S0, S10                       | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nLDR S8, [X0, #160]                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | scal (25.0%)\nBL 4013a0 <@plt_start@+0x220>      | 1     | 0.50 | 0.50 | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nFMOV S28, #-2.0000000              | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nFMUL S0, S0, S28                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nFDIV S0, S0, S10                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 7-10    | 0.87-1.13         | scal (25.0%)\nFCMP S0, #0                        | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | scal (25.0%)\nB.PL 401b64 <main._omp_fn.0+0x278> | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nB 401afc <main._omp_fn.0+0x210>    | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nADDPL X0, SP, #4                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nFMOV S0, S10                       | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nLDR S9, [X0, #160]                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 6       | 0.33              | scal (25.0%)\nBL 4013a0 <@plt_start@+0x220>      | 1     | 0.50 | 0.50 | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nFMOV S28, #-2.0000000              | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 2       | 0.25              | scal (25.0%)\nFMUL S0, S0, S28                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 3       | 0.25              | scal (25.0%)\nFDIV S0, S0, S10                   | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 7-10    | 0.87-1.13         | scal (25.0%)\nFCMP S0, #0                        | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 1                 | scal (25.0%)\nB.PL 401b64 <main._omp_fn.0+0x278> | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nB 401afc <main._omp_fn.0+0x210>    | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\n"
+                }
+              ],
+            "header":
+              [
+              "Warnings:\n - get_nb_fused_uops:\n  * The number of fused uops of the instruction [HINT	#0] is unknown\n - get_path_cqa_results:\n  * Detected a function call instruction: ignoring called function instructions.\nRerun with --follow-calls=append to include them to analysis  or with --follow-calls=inline to simulate inlining.\n",
+              "4% of peak computational performance is used (1.56 out of 32.00 FLOP per cycle (GFLOPS @ 1GHz))"
+              ],
+            "brief":
+              [
+
+              ],
+            "gain":
+              [
+                {
+                  "workaround": " - Try to reorganize arrays of structures to structures of arrays\n - Consider to permute loops (see vectorization gain report)\n",
+                  "title": "Code clean check",
+                  "txt": "Detected a slowdown caused by scalar integer instructions (typically used for address computation).\nBy removing them, you can lower the cost of an iteration from 5.13 to 3.50 cycles (1.46x speedup)."
+                },
+                {
+                  "workaround": " - Try another compiler or update/tune your current one:\n  * recompile with fassociative-math (included in Ofast or ffast-math) to extend loop vectorization to FP reductions.\n - Remove inter-iterations dependences from your loop and make it unit-stride:\n  * If your arrays have 2 or more dimensions, check whether elements are accessed contiguously and, otherwise, try to permute loops accordingly:\nC storage order is row-major: for(i) for(j) a[j][i] = b[j][i]; (slow, non stride 1) => for(i) for(j) a[i][j] = b[i][j]; (fast, stride 1)<<image_row_maj>>\n  * If your loop streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\nfor(i) a[i].x = b[i].x; (slow, non stride 1) => for(i) a.x[i] = b.x[i]; (fast, stride 1)\n",
+                  "details": "All VPU instructions are used in scalar version (process only one data element in vector registers).\nSince your execution units are vector units, only a vectorized loop can use their full power.\n",
+                  "title": "Vectorization",
+                  "txt": "Your loop is not vectorized.\nOnly 28% of vector register length is used (average across all VPU instructions).\nBy vectorizing your loop, you can lower the cost of an iteration from 5.13 to 5.00 cycles (1.02x speedup)."
+                }
+              ],
+            "potential":
+              [
+                {
+                  "title": "Expensive FP math instructions/calls",
+                  "txt": "Detected performance impact from expensive FP math instructions/calls.\nBy removing/reexpressing them, you can lower the cost of an iteration from 5.13 to 2.00 cycles (2.56x speedup)."
+                }
+              ]
+          }
+        ],
+      "common":
+        {
+          "header":
+            [
+            "The loop is defined in:\n - /tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc:1832-1839,3367-3371\n - /tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/cmath:327,443\n\n",
+            "Warnings:\n - get_cqa_results:\n  * Non-innermost loop: analyzing only self part (ignoring child loops).\n  * Ignoring paths for analysis\n  * Failed to get the number of paths\n - metrics:\n  * RecMII not computed since number of paths is unknown or > max_paths\n  * Streams not analyzed since number of paths is unknown or > max_paths\n"
+            ]
+        }
+    }
+}

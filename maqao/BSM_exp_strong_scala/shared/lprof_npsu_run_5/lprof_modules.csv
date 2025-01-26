@@ -1,0 +1,4 @@
+name;time_p;time_s;cpi_ratio;
+/fsx/home/etud9-2/Black-sholes/BSM;74.932159423828;4.7019948959351;;
+/opt/arm/armpl/23.10/armpl_23.10_gcc-9.3/lib/libamath.so;25.062780380249;1.5726902484894;;
+/tools/acfl/24.04/gcc-13.2.0_AmazonLinux-2/lib64/libgomp.so.1.0.0;0.0050236107781529;0.00031523170764558;;

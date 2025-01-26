@@ -1,0 +1,23 @@
+{
+  "config":
+    {
+      "number_processes": 1,
+      "base_run_name": "run_0",
+      "run_command": "./BSM 1000000 1000",
+      "multiruns_params":
+      [
+	  {
+           "run_command": "./BSM 10000000 1000",
+            "name": "run_1",
+          },
+          {
+            "run_command": "./BSM 100000000 1000",
+            "name": "run_2"
+          }
+
+        ],
+      "executable": "./BSM",
+      "envv_OMP_NUM_THREADS": 16,
+      "comments": "A simple scalability experiment that assumes the executable uses either MPI or OpenMP to analyze its scalability"
+    }
+}

@@ -1,0 +1,4 @@
+name;time_p;time_s;cpi_ratio;
+/fsx/home/etud9-2/Black-sholes/BSM_exp_weak_scala/binaries/BSM;74.895767211914;0.52801531553268;;
+/opt/arm/armpl/23.10/armpl_23.10_gcc-9.3/lib/libamath.so;25.057884216309;0.17665813863277;;
+/opt/arm/armpl/23.10/armpl_23.10_gcc-9.3/lib/libarmpl.so;0.046317718923092;0.00032654003007337;;

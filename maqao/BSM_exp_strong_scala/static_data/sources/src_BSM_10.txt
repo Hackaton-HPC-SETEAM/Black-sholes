@@ -1,0 +1,21 @@
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.h: 2238 - 2238
+--------------------------------------------------------------------------------
+
+2238: 	operator()(_UniformRandomNumberGenerator& __urng)
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 1820 - 1842
+--------------------------------------------------------------------------------
+
+1820: 	if (_M_saved_available)
+1821: 	  {
+1822: 	    _M_saved_available = false;
+1823: 	    __ret = _M_saved;
+[...]
+1842: 	__ret = __ret * __param.stddev() + __param.mean();
+/fsx/home/etud9-2/Black-sholes/BSM_32.cxx: 112 - 116
+--------------------------------------------------------------------------------
+
+112:             for (ui64 j = 0; j < svcntw(); ++j) {
+113:                 if (svptest_first(svptrue_b32(), mask)) {
+114:                     float random_value = distribution(generator);
+115:                     Z_vec = svdup_n_f32_z(mask, random_value);
+116:                     mask = svpnext_b32(pg,mask);

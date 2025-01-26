@@ -1,0 +1,23 @@
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/bits/random.tcc: 1832 - 3371
+--------------------------------------------------------------------------------
+
+1832: 		__r2 = __x * __x + __y * __y;
+1833: 	      }
+1834: 	    while (__r2 > 1.0 || __r2 == 0.0);
+1835: 
+1836: 	    const result_type __mult = std::sqrt(-2 * std::log(__r2) / __r2);
+1837: 	    _M_saved = __x * __mult;
+1838: 	    _M_saved_available = true;
+1839: 	    __ret = __y * __mult;
+[...]
+3367: 	  __sum += _RealType(__urng() - __urng.min()) * __tmp;
+3368: 	  __tmp *= __r;
+3369: 	}
+3370:       __ret = __sum / __tmp;
+3371:       if (__builtin_expect(__ret >= _RealType(1), 0))
+/tools/acfl/24.10/gcc-14.2.0_AmazonLinux-2/include/c++/14.2.0/cmath: 327 - 443
+--------------------------------------------------------------------------------
+
+327:   { return __builtin_logf(__x); }
+[...]
+443:   { return __builtin_sqrtf(__x); }
