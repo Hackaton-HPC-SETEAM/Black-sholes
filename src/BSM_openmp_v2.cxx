@@ -115,9 +115,7 @@ int main(int argc, char* argv[]) {
     #pragma omp parallel for simd reduction(+:sum)
 
     for (run = 0; run < num_runs; ++run) {
-        std::cout << "Run " << run+1 << std::endl;
         sum+= black_scholes_monte_carlo(S0, K, T, r, sigma, q, num_simulations);
-        std::cout << std::fixed << std::setprecision(6) << " value= " << sum/(run+1) << std::endl;
     }
     double t2=dml_micros();
     std::cout << std::fixed << std::setprecision(6) << " Result= " << sum/num_runs << " in " << (t2-t1)/1000000.0 << " seconds" << std::endl;
